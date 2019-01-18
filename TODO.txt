@@ -1,0 +1,41 @@
+TODO
+
+NACHSCHAUEN / NACHLESEN / INFORMIEREN
+
+- Cloud Umsetzung mit Firebase?
+- SRS Abfragezeiten
+- JavaFX anschauen, Umsetzbarkeit?
+- Daten speichern (als txt file?)
+-
+
+
+Programm starten ->
+
+- Es gibt X Karten, von denen Y Karten abgefragt werden können
+1. Lernen beginnen
+- Karten anzeigen
+    -löschen
+    -bearbeiten
+    -hinzufügen
+
+1. Lernen beginen:
+    - Array / Liste mit allen lernbaren Karten VOR ABFRAGE
+    - show Methode unserer Flashkarte
+    - Karte aufbereiten
+    -
+
+
+
+Klasse Flashcard:
+-string Frage
+-string Antwort
+-int id
+-enum/string neue Schwierigkeit
+-Date Abfragedatum (Wann die Karte wieder abgefragt wird)
+-bool isBearbeitet
+
+
+Show Methode.
+hide Methode.
+Aktualisieren Methode (nach der Abfrage).
+
