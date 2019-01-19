@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Flashcard {
@@ -9,9 +10,10 @@ public class Flashcard {
         this.back = back;
 
         //soll dynamisch erstellt werden
-        this.id = 0;
-        this.isLearned = false;
-        this.repetitionDate = null;
+        id = 0;
+        isLearned = false;
+        repetitionDate = new Date();
+        //repetitionDate = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
     }
 
     //Instanzvariablen
@@ -63,7 +65,7 @@ public class Flashcard {
         this.isLearned = isLearned;
     }
 
-    public Date getRepetitionDate() {
+    Date getRepetitionDate() {
         return repetitionDate;
     }
 
