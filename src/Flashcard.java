@@ -1,4 +1,3 @@
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Flashcard {
@@ -9,11 +8,13 @@ public class Flashcard {
         this.front = front;
         this.back = back;
 
-        //soll dynamisch erstellt werden
+        //ID muss einmalig sein & darf nur einmal vergeben werden.
+        //ID darf erst vergeben werden, nachdem die schon benutzten IDs bekannt sind.
         id = 0;
+        //Überhaupt nötig? Man kann ja am Datum erkennen (wann die Karte wieder gelernt werdenn soll)
+        //ob die Karte "schon gelernt" ist oder nicht
         isLearned = false;
         repetitionDate = new Date();
-        //repetitionDate = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
     }
 
     //Instanzvariablen
@@ -30,6 +31,7 @@ public class Flashcard {
     }
 
     public void setFront(String front) {
+        //Überprüfung valide Eingabe.
         this.front = front;
     }
 
@@ -38,6 +40,7 @@ public class Flashcard {
     }
 
     public void setBack(String back) {
+        //Überprüfung valide Eingabe.
         this.back = back;
     }
 
@@ -46,6 +49,7 @@ public class Flashcard {
     }
 
     public void setId(int id) {
+        //Überprüfung ob ID schon vorhanden ist
         this.id = id;
     }
 
@@ -70,6 +74,7 @@ public class Flashcard {
     }
 
     public void setRepetitionDate(Date repetitionDate) {
+        //Überprüfung ob neues Datum vor altem Datum liegt.
         this.repetitionDate = repetitionDate;
     }
 }
