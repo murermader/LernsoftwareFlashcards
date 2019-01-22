@@ -5,9 +5,7 @@ NACHSCHAUEN / NACHLESEN / INFORMIEREN
 - Cloud Umsetzung mit Firebase?
 - SRS Abfragezeiten
 - JavaFX anschauen, Umsetzbarkeit?
-- Daten speichern (als txt file?)
--
-
+- Daten speichern (txt, xml format?)
 
 Programm starten ->
 

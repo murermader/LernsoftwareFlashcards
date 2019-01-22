@@ -1,4 +1,3 @@
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Flashcard {
@@ -8,6 +7,7 @@ public class Flashcard {
         //Eingabe des Users
         this.front = front;
         this.back = back;
+        count++;
 
         //soll dynamisch erstellt werden
         id = 0;
@@ -24,8 +24,11 @@ public class Flashcard {
     private boolean isLearned;
     private Date repetitionDate;
 
+    //Klassenvariablen
+    static int count = 0;
+
     //Getter & Setter
-    public String getFront() {
+    String getFront() {
         return front;
     }
 
@@ -33,11 +36,11 @@ public class Flashcard {
         this.front = front;
     }
 
-    public String getBack() {
+    String getBack() {
         return back;
     }
 
-    public void setBack(String back) {
+    void setBack(String back) {
         this.back = back;
     }
 
@@ -49,11 +52,11 @@ public class Flashcard {
         this.id = id;
     }
 
-    public int getDifficulty() {
+    int getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(int difficulty) {
+    void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -72,4 +75,8 @@ public class Flashcard {
     public void setRepetitionDate(Date repetitionDate) {
         this.repetitionDate = repetitionDate;
     }
+
+    //Create
+
+    //
 }
