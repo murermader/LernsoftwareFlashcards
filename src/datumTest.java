@@ -1,5 +1,3 @@
-package playground;
-
 import java.util.Date;
 
 public class datumTest {

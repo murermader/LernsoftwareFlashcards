@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="GUI.Controller">
+  <children>
+    <VBox id="VBox" alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Button fx:id="ueben" maxWidth="270.0" mnemonicParsing="false" onAction="#handlerUeben" prefHeight="50.0" text="Üben" />
+        <Button fx:id="ansehen" maxWidth="270.0" mnemonicParsing="false" onAction="#handlerAnsehen" prefHeight="50.0" text="Stapel ansehen" />
+        <Button id="hinzufügen" fx:id="hinzufuegen" maxWidth="270.0" mnemonicParsing="false" onAction="#handlerHinzufuegen" prefHeight="50.0" text="Flashcard hinzufügen" />
+        <Button fx:id="beenden" maxWidth="270.0" mnemonicParsing="false" onAction="#handlerBeenden" prefHeight="50.0" text="Beenden" />
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
