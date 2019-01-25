@@ -13,21 +13,21 @@ public class Controller {
 
     @FXML
     public void handlerUeben(){
-
+      System.out.println("Handler Üben");
     }
 
     @FXML
     public  void handlerAnsehen(){
-
+      System.out.println("Handler Ansehen");
     }
 
     @FXML
     public  void handlerHinzufuegen(){
-
+      System.out.println("Handler Hinzufügen");
     }
 
     @FXML
     public void handlerBeenden(){
-
+      System.out.println("Handler Beenden");
     }
 }
