@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class Main {
 
@@ -11,8 +12,8 @@ public class Main {
     public static void main(String[] args) {
 
         //BEISPIELHAFTER ABLAUF DER SOFTWARE ALS KONSOLENANWENDUNG
-
         try{
+
             System.out.println(
                     "Willkommen in der Lernsoftware:\n" +
                             "Um eine Flashcard zu erstellen, geben Sie die 1 ein. \n" +
@@ -78,10 +79,10 @@ public class Main {
             }
         }
         catch(Exception ex){
-            //Fehler in der Konsole loggen
+            LogHelper.writeToLog(Level.INFO, "Fehler in Main: " +ex);
         }
         finally{
-            //speichern
+            LogHelper.writeToLog(Level.INFO, "Programm beendet.");
         }
     }
 }

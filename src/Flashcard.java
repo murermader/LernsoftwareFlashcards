@@ -1,83 +1,67 @@
+import javax.xml.bind.annotation.XmlAttribute;
 import java.util.Date;
+import java.util.logging.Level;
 
-public class Flashcard {
+public class Flashcard implements java.io.Serializable {
+
+    //Klassenvariablen
+    static int count = 0;
 
     //Konstruktor
     public Flashcard(String front, String back) {
-        //Eingabe des Users
         this.front = front;
         this.back = back;
         count++;
 
-        //soll dynamisch erstellt werden
         id = 0;
         isLearned = false;
         repetitionDate = new Date();
-        //repetitionDate = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        LogHelper.writeToLog(Level.INFO, "Flashkarte mit ID:\""+ id + "\" erstellt.");
     }
 
     //Instanzvariablen
-    private String front;
-    private String back;
-    private int id;
-    private int difficulty;
-    private boolean isLearned;
-    private Date repetitionDate;
-
-    //Klassenvariablen
-    static int count = 0;
+    @XmlAttribute private String front;
+    @XmlAttribute private String back;
+    @XmlAttribute private int id;
+    @XmlAttribute private int difficulty;
+    @XmlAttribute private boolean isLearned;
+    @XmlAttribute private Date repetitionDate;
 
     //Getter & Setter
     String getFront() {
         return front;
     }
-
-    public void setFront(String front) {
+    void setFront(String front) {
         this.front = front;
     }
-
     String getBack() {
         return back;
     }
-
     void setBack(String back) {
         this.back = back;
     }
-
-    public int getId() {
+    int getId() {
         return id;
     }
-
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
-
     int getDifficulty() {
         return difficulty;
     }
-
     void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
-
-    public boolean getLearned() {
+    boolean getLearned() {
         return isLearned;
     }
-
-    public void setLearned(boolean isLearned) {
+    void setLearned(boolean isLearned) {
         this.isLearned = isLearned;
     }
-
     Date getRepetitionDate() {
         return repetitionDate;
     }
-
-    public void setRepetitionDate(Date repetitionDate) {
+    void setRepetitionDate(Date repetitionDate) {
         this.repetitionDate = repetitionDate;
     }
-
-    //Create
-
-    //Save
-
 }
