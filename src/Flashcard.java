@@ -1,4 +1,3 @@
-import javax.xml.bind.annotation.XmlAttribute;
 import java.util.Date;
 import java.util.logging.Level;
 
@@ -20,12 +19,12 @@ public class Flashcard implements java.io.Serializable {
     }
 
     //Instanzvariablen
-    @XmlAttribute private String front;
-    @XmlAttribute private String back;
-    @XmlAttribute private int id;
-    @XmlAttribute private int difficulty;
-    @XmlAttribute private boolean isLearned;
-    @XmlAttribute private Date repetitionDate;
+    private String front;
+    private String back;
+    private int id;
+    private int difficulty;
+    private boolean isLearned;
+    private Date repetitionDate;
 
     //Getter & Setter
     String getFront() {
