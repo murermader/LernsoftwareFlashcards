@@ -35,8 +35,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-
     }
 
     public void UebenWindow(Stage primaryStage) throws Exception{

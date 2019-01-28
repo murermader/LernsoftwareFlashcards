@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 
-public class Main {
+public class MainConsole {
 
     private static final Scanner userInput = new Scanner(System.in);
     private static List<Flashcard> allFlashcards = new ArrayList<>();
@@ -79,7 +79,7 @@ public class Main {
             }
         }
         catch(Exception ex){
-            LogHelper.writeToLog(Level.INFO, "Fehler in Main: " +ex);
+            LogHelper.writeToLog(Level.INFO, "Fehler in MainConsole: " +ex);
         }
         finally{
             LogHelper.writeToLog(Level.INFO, "Programm beendet.");
