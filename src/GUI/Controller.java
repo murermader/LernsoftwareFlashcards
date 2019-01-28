@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import GUI.Main;
 
@@ -32,9 +33,10 @@ public class Controller {
 
 
       Stage primaryStage = new Stage();
-      primaryStage.setTitle("Flashcards");
+      primaryStage.setTitle("Flashcards Üben");
       primaryStage.setScene(scene);
       primaryStage.show();
+      primaryStage.initModality(Modality.WINDOW_MODAL);
     }
 
     @FXML
@@ -47,9 +49,10 @@ public class Controller {
 
 
       Stage thridStage = new Stage();
-      thridStage.setTitle("Flashcards");
+      thridStage.setTitle("Stapel ansehen");
       thridStage.setScene(scene);
       thridStage.show();
+      thridStage.initModality(Modality.WINDOW_MODAL);
     }
 
     @FXML
@@ -62,9 +65,10 @@ public class Controller {
 
 
       Stage fourthStage = new Stage();
-      fourthStage.setTitle("Flashcards");
+      fourthStage.setTitle("Karte hinzufügen");
       fourthStage.setScene(scene);
       fourthStage.show();
+      fourthStage.initModality(Modality.WINDOW_MODAL);
     }
 
     @FXML
@@ -77,8 +81,9 @@ public class Controller {
 
 
       Stage fifthStage = new Stage();
-      fifthStage.setTitle("Flashcards");
+      fifthStage.setTitle("Beenden");
       fifthStage.setScene(scene);
       fifthStage.show();
+      System.exit(0);
     }
 }
