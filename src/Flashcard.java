@@ -82,25 +82,26 @@ public class Flashcard implements java.io.Serializable {
     //updateInterval
     void updateInterval(){
 
-        if(difficulty != 0){ //Difficulty 0 --> direkt nocheinmal wiederholen, "kein update"
-
-            if(difficulty == 1){ //Difficulty 1 --> leicht, Zwei Stufen nach oben
+        switch(difficulty){
+            case(0): //Difficulty 0 --> direkt nocheinmal wiederholen, "kein update"
+                break;
+            case(1): //Difficulty 1 --> leicht, Zwei Stufen nach oben
                 level = level + 2;
                 updateTime();
-            }
-            if (difficulty == 2){ //Difficulty 2 --> OK, eine Stufe nach oben
+                break;
+            case(2): //Difficulty 2 --> OK, eine Stufe nach oben
                 level++;
                 updateTime();
-            }
-            if(difficulty == 3){ //Difficulty 3 --> Schwer, Stufe beibehalten
+                break;
+            case(3): //Difficulty 3 --> Schwer, Stufe beibehalten
                 updateTime();
-            }
-            if(difficulty == 4){ //Difficulty 4 --> Sehr schwer, Stufe um eins verrinngern
+                break;
+            case(4): //Difficulty 4 --> Sehr schwer, Stufe um eins verrinngern
                 if(level > 0){
                     level = level - 1;
                 }
                 updateTime();
-            }
+                break;
         }
     }
 

@@ -22,8 +22,6 @@ Programm starten ->
     - Karte aufbereiten
     -
 
-
-
 Klasse Flashcard:
 -string Frage
 -string Antwort
