@@ -3,7 +3,7 @@ import java.util.logging.Level;
 
 public class Flashcard implements java.io.Serializable {
 
-    //Abfrageintervall
+    //Klassenvariablen
     private static final int tenMinutesInMillis = 600000;           //0
     private static final int thiryMinutesInMillis = 1800000;        //1
     private static final int oneHourInMillis = 3600000;             //2
@@ -14,9 +14,16 @@ public class Flashcard implements java.io.Serializable {
     private static final long twentyFiveDaysInMillis = 2160000000L; //7
     private static final long fourMonthsInMillis = 10518984000L;    //8
     private static final long twoYearsInMillis = 63113904000L;      //9
-
-    //Klassenvariablen
     static int count = 0;
+
+    //Instanzvariablen
+    private String front;
+    private String back;
+    private int id;
+    private int difficulty;
+    private int level;
+    private boolean isLearned;
+    private Date repetitionDate;
 
     //Konstruktor
     public Flashcard(String front, String back) {
@@ -29,15 +36,6 @@ public class Flashcard implements java.io.Serializable {
         repetitionDate = new Date();
         LogHelper.writeToLog(Level.INFO, "Flashkarte mit ID:\""+ id + "\" erstellt.");
     }
-
-    //Instanzvariablen
-    private String front;
-    private String back;
-    private int id;
-    private int difficulty;
-    private int level;
-    private boolean isLearned;
-    private Date repetitionDate;
 
     //Getter & Setter
     String getFront() {

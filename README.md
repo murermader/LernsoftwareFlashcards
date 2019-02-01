@@ -15,13 +15,13 @@ Der User kann Flashkarten mit Vorder- und Rückseite erstellen. Bei der Abfrage 
 
 <h3>MUST-HAVE:</h3>
 
-	1. Themengebiet: verschiedene Stapeln die man erstellen kann (1 vorgefertigter Stapel)
+	1. Themengebiet: verschiedene Stapeln die man erstellen kann (1 vorgefertigter Deck)
 	2. Die notwendigstens Fragen werden zuerst abgefragt.
 	3. Aus den notwendigen Fragen wird zufällig ausgewählt
 	4. Antwort: Schwirigkeitsgrad?
 	5. Buttons + Schwierigkeit
-	6. Programm liest zu Beginn verschiedene Stapel aus Textdateien aus.
-	7. Flashkarten erstellen/löschen/bearbeiten. Neue Stapel erstellen und was damit machen
+	6. Programm liest zu Beginn verschiedene Deck aus Textdateien aus.
+	7. Flashkarten erstellen/löschen/bearbeiten. Neue Deck erstellen und was damit machen
 
 <h3>Weitere MUST-HAVEs:</h3>
 
@@ -35,7 +35,7 @@ Der User kann Flashkarten mit Vorder- und Rückseite erstellen. Bei der Abfrage 
 	1. Abspeichern Lernkarten + Lernfortschritt
 	2. Die notwendigstens Fragen werden zuerst abgefragt.
 	3. Lernhistorie
-	4. Flashkarten erstellen/löschen/bearbeiten. Neue Stapel erstellen und was damit machen
+	4. Flashkarten erstellen/löschen/bearbeiten. Neue Deck erstellen und was damit machen
 
 
 ----------------------------------------------------------

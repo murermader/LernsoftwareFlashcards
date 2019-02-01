@@ -5,20 +5,26 @@ public class SavingLoadingTest {
     public static void main(String[] args) {
 
         List<Flashcard> list = new ArrayList<>();
-        LoadAndSaveData data = new LoadAndSaveData();
+        Helper helper = new Helper();
+
+        List<String> neueListe = helper.getDeckNames();
+
+        for (String name: neueListe) {
+            System.out.println(name);
+        };
 
         //Belastungstest
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10; i++) {
 
-            int random1 = (int)(Math.random() * 50 + 1);
-            int random2 = (int)(Math.random() * 100 + 1);
-            list.add(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
+            int random3 = (int)(Math.random() * 70 + 1);
+            int random5 = (int)(Math.random() * 800 + 1);
+            list.add(new Flashcard(Integer.toString(random3), Integer.toString(random5)));
         }
 
-        data.save(list);
+        helper.saveListAsFile(list, "test4.txt");
 
         List<Flashcard> newList;
-        newList = data.read();
+        newList = helper.FlashcardListFromFile("test2.txt");
 
         for (Flashcard card : newList) {
             System.out.println("---------A N F A N G--------");

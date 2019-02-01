@@ -7,7 +7,7 @@ import java.util.logging.SimpleFormatter;
 
 class LogHelper {
 
-    private static final Path appDirectory = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
+    private static final Path appDirectory = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
     private static final Path logPath = Paths.get(appDirectory.toString(),"Lernsoftware.log");
     private static Logger logFile;
 
