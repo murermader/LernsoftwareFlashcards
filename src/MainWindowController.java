@@ -17,8 +17,8 @@ public class MainWindowController {
     // :Todo Scenen Wechsel
 
     @FXML
-    public void handlerUeben(ActionEvent event)throws IOException{
-        Parent uebenViewParent = FXMLLoader.load(getClass().getResource("UebenWindow.fxml"));
+    public void handlerPractice(ActionEvent event)throws IOException{
+        Parent uebenViewParent = FXMLLoader.load(getClass().getResource("PracticeWindow.fxml"));
         Scene uebenViewScene = new Scene(uebenViewParent);
 
         //This line gets the Stage information
@@ -30,8 +30,8 @@ public class MainWindowController {
 
 
     @FXML
-    public  void handlerStapelanzeige(ActionEvent event)throws IOException{
-        Parent stapelanzeigeParent = FXMLLoader.load(getClass().getResource("StapelanzeigeWindow.fxml"));
+    public  void handlerDeckIndex(ActionEvent event)throws IOException{
+        Parent stapelanzeigeParent = FXMLLoader.load(getClass().getResource("DeckIndex.fxml"));
         Scene stapelanzeigeScene= new Scene(stapelanzeigeParent);
 
         Stage window2 = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -42,8 +42,8 @@ public class MainWindowController {
     }
 
     @FXML
-    public void handlerKartehinzufuegen(ActionEvent event)throws IOException{
-        Parent kartehinzufuegenParent = FXMLLoader.load(getClass().getResource("KartehinzufuegenWindow.fxml"));
+    public void handlerCardAdd(ActionEvent event)throws IOException{
+        Parent kartehinzufuegenParent = FXMLLoader.load(getClass().getResource("CardAdd.fxml"));
         Scene kartehinzufuegenScene = new Scene(kartehinzufuegenParent);
 
         Stage window3 = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -52,7 +52,7 @@ public class MainWindowController {
     }
 
     @FXML
-    public void handlerBeenden(){
+    public void handlerQuit(){
         System.exit(0);
 
     }
