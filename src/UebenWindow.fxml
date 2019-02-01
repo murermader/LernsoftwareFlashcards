@@ -16,19 +16,19 @@
     </Button>
     <HBox id="HBox" alignment="CENTER" layoutY="336.0" spacing="5.0" AnchorPane.leftAnchor="10.0">
       <children>
-        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="115.0" text="Leicht" />
-        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="115.0" text="Ok" />
-        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Schwer" />
-        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="180.0" text="Wiederholen" />
+        <Button fx:id="leicht" mnemonicParsing="false" onAction="#handlerLeicht" prefHeight="20.0" prefWidth="115.0" text="Leicht" />
+        <Button fx:id="ok" mnemonicParsing="false" onAction="#handlerOk" prefHeight="20.0" prefWidth="115.0" text="Ok" />
+        <Button id="Schwer" fx:id="schwer" mnemonicParsing="false" onAction="#handlerSchwer" prefHeight="20.0" prefWidth="120.0" text="Schwer" />
+        <Button fx:id="wiederholen" mnemonicParsing="false" onAction="#handlerWiederholen" prefHeight="20.0" prefWidth="180.0" text="Wiederholen" />
       </children>
     </HBox>
     <Label layoutX="14.0" layoutY="297.0" text="Schwierigkeiten" />
     <VBox id="VBox" alignment="CENTER" layoutY="14.0" spacing="40.0" AnchorPane.leftAnchor="10.0">
       <children>
         <Label text="Frage" />
-        <Label text="" />
+        <Label fx:id="FragenLabel" text="" />
         <Label text="Antwort" />
-        <Label text="" />
+        <Label fx:id="AntwortLabel" text="" />
       </children>
     </VBox>
   </children>

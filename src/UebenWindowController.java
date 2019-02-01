@@ -7,10 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class UebenWindowController {
 
     public void handlerZurueck(ActionEvent event)throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("../MainWindow.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
 
         //This line gets the Stage information
@@ -20,4 +21,18 @@ public class UebenWindowController {
         window.show();
 
     }
+
+    public void handlerLeicht(ActionEvent event)throws IOException{
+
+    }
+    public void handlerOk(ActionEvent event)throws IOException{
+
+    }
+    public void handlerSchwer(ActionEvent event)throws IOException{
+
+    }
+    public void handlerWiederholen(ActionEvent event)throws IOException{
+
+    }
+
 }
