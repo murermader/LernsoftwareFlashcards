@@ -18,36 +18,36 @@ public class MainWindowController {
 
     @FXML
     public void handlerPractice(ActionEvent event)throws IOException{
-        Parent uebenViewParent = FXMLLoader.load(getClass().getResource("PracticeWindow.fxml"));
-        Scene uebenViewScene = new Scene(uebenViewParent);
+        Parent practiceViewParent = FXMLLoader.load(getClass().getResource("PracticeWindow.fxml"));
+        Scene practiceViewScene = new Scene(practiceViewParent);
 
         //This line gets the Stage information
         Stage window1 = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        window1.setScene(uebenViewScene);
+        window1.setScene(practiceViewScene);
         window1.show();
     }
 
 
     @FXML
     public  void handlerDeckIndex(ActionEvent event)throws IOException{
-        Parent stapelanzeigeParent = FXMLLoader.load(getClass().getResource("DeckIndex.fxml"));
-        Scene stapelanzeigeScene= new Scene(stapelanzeigeParent);
+        Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("DeckIndex.fxml"));
+        Scene DeckIndexScene= new Scene(DeckIndexParent);
 
         Stage window2 = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        window2.setScene(stapelanzeigeScene);
+        window2.setScene(DeckIndexScene);
         window2.show();
 
     }
 
     @FXML
     public void handlerCardAdd(ActionEvent event)throws IOException{
-        Parent kartehinzufuegenParent = FXMLLoader.load(getClass().getResource("CardAdd.fxml"));
-        Scene kartehinzufuegenScene = new Scene(kartehinzufuegenParent);
+        Parent CardAddParent = FXMLLoader.load(getClass().getResource("CardAdd.fxml"));
+        Scene CardAddScene = new Scene(CardAddParent);
 
         Stage window3 = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window3.setScene(kartehinzufuegenScene);
+        window3.setScene(CardAddScene);
         window3.show();
     }
 
