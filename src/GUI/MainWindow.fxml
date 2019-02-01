@@ -8,16 +8,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="GUI.MainWindowController">
   <children>
-    <VBox id="VBox" alignment="CENTER" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox id="VBox" alignment="CENTER" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Group id="Group">
-          <children>
-            <Button fx:id="ueben" layoutX="0.0" layoutY="0.0" mnemonicParsing="false" onAction="#handlerUeben" prefWidth="284.0" text="Üben" />
-            <Button fx:id="stapelanzeige" layoutX="0.0" layoutY="70.0" mnemonicParsing="false" onAction="#handlerStapelanzeige" prefWidth="284.0" text="Stapelanzeige" />
-            <Button fx:id="kartehinzufuegen" layoutX="0.0" layoutY="141.0" mnemonicParsing="false" onAction="#handlerKartehinzufuegen" prefWidth="284.0" text="Neue Karte hinzufügen" />
-            <Button fx:id="beenden" layoutX="0.0" layoutY="216.0" mnemonicParsing="false" onAction="#handlerBeenden" prefWidth="284.0" text="Beenden" />
-          </children>
-        </Group>
+        <Button fx:id="ueben" mnemonicParsing="false" onAction="#handlerUeben" prefWidth="284.0" text="Ueben" />
+        <Button fx:id="stapelanzeige" mnemonicParsing="false" prefWidth="284.0" text="Stapelanzeige" />
+        <Button fx:id="kartehinzufuegen" mnemonicParsing="false" prefWidth="284.0" text="Neue Karte hinzufügen" />
+        <Button fx:id="beenden" mnemonicParsing="false" prefWidth="284.0" text="Beenden" />
       </children>
     </VBox>
   </children>
