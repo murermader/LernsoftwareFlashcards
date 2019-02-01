@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -5,11 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+public class PracticeWindowController {
 
-public class KartehinzufuegenWindowController {
-
-    public void handlerZurueck(ActionEvent event)throws IOException {
+    public void handlerBack(ActionEvent event)throws IOException {
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
 
@@ -20,7 +20,18 @@ public class KartehinzufuegenWindowController {
         window.show();
 
     }
-    public void handlerHinzufuegen(ActionEvent event)throws IOException{
+
+    public void handlerEasy(ActionEvent event)throws IOException{
 
     }
+    public void handlerOk(ActionEvent event)throws IOException{
+
+    }
+    public void handlerHard(ActionEvent event)throws IOException{
+
+    }
+    public void handlerRepeat(ActionEvent event)throws IOException{
+
+    }
+
 }

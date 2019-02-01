@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,10 +5,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
-public class UebenWindowController {
+public class DeckIndexController {
 
-    public void handlerZurueck(ActionEvent event)throws IOException {
+    public void handlerBack(ActionEvent event)throws IOException {
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
 
@@ -19,20 +18,9 @@ public class UebenWindowController {
 
         window.setScene(mainViewScene);
         window.show();
-
     }
 
-    public void handlerLeicht(ActionEvent event)throws IOException{
+    public void handlerDeckAdd(ActionEvent event)throws IOException{
 
     }
-    public void handlerOk(ActionEvent event)throws IOException{
-
-    }
-    public void handlerSchwer(ActionEvent event)throws IOException{
-
-    }
-    public void handlerWiederholen(ActionEvent event)throws IOException{
-
-    }
-
 }

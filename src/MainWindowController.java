@@ -17,42 +17,42 @@ public class MainWindowController {
     // :Todo Scenen Wechsel
 
     @FXML
-    public void handlerUeben(ActionEvent event)throws IOException{
-        Parent uebenViewParent = FXMLLoader.load(getClass().getResource("UebenWindow.fxml"));
-        Scene uebenViewScene = new Scene(uebenViewParent);
+    public void handlerPractice(ActionEvent event)throws IOException{
+        Parent practiceViewParent = FXMLLoader.load(getClass().getResource("PracticeWindow.fxml"));
+        Scene practiceViewScene = new Scene(practiceViewParent);
 
         //This line gets the Stage information
         Stage window1 = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        window1.setScene(uebenViewScene);
+        window1.setScene(practiceViewScene);
         window1.show();
     }
 
 
     @FXML
-    public  void handlerStapelanzeige(ActionEvent event)throws IOException{
-        Parent stapelanzeigeParent = FXMLLoader.load(getClass().getResource("StapelanzeigeWindow.fxml"));
-        Scene stapelanzeigeScene= new Scene(stapelanzeigeParent);
+    public  void handlerDeckIndex(ActionEvent event)throws IOException{
+        Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("DeckIndex.fxml"));
+        Scene DeckIndexScene= new Scene(DeckIndexParent);
 
         Stage window2 = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        window2.setScene(stapelanzeigeScene);
+        window2.setScene(DeckIndexScene);
         window2.show();
 
     }
 
     @FXML
-    public void handlerKartehinzufuegen(ActionEvent event)throws IOException{
-        Parent kartehinzufuegenParent = FXMLLoader.load(getClass().getResource("KartehinzufuegenWindow.fxml"));
-        Scene kartehinzufuegenScene = new Scene(kartehinzufuegenParent);
+    public void handlerCardAdd(ActionEvent event)throws IOException{
+        Parent CardAddParent = FXMLLoader.load(getClass().getResource("CardAdd.fxml"));
+        Scene CardAddScene = new Scene(CardAddParent);
 
         Stage window3 = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window3.setScene(kartehinzufuegenScene);
+        window3.setScene(CardAddScene);
         window3.show();
     }
 
     @FXML
-    public void handlerBeenden(){
+    public void handlerQuit(){
         System.exit(0);
 
     }
