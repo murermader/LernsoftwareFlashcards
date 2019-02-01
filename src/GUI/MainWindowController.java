@@ -30,6 +30,7 @@ public class MainWindowController {
         window.show();
     }
 
+
     @FXML
     public  void handlerStapelanzeige(){
 
