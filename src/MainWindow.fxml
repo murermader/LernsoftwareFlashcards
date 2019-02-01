@@ -11,9 +11,9 @@
     <VBox id="VBox" alignment="CENTER" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
         <Button fx:id="ueben" mnemonicParsing="false" onAction="#handlerUeben" prefHeight="40.0" prefWidth="284.0" text="Ueben" />
-        <Button fx:id="stapelanzeige" mnemonicParsing="false" prefHeight="40.0" prefWidth="284.0" text="Stapelanzeige" />
-        <Button fx:id="kartehinzufuegen" mnemonicParsing="false" prefHeight="40.0" prefWidth="284.0" text="Neue Karte hinzufügen" />
-        <Button fx:id="beenden" mnemonicParsing="false" prefHeight="40.0" prefWidth="284.0" text="Beenden" />
+        <Button fx:id="stapelanzeige" mnemonicParsing="false" onAction="#handlerStapelanzeige" prefHeight="40.0" prefWidth="284.0" text="Stapelanzeige" />
+        <Button fx:id="kartehinzufuegen" mnemonicParsing="false" onAction="#handlerKartehinzufuegen" prefHeight="40.0" prefWidth="284.0" text="Neue Karte hinzufügen" />
+        <Button fx:id="beenden" mnemonicParsing="false" onAction="#handlerBeenden" prefHeight="40.0" prefWidth="284.0" text="Beenden" />
       </children>
     </VBox>
   </children>

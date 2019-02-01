@@ -25,7 +25,7 @@
     <Label layoutX="14.0" layoutY="297.0" text="Schwierigkeiten" />
     <VBox id="VBox" alignment="CENTER" layoutY="14.0" spacing="40.0" AnchorPane.leftAnchor="10.0">
       <children>
-        <Label text="Frage" />
+        <Label prefWidth="78.0" text="Frage" />
         <Label fx:id="FragenLabel" text="" />
         <Label text="Antwort" />
         <Label fx:id="AntwortLabel" text="" />

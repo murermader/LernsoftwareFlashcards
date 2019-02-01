@@ -6,9 +6,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="KartehinzufuegenWindowController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="KartehinzufuegenWindowController">
+  <children>
+    <VBox id="VBox" alignment="CENTER" layoutY="32.0" spacing="20.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+      <children>
+        <Label text="Ihre Frage" />
+        <TextArea fx:id="FrageTextArea" prefHeight="180.0" prefWidth="200.0" text="" wrapText="true" />
+        <Label text="Ihre Antwort" />
+        <TextArea fx:id="AntwortTextArea" minHeight="-1.0" prefHeight="180.0" prefWidth="200.0" wrapText="true" />
+        <HBox id="HBox" alignment="CENTER" spacing="5.0">
+          <children>
+            <Button fx:id="hinzufuegen" mnemonicParsing="false" onAction="#handlerHinzufuegen" text="Hinzufügen" />
+            <Button fx:id="zurueck" mnemonicParsing="false" onAction="#handlerZurueck" text="Zurück" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
 </AnchorPane>

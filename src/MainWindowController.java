@@ -22,10 +22,10 @@ public class MainWindowController {
         Scene uebenViewScene = new Scene(uebenViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window1 = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        window.setScene(uebenViewScene);
-        window.show();
+        window1.setScene(uebenViewScene);
+        window1.show();
     }
 
 
@@ -34,21 +34,21 @@ public class MainWindowController {
         Parent stapelanzeigeParent = FXMLLoader.load(getClass().getResource("StapelanzeigeWindow.fxml"));
         Scene stapelanzeigeScene= new Scene(stapelanzeigeParent);
 
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window2 = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        window.setScene(stapelanzeigeScene);
-        window.show();
+        window2.setScene(stapelanzeigeScene);
+        window2.show();
 
     }
 
     @FXML
     public void handlerKartehinzufuegen(ActionEvent event)throws IOException{
-        Parent kartehinzufuegenParent = FXMLLoader.load(getClass().getResource("../KartehinzufuegenWindow.fxml"));
+        Parent kartehinzufuegenParent = FXMLLoader.load(getClass().getResource("KartehinzufuegenWindow.fxml"));
         Scene kartehinzufuegenScene = new Scene(kartehinzufuegenParent);
 
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(kartehinzufuegenScene);
-        window.show();
+        Stage window3 = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window3.setScene(kartehinzufuegenScene);
+        window3.show();
     }
 
     @FXML
