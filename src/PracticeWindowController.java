@@ -1,20 +1,26 @@
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class PracticeWindowController implements Initializable {
 
-    private Data data = new Data();
-    private List<Deck> decks =  data.getDecks();
+import javax.xml.stream.Location;
+
+public class PracticeWindowController {
+    public Label FragenLabel = new Label();
+
+    @FXML // Initaliesierung wenn diese Seite Aufgerufen wird
+    protected void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Test");
+    }
 
     public void handlerBack(ActionEvent event)throws IOException {
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
@@ -28,13 +34,6 @@ public class PracticeWindowController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("INITIALIZED!!!!");
-        List<Flashcard> flashcards = decks.get(0).getCards();
-        System.out.println(flashcards.get(5).getFront());
-    }
-
     public void handlerEasy(ActionEvent event)throws IOException{
 
     }
@@ -46,6 +45,13 @@ public class PracticeWindowController implements Initializable {
     }
     public void handlerRepeat(ActionEvent event)throws IOException{
 
+    }
+    public void handlerShowAnswer(ActionEvent event)throws IOException{
+
+    }
+    public void handlerStart(ActionEvent event)throws IOException{
+        FragenLabel.setText("Test");
+        System.out.println("FragenTest");
     }
 
 }

@@ -7,29 +7,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="PracticeWindowController">
-    <children>
-        <Button fx:id="back" layoutX="494.0" layoutY="14.0" minHeight="27.0" mnemonicParsing="false" onAction="#handlerBack" prefHeight="20.0" prefWidth="70.0" text="Zurück">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-        <HBox id="HBox" alignment="CENTER" layoutY="336.0" spacing="5.0" AnchorPane.leftAnchor="10.0">
-            <children>
-                <Button fx:id="easy" mnemonicParsing="false" onAction="#handlerEasy" prefHeight="20.0" prefWidth="115.0" text="Leicht" />
-                <Button fx:id="ok" mnemonicParsing="false" onAction="#handlerOk" prefHeight="20.0" prefWidth="115.0" text="Ok" />
-                <Button id="Schwer" fx:id="hard" mnemonicParsing="false" onAction="#handlerHard" prefHeight="20.0" prefWidth="120.0" text="Schwer" />
-                <Button fx:id="Repeat" mnemonicParsing="false" onAction="#handlerRepeat" prefHeight="20.0" prefWidth="180.0" text="Wiederholen" />
-            </children>
-        </HBox>
-        <Label layoutX="14.0" layoutY="297.0" text="Schwierigkeiten" />
-        <VBox id="VBox" alignment="CENTER" layoutY="14.0" spacing="40.0" AnchorPane.leftAnchor="10.0">
-            <children>
-                <Label prefWidth="78.0" text="Frage" />
-                <Label fx:id="FragenLabel" text="" />
-                <Label text="Antwort" />
-                <Label fx:id="AntwortLabel" text="" />
-            </children>
-        </VBox>
-    </children>
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="PracticeWindowController">
+  <children>
+    <Button id="start" fx:id="start" layoutX="616.0" layoutY="17.0" minHeight="27.0" mnemonicParsing="false" onAction="#handlerStart" prefHeight="20.0" prefWidth="70.0" text="Start">
+      <font>
+        <Font size="14.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button fx:id="back" font="$x1" layoutX="697.0" layoutY="17.0" minHeight="27.0" mnemonicParsing="false" onAction="#handlerBack" prefHeight="20.0" prefWidth="70.0" text="Zurück" />
+    <HBox id="HBox" alignment="CENTER" layoutY="336.0" spacing="5.0" AnchorPane.leftAnchor="10.0">
+      <children>
+        <Button fx:id="easy" mnemonicParsing="false" onAction="#handlerEasy" prefHeight="20.0" prefWidth="115.0" text="Leicht" />
+        <Button fx:id="ok" mnemonicParsing="false" onAction="#handlerOk" prefHeight="20.0" prefWidth="115.0" text="Ok" />
+        <Button id="Schwer" fx:id="hard" mnemonicParsing="false" onAction="#handlerHard" prefHeight="20.0" prefWidth="120.0" text="Schwer" />
+        <Button fx:id="Repeat" mnemonicParsing="false" onAction="#handlerRepeat" prefHeight="20.0" prefWidth="180.0" text="Wiederholen" />
+        <Button fx:id="showAnswer" mnemonicParsing="false" onAction="#handlerShowAnswer" text="Antwort anzeigen" />
+      </children>
+    </HBox>
+    <Label layoutX="14.0" layoutY="297.0" text="Schwierigkeiten" />
+    <VBox id="VBox" alignment="CENTER" layoutY="14.0" spacing="40.0" AnchorPane.leftAnchor="10.0">
+      <children>
+        <Label prefWidth="78.0" text="Frage" />
+        <Label fx:id="FragenLabel" text="" />
+        <Label text="Antwort" />
+        <Label fx:id="AntwortLabel" text="" />
+      </children>
+    </VBox>
+  </children>
 </AnchorPane>
