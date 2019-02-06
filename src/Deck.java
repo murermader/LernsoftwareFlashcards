@@ -12,10 +12,11 @@ public class Deck {
         this.cards = cards;
         nameList.add(name);
     }
-    public void setName(String name){
+    private void setName(String name){
         this.name = name;
     }
     public String getName(){
         return name;
     }
+    public List<Flashcard> getCards(){ return cards;}
 }
