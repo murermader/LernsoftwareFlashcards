@@ -17,8 +17,9 @@ import javax.xml.stream.Location;
 public class PracticeWindowController {
     public Label FragenLabel = new Label();
 
-    @FXML // Initaliesierung wenn diese Seite Aufgerufen wird
-    protected void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize(){
+        //Hier die Methode zur Anzeige der Frage
         System.out.println("Test");
     }
 
