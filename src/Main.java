@@ -14,7 +14,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage){
         try {
-
             //Auf false setzen, falls du den Code "ausschalten" willst!
             boolean TESTDATEN = true;
 
@@ -35,7 +34,6 @@ public class Main extends Application {
                     Deck deck = new Deck(name, cards);
                     allDecks.add(deck);
                 }
-
                 //Namen aller Decks für die Stapelanzeige
                 for (String string: Deck.nameList ) {
                     System.out.println(string);

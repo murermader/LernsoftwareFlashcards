@@ -8,13 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-
 public class MainWindowController {
-
-
-    //: Todo GUI Controller anpassen an Java 11 und FXML Dateien neu Schreiben
-    // :Todo Scenen Wechsel
 
     @FXML
     public void handlerPractice(ActionEvent event)throws IOException{
@@ -28,7 +22,6 @@ public class MainWindowController {
         window1.show();
     }
 
-
     @FXML
     public  void handlerDeckIndex(ActionEvent event)throws IOException{
         Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("DeckIndex.fxml"));
@@ -38,7 +31,6 @@ public class MainWindowController {
 
         window2.setScene(DeckIndexScene);
         window2.show();
-
     }
 
     @FXML
