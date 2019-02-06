@@ -11,18 +11,31 @@ class Helper {
 
     List<String> getDeckNames(){
         try{
+            boolean succes;
             List<String> fileNames = new ArrayList<>();
             File directory = new File(appDirectory.toString());
             if(directory.exists()){
-
+                succes = true;
+            }
+            else{
+                succes = directory.mkdir();
+                if(!succes){
+                    LogHelper.writeToLog(Level.INFO, "Directory konnte nicht erstellt werden.");
+                }
+                else{
+                    LogHelper.writeToLog(Level.INFO, "Ordner erfolgreich erstellt.");
+                }
+            }
+            if(succes){
                 File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
-                for (File file: files) {
+                if(files != null){
+                    for (File file: files) {
 
-                    fileNames.add(file.getName());
+                        fileNames.add(file.getName());
+                    }
                 }
             }
             return fileNames;
-
         }catch(Exception ex){
             LogHelper.writeToLog(Level.INFO, "Fehler beim Beschaffen der Decknamen" +ex);
             return null;
