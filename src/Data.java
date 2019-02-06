@@ -5,7 +5,8 @@ import java.util.logging.Level;
 //Diese Klasse ist eine Schnittstelle zwischen den Decks und der GUI.
 class Data {
 
-    List<Deck> allDecks = new ArrayList<>();
+    private static String currentDeckName = "";
+    private List<Deck> allDecks = new ArrayList<>();
 
     Data(){
         Helper helper = new Helper();
@@ -16,9 +17,6 @@ class Data {
         else{
             //Um Flashkarten in Apdata\local\flashcards zu erstellen
             helper.createSampleDecks();
-
-
-
             //Für jeden Stapel Flashcards ein Deck erstellen.
             for (String name: deckNames) {
                 List<Flashcard> cards;
@@ -29,8 +27,27 @@ class Data {
         }
     }
 
+    //Methoden
     List<Deck> getDecks(){
         return allDecks;
+    }
+
+    public static String getCurrentDeckName() {
+
+        return currentDeckName;
+    }
+    public static void setCurrentDeckName(String currentDeckName) {
+        Data.currentDeckName = currentDeckName;
+    }
+
+    public Deck getCurrentDeck(){
+
+        for (Deck deck: allDecks) {
+            if(deck.getName().equals(currentDeckName)){
+                return deck;
+            }
+        }
+        return null;
     }
 
 }

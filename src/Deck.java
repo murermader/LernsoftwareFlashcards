@@ -8,12 +8,17 @@ public class Deck {
     static List<String> nameList = new ArrayList<>();
 
     Deck(String name, List<Flashcard> cards){
-        this.name = name;
+        setName(name);
         this.cards = cards;
         nameList.add(name);
     }
     private void setName(String name){
-        this.name = name;
+        if(name.contains(".txt")){
+            this.name = name.replace(".txt", "");
+        }
+        else{
+            this.name = name;
+        }
     }
     public String getName(){
         return name;
