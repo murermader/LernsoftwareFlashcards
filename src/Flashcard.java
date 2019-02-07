@@ -3,23 +3,24 @@ import java.util.logging.Level;
 
 public class Flashcard implements java.io.Serializable {
 
+    //Abfrageintervall
+    private static final int TEN_MINUTES_IN_MILLIS = 600000;            //0
+    private static final int THIRY_MINUTES_IN_MILLIS = 1800000;         //1
+    private static final int ONE_HOUR_IN_MILLIS = 3600000;              //2
+    private static final int FIVE_HOURS_IN_MILLIS = 18000000;           //3
+    private static final int NINE_HOURS_IN_MILLIS = 32400000;           //4
+    private static final int ONE_DAY_IN_MILLIS = 86400000;              //5
+    private static final int FIVE_DAYS_IN_MILLIS = 432000000;           //6
+    private static final long TWENTY_FIVE_DAYS_IN_MILLIS = 2160000000L; //7
+    private static final long FOUR_MONTHS_IN_MILLIS = 10518984000L;     //8
+    private static final long TWO_YEARS_IN_MILLIS = 63113904000L;       //9
+
     //Klassenvariablen
-    private static final int tenMinutesInMillis = 600000;           //0
-    private static final int thiryMinutesInMillis = 1800000;        //1
-    private static final int oneHourInMillis = 3600000;             //2
-    private static final int fiveHoursInMillis = 18000000;          //3
-    private static final int nineHoursInMillis = 32400000;          //4
-    private static final int oneDayInMillis = 86400000;             //5
-    private static final int fiveDaysInMillis = 432000000;          //6
-    private static final long twentyFiveDaysInMillis = 2160000000L; //7
-    private static final long fourMonthsInMillis = 10518984000L;    //8
-    private static final long twoYearsInMillis = 63113904000L;      //9
-    static int count = 0;
+    private static int count = 0;
 
     //Instanzvariablen
     private String front;
     private String back;
-    private int id;
     private int difficulty;
     private int level;
     private boolean isLearned;
@@ -30,11 +31,10 @@ public class Flashcard implements java.io.Serializable {
         this.front = front;
         this.back = back;
         count++;
-        id = 0;
         level = 0;
         isLearned = false;
         repetitionDate = new Date();
-        LogHelper.writeToLog(Level.INFO, "Flashkarte mit ID:\""+ id + "\" erstellt.");
+        //LogHelper.writeToLog(Level.INFO, "Flashkarte mit ID:\""+ id + "\" erstellt.");
     }
 
     //Getter & Setter
@@ -49,12 +49,6 @@ public class Flashcard implements java.io.Serializable {
     }
     void setBack(String back) {
         this.back = back;
-    }
-    int getId() {
-        return id;
-    }
-    void setId(int id) {
-        this.id = id;
     }
     int getDifficulty() {
         return difficulty;
@@ -110,38 +104,38 @@ public class Flashcard implements java.io.Serializable {
 
         switch(this.level){
             case(0):
-                newTime = tenMinutesInMillis;
+                newTime = TEN_MINUTES_IN_MILLIS;
                 break;
             case(1):
-                newTime = thiryMinutesInMillis;
+                newTime = THIRY_MINUTES_IN_MILLIS;
                 break;
             case(2):
-                newTime = oneHourInMillis;
+                newTime = ONE_HOUR_IN_MILLIS;
                 break;
             case(3):
-                newTime = fiveHoursInMillis;
+                newTime = FIVE_HOURS_IN_MILLIS;
                 break;
             case(4):
-                newTime = nineHoursInMillis;
+                newTime = NINE_HOURS_IN_MILLIS;
                 break;
             case(5):
-                newTime = oneDayInMillis;
+                newTime = ONE_DAY_IN_MILLIS;
                 break;
             case(6):
-                newTime = fiveDaysInMillis;
+                newTime = FIVE_DAYS_IN_MILLIS;
                 break;
             case(7):
-                newTime = twentyFiveDaysInMillis;
+                newTime = TWENTY_FIVE_DAYS_IN_MILLIS;
                 break;
             case(8):
-                newTime = fourMonthsInMillis;
+                newTime = FOUR_MONTHS_IN_MILLIS;
                 break;
             case(9):
-                newTime = twoYearsInMillis;
+                newTime = TWO_YEARS_IN_MILLIS;
                 break;
         }
         date.setTime(System.currentTimeMillis() + newTime);
         LogHelper.writeToLog(Level.INFO,
-                "Nächstes Abfragedatum für Karte (" + id + ") ist am: " + date);
+                "Nächstes Abfragedatum für Karte (" + front + ") ist am: " + date);
     }
 }

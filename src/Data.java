@@ -9,21 +9,24 @@ class Data {
     private List<Deck> allDecks = new ArrayList<>();
 
     Data(){
-        Helper helper = new Helper();
-        List<String> deckNames = helper.getDeckNames();
-        if(deckNames == null){
-            LogHelper.writeToLog(Level.INFO, "Es konnnten keine Decks gefunden werden.");
-        }
-        else{
-            //Um Flashkarten in Apdata\local\flashcards zu erstellen
-            helper.createSampleDecks();
-            //Für jeden Stapel Flashcards ein Deck erstellen.
-            for (String name: deckNames) {
-                List<Flashcard> cards;
-                cards = helper.FlashcardListFromFile(name);
-                Deck deck = new Deck(name, cards);
-                allDecks.add(deck);
+        try{
+            Helper helper = new Helper();
+            List<String> deckNames = helper.getDeckNames();
+            if(deckNames == null){
+                LogHelper.writeToLog(Level.INFO, "Es konnnten keine Decks gefunden werden.");
             }
+            else{
+                //Für jeden Stapel Flashcards ein Deck erstellen.
+                for (String name: deckNames) {
+                    List<Flashcard> cards;
+                    cards = helper.FlashcardListFromFile(name);
+                    Deck deck = new Deck(name, cards);
+                    allDecks.add(deck);
+                }
+            }
+        }
+        catch(Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des Decks: " +ex);
         }
     }
 

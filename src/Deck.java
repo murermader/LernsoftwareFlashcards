@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Deck {
@@ -20,8 +21,24 @@ public class Deck {
             this.name = name;
         }
     }
-    public String getName(){
+    //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
+    void ready(){
+
+        Date date = new Date();
+        date.getTime();
+        for (Flashcard card : cards) {
+            if(card.getRepetitionDate().after(date)){
+                cards.remove(card);
+            }
+        }
+    }
+
+    void addCard(Flashcard card){
+        cards.add(card);
+    }
+
+    String getName(){
         return name;
     }
-    public List<Flashcard> getCards(){ return cards;}
+    List<Flashcard> getCards(){ return cards;}
 }

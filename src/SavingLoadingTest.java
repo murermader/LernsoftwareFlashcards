@@ -30,7 +30,6 @@ public class SavingLoadingTest {
             System.out.println("---------A N F A N G--------");
             System.out.println("Vorderseite: " +card.getFront());
             System.out.println("Rückseite: " +card.getBack());
-            System.out.println("ID: " +card.getId());
             System.out.println("Difficulty: " +card.getDifficulty());
             System.out.println("RepetitionDate: " +card.getRepetitionDate());
             System.out.println("isLearned: " +card.getLearned());
