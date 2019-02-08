@@ -11,10 +11,10 @@
   <children>
     <HBox id="HBox" alignment="CENTER" layoutY="336.0" spacing="5.0" AnchorPane.leftAnchor="10.0">
       <children>
-        <Button fx:id="easy" mnemonicParsing="false" onAction="#handlerEasy" prefHeight="20.0" prefWidth="115.0" text="Leicht" />
-        <Button fx:id="ok" mnemonicParsing="false" onAction="#handlerOk" prefHeight="20.0" prefWidth="115.0" text="Ok" />
-        <Button id="Schwer" fx:id="hard" mnemonicParsing="false" onAction="#handlerHard" prefHeight="20.0" prefWidth="120.0" text="Schwer" />
-        <Button fx:id="Next" mnemonicParsing="false" onAction="#handlerNext" prefHeight="20.0" prefWidth="180.0" text="Nächste Karte" />
+        <Button fx:id="easy" disable="true" mnemonicParsing="false" onAction="#handlerEasy" prefHeight="20.0" prefWidth="115.0" text="Leicht" />
+        <Button fx:id="ok" disable="true" mnemonicParsing="false" onAction="#handlerOk" prefHeight="20.0" prefWidth="115.0" text="Ok" />
+        <Button id="hard" disable="true" fx:id="hard" mnemonicParsing="false" onAction="#handlerHard" prefHeight="20.0" prefWidth="120.0" text="Schwer" />
+        <Button fx:id="Show" mnemonicParsing="false" onAction="#handlerShowBack" prefHeight="20.0" prefWidth="180.0" text="Rückseite anzeigen" />
         <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" prefHeight="20.0" prefWidth="70.0" text="Zurück" />
       </children>
     </HBox>

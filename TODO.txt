@@ -20,7 +20,6 @@ Programm starten ->
     - Array / Liste mit allen lernbaren Karten VOR ABFRAGE
     - show Methode unserer Flashkarte
     - Karte aufbereiten
-    -
 
 Klasse Flashcard:
 -string Frage

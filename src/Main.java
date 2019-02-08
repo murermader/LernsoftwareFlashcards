@@ -16,6 +16,10 @@ public class Main extends Application {
     public void start(Stage stage){
         try {
 
+            //Sample Decks erstellen
+            Helper helper = new Helper();
+            helper.createSampleDecks();
+
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
