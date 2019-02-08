@@ -77,7 +77,7 @@ public class Flashcard implements java.io.Serializable {
         switch(difficulty){
             case(0): //Difficulty 0 --> direkt nocheinmal wiederholen, "kein update"
                 break;
-            case(1): //Difficulty 1 --> leicht, Zwei Stufen nach oben
+            case(1): //Difficulty 1 --> leicht, zwei Stufen nach oben
                 level = level + 2;
                 updateTime();
                 break;
@@ -88,7 +88,7 @@ public class Flashcard implements java.io.Serializable {
             case(3): //Difficulty 3 --> Schwer, Stufe beibehalten
                 updateTime();
                 break;
-            case(4): //Difficulty 4 --> Sehr schwer, Stufe um eins verrinngern
+            case(4): //Difficulty 4 --> Sehr schwer, Stufe um eins verringern
                 if(level > 0){
                     level = level - 1;
                 }
