@@ -4,44 +4,49 @@ import java.util.List;
 
 public class Deck {
 
-    private String name;
-    private List<Flashcard> cards;
-    static List<String> nameList = new ArrayList<>();
+  private String name;
+  private List<Flashcard> cards;
+  private static List<String> nameList = new ArrayList<>();
 
-    Deck(String name, List<Flashcard> cards){
-        setName(name);
-        this.cards = cards;
-        nameList.add(name);
-    }
-    private void setName(String name){
-        if(name.contains(".txt")){
-            this.name = name.replace(".txt", "");
-        }
-        else{
-            this.name = name;
-        }
-    }
-    //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
-    void ready(){
+  Deck(String name, List<Flashcard> cards) {
+    setName(name);
+    this.cards = cards;
+    nameList.add(name);
+  }
 
-        Date date = new Date();
-        date.getTime();
-        for (Flashcard card : cards) {
-            if(card.getRepetitionDate().after(date)){
-                cards.remove(card);
-            }
-        }
+  private void setName(String name) {
+    if (name.contains(".txt")) {
+      this.name = name.replace(".txt", "");
+    } else {
+      this.name = name;
     }
+  }
 
-    void addCard(Flashcard card){
-        cards.add(card);
-    }
+  //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
+  void ready() {
 
-    String getName(){
-        return name;
+    Date date = new Date();
+    date.getTime();
+    for (Flashcard card : cards) {
+      if (card.getRepetitionDate().after(date)) {
+        cards.remove(card);
+      }
     }
-    void setCards(List<Flashcard> cards){
-        this.cards = cards;
-    }
-    List<Flashcard> getCards(){ return cards;}
+  }
+
+  void addCard(Flashcard card) {
+    cards.add(card);
+  }
+
+  String getName() {
+    return name;
+  }
+
+  void setCards(List<Flashcard> cards) {
+    this.cards = cards;
+  }
+
+  List<Flashcard> getCards() {
+    return cards;
+  }
 }
