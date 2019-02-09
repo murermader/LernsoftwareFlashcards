@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,28 +17,27 @@ public class PracticeWindowController {
     public Button easy = new Button();
     public Button ok = new Button();
     public Button hard = new Button();
+
     private Data data = new Data();
-    private Deck deck;
-    private Deck deckReadyToLearn;
+    private Helper helper = new Helper();
     private int currentcardIndex = 0;
 
     @FXML
     public void initialize(){
         try{
+            Data.setCurrentDeckName("FirstDeck");
             if(Data.getCurrentDeckName().isEmpty()){
                 //Empty == "";
             }
-            Date date = new Date();
-            date.getTime();
+            else{
+                data.getCurrentDeck().ready();
+            }
 
-            Data.setCurrentDeckName("test1");
-            deck = data.getCurrentDeck();
-            deck.ready(); //Entfernt alle noch nicht lernbereite Karten
-            if(deck == null){
+            if(data.getCurrentDeck() == null){
                 LogHelper.writeToLog(Level.INFO, "Entweder wurde kein Deck ausgewählt, oder das ausgewählte Deck konnte nicht gefunden werden.");
             }
             else{
-                FragenLabel.setText(deck.getCards().get(currentcardIndex).getFront());
+                FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
             }
         }
         catch(Exception ex){
@@ -50,6 +47,17 @@ public class PracticeWindowController {
 
     //Eventhandling
     public void handlerBack(ActionEvent event)throws IOException {
+
+        try{
+            for (Deck deck: data.getListOfDecks()) {
+
+                helper.saveDeckToFile(deck, Data.getCurrentDeckName());
+            }
+        }
+        catch(Exception ex){
+            //
+        }
+
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
@@ -57,17 +65,17 @@ public class PracticeWindowController {
         window.setScene(mainViewScene);
         window.show();
     }
-    public void handlerEasy(ActionEvent event)throws IOException{
+    public void handlerEasy(ActionEvent event) {
         finishUpCard(1);
     }
-    public void handlerOk(ActionEvent event)throws IOException{
+    public void handlerOk(ActionEvent event) {
         finishUpCard(2);
     }
-    public void handlerHard(ActionEvent event)throws IOException{
+    public void handlerHard(ActionEvent event) {
         finishUpCard(3);
     }
-    public void handlerShowBack(ActionEvent event)throws IOException{
-        AntwortLabel.setText(deck.getCards().get(currentcardIndex).getBack());
+    public void handlerShowBack(ActionEvent event) {
+        AntwortLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getBack());
         easy.setDisable(false);
         ok.setDisable(false);
         hard.setDisable(false);
@@ -76,10 +84,11 @@ public class PracticeWindowController {
         easy.setDisable(true);
         ok.setDisable(true);
         hard.setDisable(true);
-        deck.getCards().get(currentcardIndex).setDifficulty(difficulty);
-        deck.getCards().get(currentcardIndex).updateInterval();
+        data.getCurrentDeck().getCards().get(currentcardIndex).setDifficulty(difficulty);
+        data.getCurrentDeck().getCards().get(currentcardIndex).updateInterval();
+        //deck.getCards().remove(currentcardIndex);
         AntwortLabel.setText("");
         currentcardIndex++;
-        FragenLabel.setText(deck.getCards().get(currentcardIndex).getFront());
+        FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
     }
 }

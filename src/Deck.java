@@ -40,5 +40,8 @@ public class Deck {
     String getName(){
         return name;
     }
+    void setCards(List<Flashcard> cards){
+        this.cards = cards;
+    }
     List<Flashcard> getCards(){ return cards;}
 }

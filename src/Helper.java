@@ -42,34 +42,33 @@ class Helper {
         }
     }
 
-    void createSampleDecks(){
+    void createSampleDeck(String deckName, int length){
         try{
             List<Flashcard> list = new ArrayList<>();
-            String[] names = {"test1.txt", "test2.txt", "test3.txt"};
+            Deck deck = new Deck(deckName, list);
 
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < length; i++) {
 
                 int random1 = (int)(Math.random() * 50 + 1);
                 int random2 = (int)(Math.random() * 100 + 1);
-                list.add(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
+                //list.add(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
+                deck.addCard(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
             }
-
-            for (String name: names) {
-                saveListAsFile(list, name);
-            }
+            saveDeckToFile(deck, deckName);
         }
         catch(Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen von SampleData" + ex);
         }
     }
 
-    void saveListAsFile(List<Flashcard> cards, String deckName){
+    //Um ein Deck abzuspeichern.
+    void saveDeckToFile(Deck deck, String deckName){
 
         createFolderIfNeeded();
         try{
-            FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(appDirectory.toString(), deckName).toString());
+            FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(appDirectory.toString(), deckName + ".txt").toString());
             ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
-            objectStream.writeObject(cards);
+            objectStream.writeObject(deck.getCards());
             objectStream.close();
         }
         catch(Exception ex){
@@ -77,23 +76,26 @@ class Helper {
         }
     }
 
-    //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
-    //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
     @SuppressWarnings("unchecked")
-    List<Flashcard> FlashcardListFromFile(String deckName){
+    Deck getDeckFromFile(String deckName){
 
         List<Flashcard> list = new ArrayList<>();
-        try{
-            FileInputStream fileStreamIn = new FileInputStream(Paths.get(appDirectory.toString(), deckName).toString());
-            ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
-            list = (List<Flashcard>) objectStream.readObject();
-        }
-        catch(Exception ex){
-            LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
-        }
-        return list;
+        Deck deck = new Deck(deckName, list);
+
+            try{
+                FileInputStream fileStreamIn = new FileInputStream(Paths.get(appDirectory.toString(), deckName).toString());
+                ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
+                list = (List<Flashcard>) objectStream.readObject();
+            }
+            catch(Exception ex){
+                LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
+            }
+            deck.setCards(list);
+            return deck;
     }
 
+    //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
+    //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
     private void createFolderIfNeeded(){
 
         try{
@@ -102,6 +104,9 @@ class Helper {
                 boolean isDirectoryCreated = directory.mkdir();
                 if(isDirectoryCreated){
                     LogHelper.writeToLog(Level.INFO, "Ordner erstellt!");
+                }
+                else{
+                    LogHelper.writeToLog(Level.INFO, "Ordner konnte nicht erstellt werden.");
                 }
             }
         }

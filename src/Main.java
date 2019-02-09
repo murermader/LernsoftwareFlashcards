@@ -5,9 +5,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
 
 
 public class Main extends Application {
@@ -15,11 +12,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage){
         try {
-
-            //Sample Decks erstellen
-            Helper helper = new Helper();
-            helper.createSampleDecks();
-
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);

@@ -2,28 +2,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-//Diese Klasse ist eine Schnittstelle zwischen den Decks und der GUI.
+//Klasse die einen Überblick über alle Decks hat.
 class Data {
 
     private static String currentDeckName = "";
-    private List<Deck> allDecks = new ArrayList<>();
+    private static List<Deck> allDecks = new ArrayList<>();
 
     Data(){
         try{
             Helper helper = new Helper();
             List<String> deckNames = helper.getDeckNames();
-            if(deckNames == null){
-                LogHelper.writeToLog(Level.INFO, "Es konnnten keine Decks gefunden werden.");
+            //Es existieren keine Decks: SampleDecks erstellen
+            if(deckNames.size() == 0){
+                LogHelper.writeToLog(Level.INFO, "Erstelle Sample Decks für Testzwecke");
+                //Sample Decks erstellen
+                helper.createSampleDeck("FirstDeck", 100);
+                helper.createSampleDeck("SecondDeck", 50);
+                helper.createSampleDeck("ThirdDeck", 20);
+                deckNames = helper.getDeckNames();
             }
-            else{
-                //Für jeden Stapel Flashcards ein Deck erstellen.
-                for (String name: deckNames) {
-                    List<Flashcard> cards;
-                    cards = helper.FlashcardListFromFile(name);
-                    Deck deck = new Deck(name, cards);
-                    allDecks.add(deck);
-                }
+            //Für jeden Stapel Flashcards ein Deck erstellen.
+            for (String name: deckNames) {
+                allDecks.add(helper.getDeckFromFile(name));
             }
+
         }
         catch(Exception ex){
             LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des Decks: " +ex);
@@ -31,12 +33,11 @@ class Data {
     }
 
     //Methoden
-    List<Deck> getDecks(){
+    List<Deck> getListOfDecks(){
         return allDecks;
     }
 
     public static String getCurrentDeckName() {
-
         return currentDeckName;
     }
     public static void setCurrentDeckName(String currentDeckName) {
