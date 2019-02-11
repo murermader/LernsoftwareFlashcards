@@ -7,6 +7,7 @@ class Data {
 
   private static String currentDeckName = "";
   private static List<Deck> allDecks = new ArrayList<>();
+  public boolean isEmpty;
 
   Data() {
     try {
@@ -14,18 +15,22 @@ class Data {
       List<String> deckNames = helper.getDeckNames();
       //Es existieren keine Decks: SampleDecks erstellen
       if (deckNames.size() == 0) {
+        isEmpty = true;
+        //Keine Decks erstellen, sondern
         LogHelper.writeToLog(Level.INFO, "Erstelle Sample Decks für Testzwecke");
         //Sample Decks erstellen
-        helper.createSampleDeck("FirstDeck", 100);
-        helper.createSampleDeck("SecondDeck", 50);
-        helper.createSampleDeck("ThirdDeck", 20);
-        deckNames = helper.getDeckNames();
+        //helper.createSampleDeck("FirstDeck", 100);
+        //helper.createSampleDeck("SecondDeck", 50);
+        //helper.createSampleDeck("ThirdDeck", 20);
+        //deckNames = helper.getDeckNames();
       }
-      //Für jeden Stapel Flashcards ein Deck erstellen.
-      for (String name : deckNames) {
-        allDecks.add(helper.getDeckFromFile(name));
+      else{
+        isEmpty = false;
+        //Für jeden Stapel Flashcards ein Deck erstellen.
+        for (String name : deckNames) {
+          allDecks.add(helper.getDeckFromFile(name));
+        }
       }
-
     } catch (Exception ex) {
       LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des Decks: " + ex);
     }

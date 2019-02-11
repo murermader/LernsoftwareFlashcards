@@ -18,6 +18,7 @@ public class PracticeWindowController {
   public Button easy = new Button();
   public Button ok = new Button();
   public Button hard = new Button();
+  public Button Show = new Button();
 
   private Data data = new Data();
   private Helper helper = new Helper();
@@ -26,18 +27,25 @@ public class PracticeWindowController {
   @FXML
   public void initialize() {
     try {
-      Data.setCurrentDeckName("FirstDeck");
-      if (Data.getCurrentDeckName().isEmpty()) {
-        //Empty == "";
-      } else {
-        data.getCurrentDeck().ready();
+      if(data.isEmpty){
+        //Anzeigen, dass kein Deck ausgewäht wurde!
+        easy.setDisable(true);
+        ok.setDisable(true);
+        hard.setDisable(true);
+        Show.setDisable(true);
       }
+      else{
+        Data.setCurrentDeckName("FirstDeck");
+        if (!Data.getCurrentDeckName().isEmpty()) {
+          data.getCurrentDeck().ready();
+        }
 
-      if (data.getCurrentDeck() == null) {
-        LogHelper.writeToLog(Level.INFO,
-            "Entweder wurde kein Deck ausgewählt, oder das ausgewählte Deck konnte nicht gefunden werden.");
-      } else {
-        FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
+        if (data.getCurrentDeck() == null) {
+          LogHelper.writeToLog(Level.INFO,
+              "Entweder wurde kein Deck ausgewählt, oder das ausgewählte Deck konnte nicht gefunden werden.");
+        } else {
+          FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
+        }
       }
     } catch (Exception ex) {
       LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des \"Üben\"-Windows: " + ex);
