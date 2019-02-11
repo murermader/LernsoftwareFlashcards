@@ -5,7 +5,7 @@ import java.util.logging.Level;
 //Klasse die einen Überblick über alle Decks hat.
 class Data {
 
-  private static String currentDeckName = "";
+  private static String currentDeckName;
   private static List<Deck> allDecks = new ArrayList<>();
   public boolean isEmpty;
 

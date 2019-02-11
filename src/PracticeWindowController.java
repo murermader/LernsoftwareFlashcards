@@ -27,26 +27,19 @@ public class PracticeWindowController {
   @FXML
   public void initialize() {
     try {
-      if(data.isEmpty){
-        //Anzeigen, dass kein Deck ausgewäht wurde!
-        easy.setDisable(true);
-        ok.setDisable(true);
-        hard.setDisable(true);
-        Show.setDisable(true);
-      }
-      else{
-        Data.setCurrentDeckName("FirstDeck");
         if (!Data.getCurrentDeckName().isEmpty()) {
           data.getCurrentDeck().ready();
-        }
-
-        if (data.getCurrentDeck() == null) {
-          LogHelper.writeToLog(Level.INFO,
-              "Entweder wurde kein Deck ausgewählt, oder das ausgewählte Deck konnte nicht gefunden werden.");
-        } else {
+          LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + Data.getCurrentDeckName() + " ready!");
           FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
+
         }
-      }
+        else {
+          easy.setDisable(true);
+          ok.setDisable(true);
+          hard.setDisable(true);
+          Show.setDisable(true);
+          LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt.");
+        }
     } catch (Exception ex) {
       LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des \"Üben\"-Windows: " + ex);
     }
@@ -54,16 +47,13 @@ public class PracticeWindowController {
 
   //Eventhandling
   public void handlerBack(ActionEvent event) throws IOException {
-
     try {
       for (Deck deck : data.getListOfDecks()) {
-
         helper.saveDeckToFile(deck, Data.getCurrentDeckName());
       }
     } catch (Exception ex) {
       //
     }
-
     Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
     Scene mainViewScene = new Scene(mainViewParent);
     //This line gets the Stage information
