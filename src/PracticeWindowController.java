@@ -46,14 +46,12 @@ public class PracticeWindowController {
 
   //Eventhandling
   public void handlerBack(ActionEvent event) throws IOException {
-    try
-    {
+    try {
       if(Data.getCurrentDeckName() != null){
         helper.saveDeckToFile(data.getCurrentDeck(), Data.getCurrentDeckName());
       }
-    }
-    catch (Exception ex) {
-      //
+    } catch (Exception ex) {
+      LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern des aktuellen Decks.");
     }
     Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
     Scene mainViewScene = new Scene(mainViewParent);

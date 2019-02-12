@@ -65,18 +65,26 @@ class Helper {
   //Um ein Deck abzuspeichern.
   void saveDeckToFile(Deck deck, String deckName) {
 
-    createFolderIfNeeded();
-    try {
-      FileOutputStream fileStreamOut = new FileOutputStream(
-          Paths.get(appDirectory.toString(), deckName + ".txt").toString());
-      ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
-      objectStream.writeObject(deck.getCards());
-      objectStream.close();
-    } catch (Exception ex) {
-      LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Ordners: " + ex);
+    if(deck != null && deckName != null) {
+      createFolderIfNeeded();
+      try {
+        FileOutputStream fileStreamOut = new FileOutputStream(
+            Paths.get(appDirectory.toString(), deckName + ".txt").toString());
+        ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
+        objectStream.writeObject(deck.getCards());
+        objectStream.close();
+      } catch (Exception ex) {
+        LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Ordners: " + ex);
+      }
+    }
+    else {
+      LogHelper.writeToLog(Level.INFO, "Deck nicht gespeichert. Entweder war das Deck leer, "
+          + "oder das Deck hatte keinen Namen. (Deck: "+ (deck == null) +") / (deckName: "+ deckName+")") ;
     }
   }
 
+  //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
+  //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
   @SuppressWarnings("unchecked")
   Deck getDeckFromFile(String deckName) {
 
@@ -95,8 +103,6 @@ class Helper {
     return deck;
   }
 
-  //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
-  //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
   private void createFolderIfNeeded() {
 
     try {

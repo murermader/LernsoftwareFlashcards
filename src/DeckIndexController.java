@@ -23,7 +23,7 @@ public class DeckIndexController {
     list.getSelectionModel().clearSelection();
     deckNames.clear();
 
-      if(!data.isEmpty){
+      if(!data.isEmpty) {
 
         for (Deck deck: data.getListOfDecks()) {
           deckNames.add(deck.getName());
@@ -38,9 +38,9 @@ public class DeckIndexController {
   public void handlerDeckSelect(ActionEvent event) throws IOException {
     String selectedItem = (String)list.getSelectionModel().getSelectedItem();
 
-    if(selectedItem != null){
+    if (selectedItem != null) {
       for (Deck deck: data.getListOfDecks()) {
-        if(selectedItem.equals(deck.getName())){
+        if(selectedItem.equals(deck.getName())) {
           Data.setCurrentDeckName(selectedItem);
           LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
         }
