@@ -27,11 +27,10 @@ public class PracticeWindowController {
   @FXML
   public void initialize() {
     try {
-        if (!Data.getCurrentDeckName().isEmpty()) {
+        if (Data.getCurrentDeckName() != null) {
           data.getCurrentDeck().ready();
           LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + Data.getCurrentDeckName() + " ready!");
           FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
-
         }
         else {
           easy.setDisable(true);
@@ -47,11 +46,13 @@ public class PracticeWindowController {
 
   //Eventhandling
   public void handlerBack(ActionEvent event) throws IOException {
-    try {
-      for (Deck deck : data.getListOfDecks()) {
-        helper.saveDeckToFile(deck, Data.getCurrentDeckName());
+    try
+    {
+      if(Data.getCurrentDeckName() != null){
+        helper.saveDeckToFile(data.getCurrentDeck(), Data.getCurrentDeckName());
       }
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
       //
     }
     Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));

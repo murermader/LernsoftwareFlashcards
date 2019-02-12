@@ -14,33 +14,26 @@ import javafx.stage.Stage;
 public class DeckIndexController {
   public ListView list = new ListView<String>();
   private Data data = new Data();
-  ObservableList<String> deckNames = FXCollections.observableArrayList();
-
-  public void handlerBack(ActionEvent event) throws IOException {
-    deckNames.clear();
-    Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-    Scene mainViewScene = new Scene(mainViewParent);
-    //This line gets the Stage information
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    window.setScene(mainViewScene);
-    window.show();
-  }
+  private ObservableList<String> deckNames = FXCollections.observableArrayList();
 
   @FXML
   public void initialize() {
+    //Funktioniert nicht!
+    list.getItems().clear();
+    list.getSelectionModel().clearSelection();
     deckNames.clear();
+
       if(!data.isEmpty){
 
-        deckNames.clear();
         for (Deck deck: data.getListOfDecks()) {
           deckNames.add(deck.getName());
+          System.out.println(deck.getName());
         }
         //Noch keine Ahnung wie ich diese Warnung wegbekomme, voerst erstmal ignorieren
         //noinspection unchecked
         list.setItems(deckNames);
       }
   }
-
 
   public void handlerDeckSelect(ActionEvent event) throws IOException {
     String selectedItem = (String)list.getSelectionModel().getSelectedItem();
@@ -53,6 +46,17 @@ public class DeckIndexController {
         }
       }
     }
+  }
+
+  public void handlerBack(ActionEvent event) throws IOException {
+    list.getItems().clear();
+    deckNames.clear();
+    Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+    Scene mainViewScene = new Scene(mainViewParent);
+    //This line gets the Stage information
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    window.setScene(mainViewScene);
+    window.show();
   }
 
   public void handlerDeckAdd(ActionEvent event) throws IOException {

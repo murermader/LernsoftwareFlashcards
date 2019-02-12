@@ -17,12 +17,7 @@ class Data {
       if (deckNames.size() == 0) {
         isEmpty = true;
         //Keine Decks erstellen, sondern
-        LogHelper.writeToLog(Level.INFO, "Erstelle Sample Decks für Testzwecke");
-        //Sample Decks erstellen
-        //helper.createSampleDeck("FirstDeck", 100);
-        //helper.createSampleDeck("SecondDeck", 50);
-        //helper.createSampleDeck("ThirdDeck", 20);
-        //deckNames = helper.getDeckNames();
+        LogHelper.writeToLog(Level.INFO, "Es sind keine Decks vorhanden.");
       }
       else{
         isEmpty = false;
