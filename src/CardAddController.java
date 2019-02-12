@@ -14,7 +14,7 @@ public class CardAddController {
     Scene mainViewScene = new Scene(mainViewParent);
 
     //This line gets the Stage information
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
     window.setScene(mainViewScene);
     window.show();

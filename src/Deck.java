@@ -6,12 +6,12 @@ public class Deck {
 
   private String name;
   private List<Flashcard> cards;
-  private static List<String> nameList = new ArrayList<>();
+  //private static List<String> nameList = new ArrayList<>();
 
   Deck(String name, List<Flashcard> cards) {
     setName(name);
     this.cards = cards;
-    nameList.add(name);
+    //nameList.add(name);
   }
 
   private void setName(String name) {
@@ -36,6 +36,21 @@ public class Deck {
 
   void addCard(Flashcard card) {
     cards.add(card);
+  }
+
+  void removeCard(Flashcard card){
+    cards.remove(card);
+  }
+
+  void changeCard(Flashcard card){
+    int index;
+    if (cards.contains(card)){
+      index = cards.indexOf(card);
+      //Überprüfen ob Werte tatsächlich geändet wurden?
+      //Vielleicht falsche Usereingabe etc
+      cards.get(index).setFront("test");
+      cards.get(index).setBack("test");
+    }
   }
 
   String getName() {
