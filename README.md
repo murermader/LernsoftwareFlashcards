@@ -15,28 +15,20 @@ Der User kann Flashkarten mit Vorder- und Rückseite erstellen. Bei der Abfrage 
 
 <h3>MUST-HAVE:</h3>
 
-	1. Themengebiet: verschiedene Stapeln die man erstellen kann (1 vorgefertigter Deck)
-	2. Die notwendigstens Fragen werden zuerst abgefragt.
-	3. Aus den notwendigen Fragen wird zufällig ausgewählt
-	4. Antwort: Schwirigkeitsgrad?
-	5. Buttons + Schwierigkeit
-	6. Programm liest zu Beginn verschiedene Deck aus Textdateien aus.
-	7. Flashkarten erstellen/löschen/bearbeiten. Neue Deck erstellen und was damit machen
-
-<h3>Weitere MUST-HAVEs:</h3>
-
-	1. Gute Bedienung
-	2. Programm sollte stabil laufen
-	3. Git benutzen
-	4. Sauberer Code
-
+	1. Man kann mehrere Decks mit Lernkarten erstellen.
+	2. Zu einem Themengebiet werden Lernkarten bereits erstellt.
+	2. Die notwendigstens Fragen werden zuerst abgefragt. (Sortierung)
+	3. Es gibt für jede Karte einen Schwierigkeitsgrad, der den Wiederholungsintervall beeinflusst.
+	5. Benutzeroberfläche mit JavaFX und intuitivier Bedienung.
+	6. Programm kann Decks (Lernkarten) speichern und beim Starten einlesen.
+	7. Flashkarten erstellen/löschen/bearbeiten/zu Deck hinzufügen.
+	10. Logging, zum Nachvollziehen möglicher nicht vorhergesehner Fehler
+	
 <h3>NICE-TO-HAVEs:</h3>
 
-	1. Abspeichern Lernkarten + Lernfortschritt
-	2. Die notwendigstens Fragen werden zuerst abgefragt.
-	3. Lernhistorie
-	4. Flashkarten erstellen/löschen/bearbeiten. Neue Deck erstellen und was damit machen
-
+	1. Lernhistorie
+	2. Nutzerstatistik
+	3. Speichern der Daten in der Cloud
 
 ----------------------------------------------------------
 DHBW Loerrach 2019
