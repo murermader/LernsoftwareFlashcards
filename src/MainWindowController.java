@@ -15,7 +15,7 @@ public class MainWindowController {
 
   @FXML
   public void handlerPractice(ActionEvent event) throws IOException {
-    Parent practiceViewParent = FXMLLoader.load(getClass().getResource("PracticeWindow.fxml"));
+    Parent practiceViewParent = FXMLLoader.load(getClass().getResource("GUI/PracticeWindow.fxml"));
     Scene practiceViewScene = new Scene(practiceViewParent);
 
     //This line gets the Stage information
@@ -28,7 +28,7 @@ public class MainWindowController {
 
   @FXML
   public void handlerDeckIndex(ActionEvent event) throws IOException {
-    Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("DeckIndex.fxml"));
+    Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("GUI/DeckIndex.fxml"));
     Scene DeckIndexScene = new Scene(DeckIndexParent);
 
     Stage window2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -40,7 +40,7 @@ public class MainWindowController {
 
   @FXML
   public void handlerCardAdd(ActionEvent event) throws IOException {
-    Parent CardAddParent = FXMLLoader.load(getClass().getResource("CardAdd.fxml"));
+    Parent CardAddParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
     Scene CardAddScene = new Scene(CardAddParent);
 
     Stage window3 = (Stage) ((Node) event.getSource()).getScene().getWindow();

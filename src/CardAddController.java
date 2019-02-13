@@ -10,7 +10,7 @@ public class CardAddController {
 
   public void handlerBack(ActionEvent event) throws IOException {
 
-    Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+    Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
     Scene mainViewScene = new Scene(mainViewParent);
 
     //This line gets the Stage information

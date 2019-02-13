@@ -46,12 +46,20 @@ public class DeckIndexController {
         }
       }
     }
+      Parent practiceViewParent = FXMLLoader.load(getClass().getResource("GUI/PracticeWindow.fxml"));
+      Scene practiceViewScene = new Scene(practiceViewParent);
+
+      //This line gets the Stage information
+      Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      window1.setScene(practiceViewScene);
+      window1.show();
   }
 
   public void handlerBack(ActionEvent event) throws IOException {
     list.getItems().clear();
     deckNames.clear();
-    Parent mainViewParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+    Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
     Scene mainViewScene = new Scene(mainViewParent);
     //This line gets the Stage information
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
