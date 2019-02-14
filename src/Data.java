@@ -22,8 +22,10 @@ class Data {
       else{
         isEmpty = false;
         //Für jeden Stapel Flashcards ein Deck erstellen.
-        for (String name : deckNames) {
-          allDecks.add(helper.getDeckFromFile(name));
+        if(allDecks.isEmpty()){
+          for (String name : deckNames) {
+            allDecks.add(helper.getDeckFromFile(name));
+          }
         }
       }
     } catch (Exception ex) {
