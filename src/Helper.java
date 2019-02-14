@@ -15,6 +15,8 @@ class Helper {
 
   List<String> getDeckNames() {
     try {
+      //TODO: DIese Methode sollte keine Ordner erstellen. UMÄNDERN
+      //TODO: Vlt mit CreateFolderIfNeeded Methode?
       boolean succes;
       List<String> fileNames = new ArrayList<>();
       File directory = new File(appDirectory.toString());
@@ -42,6 +44,24 @@ class Helper {
       LogHelper.writeToLog(Level.INFO, "Fehler beim Beschaffen der Decknamen" + ex);
       return null;
     }
+  }
+  //TODO: Testen auf "False Positives", "mögliche Fehler"
+  //4 Mögliche Returns: "windows", "osx", "unix", "undertermined".
+  public String getOperationSystemNameLowerCase(){
+    String os = System.getProperty("os.name").toLowerCase();
+    if (os.contains("win")){
+      //Betriebssystem ist Windows-basiert
+      return "windows";
+    }
+    else if (os.contains("osx")){
+      //Betriebssystem ist Apple OSX
+      return "osx";
+    }
+    else if (os.contains("nix") || os.contains("aix") || os.contains("nux")){
+      //Betriebssystem ist Linux/Unix basiert
+      return "unix";
+    }
+    return "undertermined";
   }
 
   void createSampleDeck(String deckName, int length) {
