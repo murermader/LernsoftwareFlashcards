@@ -29,13 +29,14 @@ Der User kann Flashkarten mit Vorder- und Rückseite erstellen. Bei der Abfrage 
 		-Karten hinzufügen
 	8. Logging, zum Nachvollziehen möglicher nicht vorhergesehner Fehler
 	9. Mehrere Benutzer, mit verschiedenen Decks, die beim Start ausgewählt werden können
-	10. Nutzerstatistik (Gesamte Zeit verbraucht, wieviele Karten gelernt, etc.
+	10. Nutzerstatistik (Gesamte Zeit verbraucht, wieviele Karten gelernt, etc.)
 	11. Anzeige "Overview", mit Infos wie gesamte Karten, wieviele bereit sind zu lernen
 	
 <h3>NICE-TO-HAVEs:</h3>
 
 	1. Lernhistorie
 	2. Speichern der Daten in der Cloud
+	3. Suchfunktion nach Karten (für Must Have 7)
 
 ----------------------------------------------------------
 DHBW Loerrach 2019
