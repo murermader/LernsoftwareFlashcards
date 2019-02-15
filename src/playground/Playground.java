@@ -13,6 +13,7 @@ public class Playground {
         }
         else if (os.contains("nix") || os.contains("aix") || os.contains("nux")){
             System.out.println("Linux/Unix");
+            System.out.println("Test");
             //Betriebssystem ist Linux/Unix basiert
         }
     }
