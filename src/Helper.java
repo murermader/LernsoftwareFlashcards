@@ -11,15 +11,15 @@ import java.util.logging.Level;
 
 class Helper {
 
-  private static final Path appDirectory = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
+  //Windows
+  private static final Path appDirectoryDirs = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
   private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
 
   //Gibt eine Liste mit den Dateinamen der Decks zurück (ohne Dateiendung).
   List<String> getDeckNames() {
     try {
       List<String> fileNames = new ArrayList<>();
-      createFolderIfNeeded();
-      File directory = new File(appDirectory.toString());
+      File directory = new File(appDirectoryDirs.toString());
       File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
       if (files != null) {
         for (File file : files) {
@@ -57,10 +57,9 @@ class Helper {
   void saveDeckToFile(Deck deck, String deckName) {
 
     if(deck != null && deckName != null) {
-      createFolderIfNeeded();
       try {
         FileOutputStream fileStreamOut = new FileOutputStream(
-            Paths.get(appDirectory.toString(), deckName + ".txt").toString());
+            Paths.get(appDirectoryDirs.toString(), deckName + ".txt").toString());
         ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
         objectStream.writeObject(deck.getCards());
         objectStream.close();
@@ -84,7 +83,7 @@ class Helper {
 
     try {
       FileInputStream fileStreamIn = new FileInputStream(
-          Paths.get(appDirectory.toString(), deckName).toString());
+          Paths.get(appDirectoryDirs.toString(), deckName).toString());
       ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
       list = (List<Flashcard>) objectStream.readObject();
     } catch (Exception ex) {
@@ -94,22 +93,22 @@ class Helper {
     return deck;
   }
 
-  public void createFolderIfNeeded() {
+  void createDirectories() {
     try {
         File directory;
         if(getOperationSystemNameLowerCase().equals("windows")){
-          directory = appDirectory.toFile();
+          directory = appDirectoryDirs.toFile();
         }
         else{ //UNIX || OSX
           directory = osXDirectory.toFile();
         }
         if(directory != null){
           if (!directory.exists()) {
-            boolean isDirectoryCreated = directory.mkdir();
+            boolean isDirectoryCreated = directory.mkdirs();
             if (isDirectoryCreated) {
               LogHelper.writeToLog(Level.INFO, "Ordner erstellt!");
             } else {
-              LogHelper.writeToLog(Level.INFO, "Ordner konnte nicht erstellt werden.");
+              LogHelper.writeToLog(Level.INFO, "Ordner konnte nicht erstellt werden. (Helper)");
             }
           }
         }
