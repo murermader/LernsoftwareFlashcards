@@ -12,39 +12,28 @@ import java.util.logging.Level;
 class Helper {
 
   private static final Path appDirectory = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
+  private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
 
+  //Gibt eine Liste mit den Dateinamen der Decks zurück (ohne Dateiendung).
   List<String> getDeckNames() {
     try {
-      //TODO: DIese Methode sollte keine Ordner erstellen. UMÄNDERN
-      //TODO: Vlt mit CreateFolderIfNeeded Methode?
-      boolean succes;
       List<String> fileNames = new ArrayList<>();
+      createFolderIfNeeded();
       File directory = new File(appDirectory.toString());
-      if (directory.exists()) {
-        succes = true;
-      } else {
-        succes = directory.mkdir();
-        if (!succes) {
-          LogHelper.writeToLog(Level.INFO, "Directory konnte nicht erstellt werden.");
-        } else {
-          LogHelper.writeToLog(Level.INFO, "Ordner erfolgreich erstellt.");
-        }
-      }
-      if (succes) {
-        File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
-        if (files != null) {
-          for (File file : files) {
-
-            fileNames.add(file.getName());
-          }
+      File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
+      if (files != null) {
+        for (File file : files) {
+          fileNames.add(file.getName());
         }
       }
       return fileNames;
-    } catch (Exception ex) {
-      LogHelper.writeToLog(Level.INFO, "Fehler beim Beschaffen der Decknamen" + ex);
-      return null;
     }
+    catch (Exception ex) {
+      LogHelper.writeToLog(Level.INFO, "fehler");
+    }
+    return null;
   }
+
   //TODO: Testen auf "False Positives", "mögliche Fehler"
   //4 Mögliche Returns: "windows", "osx", "unix", "undertermined".
   public String getOperationSystemNameLowerCase(){
@@ -62,24 +51,6 @@ class Helper {
       return "unix";
     }
     return "undertermined";
-  }
-
-  void createSampleDeck(String deckName, int length) {
-    try {
-      List<Flashcard> list = new ArrayList<>();
-      Deck deck = new Deck(deckName, list);
-
-      for (int i = 0; i < length; i++) {
-
-        int random1 = (int) (Math.random() * 50 + 1);
-        int random2 = (int) (Math.random() * 100 + 1);
-        //list.add(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
-        deck.addCard(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
-      }
-      saveDeckToFile(deck, deckName);
-    } catch (Exception ex) {
-      LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen von SampleData" + ex);
-    }
   }
 
   //Um ein Deck abzuspeichern.
@@ -123,20 +94,48 @@ class Helper {
     return deck;
   }
 
-  private void createFolderIfNeeded() {
-
+  public void createFolderIfNeeded() {
     try {
-      File directory = appDirectory.toFile();
-      if (!directory.exists()) {
-        boolean isDirectoryCreated = directory.mkdir();
-        if (isDirectoryCreated) {
-          LogHelper.writeToLog(Level.INFO, "Ordner erstellt!");
-        } else {
-          LogHelper.writeToLog(Level.INFO, "Ordner konnte nicht erstellt werden.");
+        File directory;
+        if(getOperationSystemNameLowerCase().equals("windows")){
+          directory = appDirectory.toFile();
         }
-      }
-    } catch (Exception ex) {
+        else{ //UNIX || OSX
+          directory = osXDirectory.toFile();
+        }
+        if(directory != null){
+          if (!directory.exists()) {
+            boolean isDirectoryCreated = directory.mkdir();
+            if (isDirectoryCreated) {
+              LogHelper.writeToLog(Level.INFO, "Ordner erstellt!");
+            } else {
+              LogHelper.writeToLog(Level.INFO, "Ordner konnte nicht erstellt werden.");
+            }
+          }
+        }
+    }
+    catch (Exception ex) {
       LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Ordners: " + ex);
     }
   }
+
+  void createSampleDeck(String deckName, int length) {
+    try {
+      List<Flashcard> list = new ArrayList<>();
+      Deck deck = new Deck(deckName, list);
+
+      for (int i = 0; i < length; i++) {
+
+        int random1 = (int) (Math.random() * 50 + 1);
+        int random2 = (int) (Math.random() * 100 + 1);
+        //list.add(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
+        deck.addCard(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
+      }
+      saveDeckToFile(deck, deckName);
+    } catch (Exception ex) {
+      LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen von SampleData" + ex);
+    }
+  }
 }
+
+
