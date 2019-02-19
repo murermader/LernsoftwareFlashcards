@@ -49,6 +49,16 @@ public class MainWindowController {
   }
 
   @FXML
+  public void handlerStats(ActionEvent event)throws IOException{
+    Parent StatsWindowParent = FXMLLoader.load(getClass().getResource("GUI/StatsWindow.fxml"));
+    Scene StatsWindowScene = new Scene(StatsWindowParent);
+
+    Stage window3 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    window3.setScene(StatsWindowScene);
+    window3.show();
+  }
+
+  @FXML
   public void handlerQuit() {
     System.exit(0);
 

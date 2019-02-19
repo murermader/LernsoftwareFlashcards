@@ -70,4 +70,15 @@ public class DeckIndexController {
   public void handlerDeckAdd(ActionEvent event) throws IOException {
 
   }
+
+  public void handlerCardAdd(ActionEvent event)throws IOException{
+    Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
+    Scene CardAddViewScene = new Scene(CardAddViewParent);
+
+    //This line gets the Stage information
+    Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    window1.setScene(CardAddViewScene);
+    window1.show();
+  }
 }

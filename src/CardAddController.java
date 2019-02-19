@@ -20,7 +20,15 @@ public class CardAddController {
     window.show();
   }
 
-  public void handlerAdd(ActionEvent event) throws IOException {
+ public void handlerCardAdd(ActionEvent event)throws IOException{
+   //Karte hinzufügen zu dem jeweiligen stapen
+ }
+  public void handlerCardEdit(ActionEvent event)throws IOException{
+    //Ausgewählte Karte editiere
+
+  }
+  public void handlerCardDelete(ActionEvent event)throws IOException{
+    //Ausgewählte Karte löschen
 
   }
 }

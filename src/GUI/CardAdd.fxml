@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1"
-  xmlns="http://javafx.com/javafx/2.2" fx:controller="CardAddController">
-  <VBox id="VBox" alignment="CENTER" layoutY="32.0" spacing="20.0" AnchorPane.leftAnchor="5.0"
-    AnchorPane.rightAnchor="5.0">
-    <Label text="Ihre Frage"/>
-    <TextArea fx:id="FrageTextArea" prefHeight="100.0" prefWidth="200.0" text=""
-      wrapText="true"/>
-    <Label text="Ihre Antwort"/>
-    <TextArea fx:id="AntwortTextArea" minHeight="-1.0" prefHeight="100.0" prefWidth="200.0"
-      wrapText="true"/>
-    <HBox id="HBox" alignment="CENTER" spacing="5.0">
-      <Button fx:id="add" mnemonicParsing="false" onAction="#handlerAdd" text="Hinzufügen"/>
-      <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück"/>
-    </HBox>
+<AnchorPane prefHeight="418.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="CardAddController">
+  <VBox id="VBox" alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <children>
+      <HBox id="HBox" alignment="CENTER" spacing="10.0">
+        <children>
+          <Button fx:id="cardAdd" mnemonicParsing="false" onAction="#handlerCardAdd" text="Karte hinzufügen" />
+          <Button fx:id="cardEdit" mnemonicParsing="false" onAction="#handlerCardEdit" text="Karte editieren" />
+          <Button fx:id="cardDelete" mnemonicParsing="false" onAction="#handlerCardDelete" text="Karte löschen" />
+          <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück" />
+        </children>
+      </HBox>
+      <ListView prefHeight="353.0" prefWidth="800.0" />
+    </children>
   </VBox>
 </AnchorPane>
