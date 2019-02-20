@@ -15,6 +15,7 @@ public class PracticeWindowController {
   //FXML Elemente
   public Label FragenLabel = new Label();
   public Label AntwortLabel = new Label();
+  public Label noDeck = new Label();
   public Button easy = new Button();
   public Button ok = new Button();
   public Button hard = new Button();
@@ -28,6 +29,7 @@ public class PracticeWindowController {
   public void initialize() {
     try {
         if (Data.getCurrentDeckName() != null) {
+          noDeck.setVisible(false);
           data.getCurrentDeck().ready();
           LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + Data.getCurrentDeckName() + " ready!");
           FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
@@ -37,6 +39,7 @@ public class PracticeWindowController {
           ok.setDisable(true);
           hard.setDisable(true);
           Show.setDisable(true);
+          noDeck.setVisible(true);
           LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt.");
         }
     } catch (Exception ex) {

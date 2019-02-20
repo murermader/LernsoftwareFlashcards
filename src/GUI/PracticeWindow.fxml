@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -29,5 +30,10 @@
           <Label fx:id="AntwortLabel" text="" />
         </children>
      </VBox>
+      <Label fx:id="noDeck" layoutX="377.0" visible="false" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" text="Es wurde kein Deck ausgewählt!" textAlignment="JUSTIFY" textFill="#e40000">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
