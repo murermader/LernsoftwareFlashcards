@@ -12,14 +12,15 @@ import java.util.logging.Level;
 class Helper {
 
   //Windows
-  private static final Path appDirectoryDirs = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
+  private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
+  private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
   private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
 
   //Gibt eine Liste mit den Dateinamen der Decks zurück (ohne Dateiendung).
   List<String> getDeckNames() {
     try {
       List<String> fileNames = new ArrayList<>();
-      File directory = new File(appDirectoryDirs.toString());
+      File directory = new File(appDirectoryRoot.toString());
       File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
       if (files != null) {
         for (File file : files) {
@@ -59,7 +60,7 @@ class Helper {
     if(deck != null && deckName != null) {
       try {
         FileOutputStream fileStreamOut = new FileOutputStream(
-            Paths.get(appDirectoryDirs.toString(), deckName + ".txt").toString());
+            Paths.get(appDirectoryRoot.toString(), deckName + ".txt").toString());
         ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
         objectStream.writeObject(deck.getCards());
         objectStream.close();
@@ -83,7 +84,7 @@ class Helper {
 
     try {
       FileInputStream fileStreamIn = new FileInputStream(
-          Paths.get(appDirectoryDirs.toString(), deckName).toString());
+          Paths.get(appDirectoryRoot.toString(), deckName).toString());
       ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
       list = (List<Flashcard>) objectStream.readObject();
     } catch (Exception ex) {
@@ -97,7 +98,7 @@ class Helper {
     try {
         File directory;
         if(getOperationSystemNameLowerCase().equals("windows")){
-          directory = appDirectoryDirs.toFile();
+          directory = appDirectoryLog.toFile();
         }
         else{ //UNIX || OSX
           directory = osXDirectory.toFile();
