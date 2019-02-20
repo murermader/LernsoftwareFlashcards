@@ -68,7 +68,8 @@ public class DeckIndexController {
   }
 
   public void handlerDeckAdd(ActionEvent event) throws IOException {
-
+    //Deck hinzufügen
+    //Fenster popup: Textfeld für Namen
   }
 
   public void handlerCardAdd(ActionEvent event)throws IOException{
