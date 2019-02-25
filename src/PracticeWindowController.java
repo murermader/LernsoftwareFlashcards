@@ -100,11 +100,15 @@ public class PracticeWindowController {
     long timeInMillis = currentFlashcard.returnTimeInterval(level);
     String timeString;
     if(currentFlashcard.getLevel() < 3){ //Als Minuten anzeigen
-      timeString = TimeUnit.MILLISECONDS.toMinutes(timeInMillis) + "min";
+      timeString = TimeUnit.MILLISECONDS.toMinutes(timeInMillis) + " Minuten";
     } else if(currentFlashcard.getLevel() < 5){ //Als Stunden anzeigen
-      timeString = TimeUnit.MILLISECONDS.toHours(timeInMillis) + "h";
-    } else{ //Als Tage anzeigen
-      timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis) + "d";
+      timeString = TimeUnit.MILLISECONDS.toHours(timeInMillis) + " Stunden";
+    } else if(currentFlashcard.getLevel() < 7) { //Als Tage anzeigen
+      timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis) + " Tage";
+    } else if(currentFlashcard.getLevel() < 9){ //Als Monate anzeigen
+      timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis)/30 + " Monate";
+    } else { //Als Jahre anzeigen
+      timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis)/365 + " Jahre";
     }
     return timeString;
   }

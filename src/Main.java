@@ -15,6 +15,10 @@ public class Main extends Application {
       //TODO: Label für lernbare Karten (d.h. repetitionDate < Today = also deck.ready)
       Helper helper = new Helper();
       helper.createDirectories();
+
+      //Nur Temporär, damit auf allen Geräten testbar
+      helper.createSampleDeck("TESTKLASSE",1);
+
       Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
       Scene scene = new Scene(root);
       stage.setScene(scene);
