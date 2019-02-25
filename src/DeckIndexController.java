@@ -20,6 +20,7 @@ public class DeckIndexController {
   @FXML
   public void initialize() {
     //Funktioniert nicht!
+    //data =
     list.getItems().clear();
     list.getSelectionModel().clearSelection();
     deckNames.clear();
@@ -31,6 +32,7 @@ public class DeckIndexController {
           System.out.println(deck.getName());
         }
         //Noch keine Ahnung wie ich diese Warnung wegbekomme, voerst erstmal ignorieren
+        list.refresh();
         //noinspection unchecked
         list.setItems(deckNames);
       }

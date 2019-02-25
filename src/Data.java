@@ -13,7 +13,9 @@ class Data {
   Data() {
     try {
       Helper helper = new Helper();
-      List<String> deckNames = helper.getDeckNames();
+      List<String> deckNames = new ArrayList<>();
+      deckNames.clear();
+      deckNames = helper.getDeckNames();
       //Es existieren keine Decks: SampleDecks erstellen
       if (deckNames.size() == 0) {
         isEmpty = true;
@@ -23,10 +25,9 @@ class Data {
       else{
         isEmpty = false;
         //Für jeden Stapel Flashcards ein Deck erstellen.
-        if(allDecks.isEmpty()){
-          for (String name : deckNames) {
-            allDecks.add(helper.getDeckFromFile(name));
-          }
+        allDecks.clear();
+        for (String name : deckNames) {
+          allDecks.add(helper.getDeckFromFile(name));
         }
       }
     } catch (Exception ex) {
