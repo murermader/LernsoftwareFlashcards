@@ -63,7 +63,12 @@ public class Flashcard implements java.io.Serializable {
   }
 
   void setLevel(int level) {
-    this.level = level;
+    if(level < 10){
+      this.level = level;
+    } else{
+      LogHelper.writeToLog(Level.INFO, "Level kann nicht größer als 10 gesetzt werden");
+      this.level = 10;
+    }
   }
 
   int getLevel() {
@@ -93,11 +98,11 @@ public class Flashcard implements java.io.Serializable {
       case (0): //Difficulty 0 --> direkt nocheinmal wiederholen, "kein update"
         break;
       case (1): //Difficulty 1 --> leicht, zwei Stufen nach oben
-        level = level + 2;
+        setLevel(level+2);
         updateTime();
         break;
       case (2): //Difficulty 2 --> OK, eine Stufe nach oben
-        level++;
+        setLevel(level++);
         updateTime();
         break;
       case (3): //Difficulty 3 --> Schwer, Stufe beibehalten

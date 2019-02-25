@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import javafx.event.ActionEvent;
@@ -91,8 +90,6 @@ public class PracticeWindowController {
     ok.setDisable(false);
     hard.setDisable(false);
     //Nachdem die Rückseite angezeigt wird, sollen die Abfragezeiten über den Buttons angezeigt werden
-    //TODO: 3 Labels für 3 Buttons erstellen.
-    //TODO: Neue Abfragezeit .setText();
     easyTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel() +2));
     okTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel() +1));
     hardTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel()));
@@ -101,7 +98,7 @@ public class PracticeWindowController {
   private String showTimeToNextRepetition(int level){
 
     long timeInMillis = currentFlashcard.returnTimeInterval(level);
-    String timeString = "";
+    String timeString;
     if(currentFlashcard.getLevel() < 3){ //Als Minuten anzeigen
       timeString = TimeUnit.MILLISECONDS.toMinutes(timeInMillis) + "min";
     } else if(currentFlashcard.getLevel() < 5){ //Als Stunden anzeigen

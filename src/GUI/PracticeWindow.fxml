@@ -34,8 +34,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" fx:id="easyTime" layoutY="301.0" text="" />
-      <Label layoutX="162.0" fx:id="okTime" layoutY="301.0" text="" />
-      <Label layoutX="282.0" fx:id="hardTime" layoutY="301.0" text="" />
+      <Label fx:id="easyTime" layoutX="10.0" layoutY="301.0" prefHeight="35.0" prefWidth="115.0" textAlignment="CENTER" />
+      <Label fx:id="okTime" layoutX="133.0" layoutY="301.0" prefHeight="35.0" prefWidth="115.0" textAlignment="CENTER" />
+      <Label fx:id="hardTime" layoutX="248.0" layoutY="301.0" prefHeight="35.0" prefWidth="120.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>
