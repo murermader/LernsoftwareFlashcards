@@ -21,7 +21,7 @@
           <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück" />
         </children>
       </HBox>
-      <ListView prefHeight="353.0" prefWidth="800.0" />
+      <ListView fx:id="CardList" prefHeight="353.0" prefWidth="800.0" />
     </children>
   </VBox>
 </AnchorPane>

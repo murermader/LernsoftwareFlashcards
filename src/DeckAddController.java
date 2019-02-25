@@ -17,27 +17,7 @@ import java.util.logging.Level;
 public class DeckAddController {
 
     public TextField StapelText = new TextField();
-    private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
-    private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
-    private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
-
-    void saveDeckToFile(Deck deck, String deckName) {
-        if(deck != null && deckName != null) {
-            try {
-                FileOutputStream fileStreamOut = new FileOutputStream(
-                        Paths.get(appDirectoryRoot.toString(), deckName + ".txt").toString());
-                ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
-                objectStream.writeObject(deck.getCards());
-                objectStream.close();
-            } catch (Exception ex) {
-                LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Ordners: " + ex);
-            }
-        }
-        else {
-            LogHelper.writeToLog(Level.INFO, "Deck nicht gespeichert. Entweder war das Deck leer, "
-                    + "oder das Deck hatte keinen Namen. (Deck: "+ (deck == null) +") / (deckName: "+ deckName+")") ;
-        }
-    }
+    Helper x = new Helper();
 
     public void handlerConfirm(ActionEvent event)throws IOException{
         String deckName = StapelText.getText();
@@ -47,7 +27,8 @@ public class DeckAddController {
             List<Flashcard> list = new ArrayList<>();
             Deck deck = new Deck(deckName, list);
 
-            saveDeckToFile(deck, deckName);
+
+            x.saveDeckToFile(deck, deckName);
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Stapels "+deckName + ex);
         }
