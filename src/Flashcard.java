@@ -16,7 +16,7 @@ public class Flashcard implements java.io.Serializable {
   private static final long TWO_YEARS_IN_MILLIS = 63113904000L;       //9
 
   //Klassenvariablen
-  private static int count = 0;
+  public static int count = 0;
 
   //Instanzvariablen
   private String front;
@@ -67,7 +67,7 @@ public class Flashcard implements java.io.Serializable {
       this.level = level;
     } else{
       LogHelper.writeToLog(Level.INFO, "Level kann nicht größer als 10 gesetzt werden");
-      this.level = 10;
+      this.level = 9;
     }
   }
 
@@ -93,7 +93,6 @@ public class Flashcard implements java.io.Serializable {
 
   //updateInterval
   void updateInterval() {
-
     switch (difficulty) {
       case (0): //Difficulty 0 --> direkt nocheinmal wiederholen, "kein update"
         break;
@@ -194,6 +193,6 @@ public class Flashcard implements java.io.Serializable {
     }
     date.setTime(System.currentTimeMillis() + newTime);
     LogHelper.writeToLog(Level.INFO,
-        "Nächstes Abfragedatum für Karte (" + front + ") ist am: " + date);
+        "Nächstes Abfragedatum für Karte (" + front + ") ist am: " + date + " Level: " + level);
   }
 }
