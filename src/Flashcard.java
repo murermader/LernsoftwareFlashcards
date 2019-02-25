@@ -63,7 +63,12 @@ public class Flashcard implements java.io.Serializable {
   }
 
   void setLevel(int level) {
-    this.level = level;
+    if(level < 10){
+      this.level = level;
+    } else{
+      LogHelper.writeToLog(Level.INFO, "Level kann nicht größer als 10 gesetzt werden");
+      this.level = 10;
+    }
   }
 
   int getLevel() {
@@ -93,19 +98,11 @@ public class Flashcard implements java.io.Serializable {
       case (0): //Difficulty 0 --> direkt nocheinmal wiederholen, "kein update"
         break;
       case (1): //Difficulty 1 --> leicht, zwei Stufen nach oben
-        if (level < 8) {
-          level = level + 2;
-        } else if (level >= 8) {
-          level = 9;
-        }
+        setLevel(level+2);
         updateTime();
         break;
       case (2): //Difficulty 2 --> OK, eine Stufe nach oben
-        if (level < 9) {
-          level++;
-        } else {
-          level = 9;
-        }
+        setLevel(level++);
         updateTime();
         break;
       case (3): //Difficulty 3 --> Schwer, Stufe beibehalten
@@ -197,6 +194,6 @@ public class Flashcard implements java.io.Serializable {
     }
     date.setTime(System.currentTimeMillis() + newTime);
     LogHelper.writeToLog(Level.INFO,
-            "Nächstes Abfragedatum für Karte (" + front + ") ist am: " + date);
+        "Nächstes Abfragedatum für Karte (" + front + ") ist am: " + date);
   }
 }
