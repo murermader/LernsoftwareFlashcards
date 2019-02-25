@@ -9,6 +9,7 @@ class Data {
   private static List<Deck> allDecks = new ArrayList<>();
   public boolean isEmpty;
 
+  //Soll das alles machen was alle Decks beineinflusst.
   Data() {
     try {
       Helper helper = new Helper();

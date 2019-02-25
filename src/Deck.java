@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//Alle Sachen die nur ein Deck betreffen.
 public class Deck {
 
   private String name;

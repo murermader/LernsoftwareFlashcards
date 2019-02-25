@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,10 @@ public class PracticeWindowController {
   public Label FragenLabel = new Label();
   public Label AntwortLabel = new Label();
   public Label noDeck = new Label();
+  public Label easyTime = new Label();
+  public Label okTime = new Label();
+  public Label hardTime = new Label();
+
   public Button easy = new Button();
   public Button ok = new Button();
   public Button hard = new Button();
@@ -24,16 +30,18 @@ public class PracticeWindowController {
   private Data data = new Data();
   private Helper helper = new Helper();
   private int currentcardIndex = 0;
+  private Flashcard currentFlashcard;
 
   @FXML
   public void initialize() {
     //TODO: Timer starten (Lernzeit). Soll so lange laufen wie die Practice-Ansicht offen ist
     try {
-        if (Data.getCurrentDeckName() != null) {
+        if (Data.getCurrentDeckName() != null && data.getCurrentDeck() != null) {
           noDeck.setVisible(false);
           data.getCurrentDeck().ready();
+          currentFlashcard = data.getCurrentDeck().getCards().get(currentcardIndex);
           LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + Data.getCurrentDeckName() + " ready!");
-          FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
+          FragenLabel.setText(currentFlashcard.getFront());
         }
         else {
           easy.setDisable(true);
@@ -41,7 +49,7 @@ public class PracticeWindowController {
           hard.setDisable(true);
           Show.setDisable(true);
           noDeck.setVisible(true);
-          LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt.");
+          LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt / Das Deck ist leer.");
         }
     } catch (Exception ex) {
       LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des \"Üben\"-Windows: " + ex);
@@ -78,13 +86,30 @@ public class PracticeWindowController {
   }
 
   public void handlerShowBack(ActionEvent event) {
-    AntwortLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getBack());
+    AntwortLabel.setText(currentFlashcard.getBack());
     easy.setDisable(false);
     ok.setDisable(false);
     hard.setDisable(false);
     //Nachdem die Rückseite angezeigt wird, sollen die Abfragezeiten über den Buttons angezeigt werden
     //TODO: 3 Labels für 3 Buttons erstellen.
     //TODO: Neue Abfragezeit .setText();
+    easyTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel() +2));
+    okTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel() +1));
+    hardTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel()));
+  }
+
+  private String showTimeToNextRepetition(int level){
+
+    long timeInMillis = currentFlashcard.returnTimeInterval(level);
+    String timeString = "";
+    if(currentFlashcard.getLevel() < 3){ //Als Minuten anzeigen
+      timeString = TimeUnit.MILLISECONDS.toMinutes(timeInMillis) + "min";
+    } else if(currentFlashcard.getLevel() < 5){ //Als Stunden anzeigen
+      timeString = TimeUnit.MILLISECONDS.toHours(timeInMillis) + "h";
+    } else{ //Als Tage anzeigen
+      timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis) + "d";
+    }
+    return timeString;
   }
 
   private void finishUpCard(int difficulty) {
@@ -92,11 +117,15 @@ public class PracticeWindowController {
     easy.setDisable(true);
     ok.setDisable(true);
     hard.setDisable(true);
-    data.getCurrentDeck().getCards().get(currentcardIndex).setDifficulty(difficulty);
-    data.getCurrentDeck().getCards().get(currentcardIndex).updateInterval();
+    easyTime.setText("");
+    okTime.setText("");
+    hardTime.setText("");
+    currentFlashcard.setDifficulty(difficulty);
+    currentFlashcard.updateInterval();
     //deck.getCards().remove(currentcardIndex);
     AntwortLabel.setText("");
     currentcardIndex++;
-    FragenLabel.setText(data.getCurrentDeck().getCards().get(currentcardIndex).getFront());
+    currentFlashcard = data.getCurrentDeck().getCards().get(currentcardIndex);
+    FragenLabel.setText(currentFlashcard.getFront());
   }
 }

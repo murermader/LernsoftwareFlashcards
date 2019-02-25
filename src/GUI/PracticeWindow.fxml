@@ -21,7 +21,6 @@
           <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" prefHeight="20.0" prefWidth="70.0" text="Zurück" />
         </children>
      </HBox>
-     <Label layoutX="14.0" layoutY="297.0" text="Schwierigkeiten" />
      <VBox id="VBox" alignment="CENTER" layoutY="14.0" spacing="40.0" AnchorPane.leftAnchor="10.0">
         <children>
           <Label prefWidth="78.0" text="Frage" textAlignment="CENTER" />
@@ -30,10 +29,13 @@
           <Label fx:id="AntwortLabel" text="" />
         </children>
      </VBox>
-      <Label fx:id="noDeck" layoutX="377.0" visible="false" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" text="Es wurde kein Deck ausgewählt!" textAlignment="JUSTIFY" textFill="#e40000">
+      <Label fx:id="noDeck" layoutX="377.0" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" text="Es wurde kein Deck ausgewählt!" textAlignment="JUSTIFY" textFill="#e40000" visible="false">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Label layoutX="40.0" fx:id="easyTime" layoutY="301.0" text="" />
+      <Label layoutX="162.0" fx:id="okTime" layoutY="301.0" text="" />
+      <Label layoutX="282.0" fx:id="hardTime" layoutY="301.0" text="" />
    </children>
 </AnchorPane>
