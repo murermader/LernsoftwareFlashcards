@@ -17,6 +17,7 @@ class Helper {
   private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
 
   //Gibt eine Liste mit den Dateinamen der Decks zurück (ohne Dateiendung).
+  //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
   List<String> getDeckNames() {
     try {
       List<String> fileNames = new ArrayList<>();
@@ -55,8 +56,8 @@ class Helper {
   }
 
   //Um ein Deck abzuspeichern.
+  //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
   void saveDeckToFile(Deck deck, String deckName) {
-
     if(deck != null && deckName != null) {
       try {
         FileOutputStream fileStreamOut = new FileOutputStream(
@@ -76,6 +77,7 @@ class Helper {
 
   //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
   //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
+  //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
   @SuppressWarnings("unchecked")
   Deck getDeckFromFile(String deckName) {
 
@@ -94,6 +96,7 @@ class Helper {
     return deck;
   }
 
+  //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
   void createDirectories() {
     try {
         File directory;

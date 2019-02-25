@@ -27,6 +27,7 @@ public class PracticeWindowController {
 
   @FXML
   public void initialize() {
+    //TODO: Timer starten (Lernzeit). Soll so lange laufen wie die Practice-Ansicht offen ist
     try {
         if (Data.getCurrentDeckName() != null) {
           noDeck.setVisible(false);
@@ -81,9 +82,13 @@ public class PracticeWindowController {
     easy.setDisable(false);
     ok.setDisable(false);
     hard.setDisable(false);
+    //Nachdem die Rückseite angezeigt wird, sollen die Abfragezeiten über den Buttons angezeigt werden
+    //TODO: 3 Labels für 3 Buttons erstellen.
+    //TODO: Neue Abfragezeit .setText();
   }
 
   private void finishUpCard(int difficulty) {
+    //TODO: Aufzeichnen dass die Karte gelernt wurde.
     easy.setDisable(true);
     ok.setDisable(true);
     hard.setDisable(true);

@@ -11,6 +11,8 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
     try {
+      //TODO: Label für alle Karten
+      //TODO: Label für lernbare Karten (d.h. repetitionDate < Today = also deck.ready)
       Helper helper = new Helper();
       helper.createDirectories();
       Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
