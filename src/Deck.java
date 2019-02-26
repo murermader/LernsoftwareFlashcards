@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,8 +47,7 @@ public class Deck {
     //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
     public void ready() {
 
-        try{
-
+        try {
             Date date = new Date();
             date.getTime();
             List<Flashcard> toRemove = new ArrayList<>();
@@ -58,9 +58,24 @@ public class Deck {
             }
             cards.removeAll(toRemove);
 
-        } catch(Exception ex){
-            LogHelper.writeToLog(Level.INFO, "Fehler beim Aufbereiten des Decks. " +ex);
-            ex.printStackTrace();
+        } catch (Exception ex) {
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Aufbereiten des Decks. " + ex);
+        }
+    }
+
+    //Sortiert das Deck nach dem Datum. Kleinstes Datum zuerst.
+    public void sort() {
+
+        try {
+            if (cards != null) {
+                cards.sort(Comparator.comparing(Flashcard::getRepetitionDate));
+                LogHelper.writeToLog(Level.INFO, "Karten von Deck " + name + " sortiert.");
+
+            } else {
+                LogHelper.writeToLog(Level.INFO, "Karten von Deck " + name + " nicht sortiert (null).");
+            }
+        } catch (Exception ex) {
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Sortieren der Karten" + ex);
         }
     }
 
@@ -82,7 +97,7 @@ public class Deck {
             cards.get(index).setFront(front);
             cards.get(index).setBack(back);
 
-            if(resetProgress){
+            if (resetProgress) {
 
                 cards.get(index).setRepetitionDate(new Date());
                 cards.get(index).setLevel(0);
