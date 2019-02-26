@@ -23,6 +23,10 @@ public class Deck {
     }
   }
 
+  int getLength(){
+    return cards.size();
+  }
+
   //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
   void ready() {
 

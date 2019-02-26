@@ -16,7 +16,7 @@ public class PracticeWindowController {
   //FXML Elemente
   public Label FragenLabel = new Label();
   public Label AntwortLabel = new Label();
-  public Label noDeck = new Label();
+  public Label infoLabel = new Label();
   public Label easyTime = new Label();
   public Label okTime = new Label();
   public Label hardTime = new Label();
@@ -24,11 +24,12 @@ public class PracticeWindowController {
   public Button easy = new Button();
   public Button ok = new Button();
   public Button hard = new Button();
-  public Button Show = new Button();
+  public Button show = new Button();
 
   private Data data = new Data();
   private Helper helper = new Helper();
   private int currentcardIndex = 0;
+  private int cardIndexMax;
   private Flashcard currentFlashcard;
 
   @FXML
@@ -36,8 +37,9 @@ public class PracticeWindowController {
     //TODO: Timer starten (Lernzeit). Soll so lange laufen wie die Practice-Ansicht offen ist
     try {
         if (Data.getCurrentDeckName() != null && data.getCurrentDeck() != null) {
-          noDeck.setVisible(false);
+          infoLabel.setVisible(false);
           data.getCurrentDeck().ready();
+          cardIndexMax = data.getCurrentDeck().getLength();
           currentFlashcard = data.getCurrentDeck().getCards().get(currentcardIndex);
           LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + Data.getCurrentDeckName() + " ready!");
           FragenLabel.setText(currentFlashcard.getFront());
@@ -46,8 +48,8 @@ public class PracticeWindowController {
           easy.setDisable(true);
           ok.setDisable(true);
           hard.setDisable(true);
-          Show.setDisable(true);
-          noDeck.setVisible(true);
+          show.setDisable(true);
+          infoLabel.setVisible(true);
           LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt / Das Deck ist leer.");
         }
     } catch (Exception ex) {
@@ -126,7 +128,15 @@ public class PracticeWindowController {
     //deck.getCards().remove(currentcardIndex);
     AntwortLabel.setText("");
     currentcardIndex++;
-    currentFlashcard = data.getCurrentDeck().getCards().get(currentcardIndex);
-    FragenLabel.setText(currentFlashcard.getFront());
+    if(currentcardIndex < cardIndexMax){
+      currentFlashcard = data.getCurrentDeck().getCards().get(currentcardIndex);
+      FragenLabel.setText(currentFlashcard.getFront());
+    } else{
+      //TODO: Hier ist man fertig mit dem Lernen!
+      FragenLabel.setText("");
+      infoLabel.setText("Der Stapel ist komplett gelernt!");
+      infoLabel.setVisible(true);
+      show.setDisable(true);
+    }
   }
 }
