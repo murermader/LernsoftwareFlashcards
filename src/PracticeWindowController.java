@@ -51,6 +51,7 @@ public class PracticeWindowController {
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + Data.getCurrentDeckName() + " ready!");
                     FragenLabel.setText(currentFlashcard.getFront());
+
                 } else {
 
                     easy.setDisable(true);

@@ -7,20 +7,20 @@ class Data {
 
     private static String currentDeckName;
     private static List<Deck> allDecks = new ArrayList<>();
-    private boolean isEmpty;
+    public boolean isEmpty;
 
-    //Soll das alles machen was alle Decks beineinflusst.
     Data() {
+
         try {
             Helper helper = new Helper();
             List<String> deckNames = new ArrayList<>();
             deckNames.clear();
             deckNames = helper.getDeckNames();
-            //Es existieren keine Decks: SampleDecks erstellen
+
             if (deckNames.size() == 0) {
                 isEmpty = true;
-                //Keine Decks erstellen, sondern
                 LogHelper.writeToLog(Level.INFO, "Es sind keine Decks vorhanden.");
+
             } else {
                 isEmpty = false;
                 //Für jeden Stapel Flashcards ein Deck erstellen.

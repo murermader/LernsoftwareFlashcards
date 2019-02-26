@@ -1,22 +1,25 @@
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//Alle Sachen die nur ein Deck betreffen.
+//Alle Sachen die nur ein Deck bzw. die Inhalte eines Decks betreffen.
 public class Deck {
 
     private String name;
     private List<Flashcard> cards;
-    //private static List<String> nameList = new ArrayList<>();
 
+    //Konstruktur
     Deck(String name, List<Flashcard> cards) {
 
         setName(name);
         this.cards = cards;
-        //nameList.add(name);
     }
 
-    private void setName(String name) {
+    //Getter & Setter
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
 
         if (name.contains(".txt")) {
             this.name = name.replace(".txt", "");
@@ -25,12 +28,21 @@ public class Deck {
         }
     }
 
-    int getLength() {
+    public List<Flashcard> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Flashcard> cards) {
+        this.cards = cards;
+    }
+
+    //Methoden
+    public int getLength() {
         return cards.size();
     }
 
     //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
-    void ready() {
+    public void ready() {
 
         Date date = new Date();
         date.getTime();
@@ -41,35 +53,29 @@ public class Deck {
         }
     }
 
-    void addCard(Flashcard card) {
+    public void addCard(Flashcard card) {
         cards.add(card);
     }
 
-    void removeCard(Flashcard card) {
+    public void removeCard(Flashcard card) {
         cards.remove(card);
     }
 
-    void changeCard(Flashcard card) {
+    public void editCard(Flashcard card, String front, String back, boolean resetProgress) {
 
         int index;
         if (cards.contains(card)) {
             index = cards.indexOf(card);
             //Überprüfen ob Werte tatsächlich geändet wurden?
             //Vielleicht falsche Usereingabe etc
-            cards.get(index).setFront("test");
-            cards.get(index).setBack("test");
+            cards.get(index).setFront(front);
+            cards.get(index).setBack(back);
+
+            if(resetProgress){
+
+                cards.get(index).setRepetitionDate(new Date());
+                cards.get(index).setLevel(0);
+            }
         }
-    }
-
-    String getName() {
-        return name;
-    }
-
-    void setCards(List<Flashcard> cards) {
-        this.cards = cards;
-    }
-
-    List<Flashcard> getCards() {
-        return cards;
     }
 }
