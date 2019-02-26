@@ -49,7 +49,7 @@ public class PracticeWindowController {
                     infoLabel.setVisible(false);
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
-                    LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + Data.getCurrentDeckName() + " ready!");
+                    LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
                     FragenLabel.setText(currentFlashcard.getFront());
 
                 } else {

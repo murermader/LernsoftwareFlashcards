@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 
 //Alle Sachen die nur ein Deck bzw. die Inhalte eines Decks betreffen.
 public class Deck {
@@ -44,12 +46,21 @@ public class Deck {
     //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
     public void ready() {
 
-        Date date = new Date();
-        date.getTime();
-        for (Flashcard card : cards) {
-            if (card.getRepetitionDate().after(date)) {
-                cards.remove(card);
+        try{
+
+            Date date = new Date();
+            date.getTime();
+            List<Flashcard> toRemove = new ArrayList<>();
+            for (Flashcard card : cards) {
+                if (card.getRepetitionDate().after(date)) {
+                    toRemove.add(card);
+                }
             }
+            cards.removeAll(toRemove);
+
+        } catch(Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Aufbereiten des Decks. " +ex);
+            ex.printStackTrace();
         }
     }
 
