@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,12 @@ public class Main extends Application {
             //TODO: Label für lernbare Karten (d.h. repetitionDate < Today = also deck.ready)
             Helper helper = new Helper();
             helper.createDirectories();
+
+            List<String> users = new ArrayList<>();
+            users.add("Rafael");
+            users.add("Silas");
+            users.add("Kai");
+            helper.saveUsersToFile(users);
 
 //            Nur Temporär, damit auf allen Geräten testbar
 //            helper.createSampleDeck("test1",4);

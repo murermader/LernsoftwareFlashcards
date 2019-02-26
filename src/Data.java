@@ -5,9 +5,12 @@ import java.util.logging.Level;
 //Klasse die einen Überblick über alle Decks hat.
 class Data {
 
+    private static String currentUser;
     private static String currentDeckName;
     private static List<Deck> allDecks = new ArrayList<>();
+    private static List<String> allUsers = new ArrayList<>();
     public boolean isEmpty;
+
 
     Data() {
 
@@ -32,6 +35,14 @@ class Data {
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des Decks: " + ex);
         }
+    }
+
+    public static String getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(String currentUser) {
+        Data.currentUser = currentUser;
     }
 
     //Methoden

@@ -9,10 +9,11 @@ public class Deck {
 
     private String name;
     private List<Flashcard> cards;
+    private String owner;
 
     //Konstruktur
     Deck(String name, List<Flashcard> cards) {
-
+        this.owner = "admin";
         setName(name);
         this.cards = cards;
     }
@@ -103,5 +104,9 @@ public class Deck {
                 cards.get(index).setLevel(0);
             }
         }
+    }
+
+    public String getOwner() {
+        return owner;
     }
 }

@@ -56,6 +56,39 @@ class Helper {
         return "undertermined";
     }
 
+    @SuppressWarnings("unchecked")
+    public List<String> getUsersFromFile(){
+
+        List<String> users = new ArrayList<>();
+        try{
+            FileInputStream fileStreamIn = new FileInputStream(Paths.get(appDirectoryRoot.toString(),
+                    "Users.txt").toString());
+            ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
+            users = (List<String>) objectStream.readObject();
+            objectStream.close();
+
+        } catch (Exception ex){
+            LogHelper.writeToLog(Level.INFO,"Fehler beim Einlesen der Users Datei" +ex);
+        }
+        return users;
+    }
+
+    public void saveUsersToFile(List<String> users){
+
+        try{
+            if(users.size() > 0){
+                FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(appDirectoryRoot.toString(),
+                        "Users.txt").toString());
+                ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
+                objectStream.writeObject(users);
+                objectStream.close();
+            }
+
+        } catch(Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern der User" +ex);
+        }
+    }
+
     //Um ein Deck abzuspeichern.
     //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
     void saveDeckToFile(Deck deck, String deckName) {

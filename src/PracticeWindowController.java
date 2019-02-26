@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import javafx.event.ActionEvent;
@@ -15,8 +14,8 @@ import javafx.stage.Stage;
 public class PracticeWindowController {
 
     //FXML Elemente
-    public Label FragenLabel = new Label();
-    public Label AntwortLabel = new Label();
+    public Label questionLabel = new Label();
+    public Label answerLabel = new Label();
     public Label infoLabel = new Label();
     public Label easyTime = new Label();
     public Label okTime = new Label();
@@ -53,7 +52,7 @@ public class PracticeWindowController {
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
-                    FragenLabel.setText(currentFlashcard.getFront());
+                    questionLabel.setText(currentFlashcard.getFront());
 
                 } else {
 
@@ -106,7 +105,7 @@ public class PracticeWindowController {
 
     public void handlerShowBack(ActionEvent event) {
 
-        AntwortLabel.setText(currentFlashcard.getBack());
+        answerLabel.setText(currentFlashcard.getBack());
         easy.setDisable(false);
         ok.setDisable(false);
         hard.setDisable(false);
@@ -128,16 +127,16 @@ public class PracticeWindowController {
         currentFlashcard.setDifficulty(difficulty);
         currentFlashcard.updateInterval();
         //deck.getCards().remove(currentcardIndex);
-        AntwortLabel.setText("");
+        answerLabel.setText("");
         currentcardIndex++;
 
         if (currentcardIndex < cardIndexMax) {
             currentFlashcard = deckReady.getCards().get(currentcardIndex);
-            FragenLabel.setText(currentFlashcard.getFront());
+            questionLabel.setText(currentFlashcard.getFront());
         } else {
             //TODO: Hier ist man fertig mit dem Lernen!
             //TODO: Stats: Timer hier stoppen und speichern?
-            FragenLabel.setText("");
+            questionLabel.setText("");
             infoLabel.setText("Der Stapel ist komplett gelernt!");
             infoLabel.setVisible(true);
             show.setDisable(true);
