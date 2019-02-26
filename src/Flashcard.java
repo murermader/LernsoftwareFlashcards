@@ -192,7 +192,8 @@ public class Flashcard implements java.io.Serializable {
         break;
     }
     date.setTime(System.currentTimeMillis() + newTime);
+    setRepetitionDate(date);
     LogHelper.writeToLog(Level.INFO,
-        "Nächstes Abfragedatum für Karte (" + front + ") ist am: " + date + " Level: " + level);
+        "Nächstes Abfragedatum für Karte (" + front + ") ist am: " + date + " | Level: " + level);
   }
 }

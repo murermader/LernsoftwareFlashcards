@@ -29,7 +29,7 @@
           <Label fx:id="AntwortLabel" text="" />
         </children>
      </VBox>
-      <Label fx:id="infoLabel" layoutX="377.0" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" text="Es wurde kein Deck ausgewählt!" textAlignment="JUSTIFY" textFill="#e40000" visible="false">
+      <Label fx:id="infoLabel" layoutX="377.0" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" textAlignment="JUSTIFY" textFill="#e40000" visible="false">
          <font>
             <Font size="18.0" />
          </font>
