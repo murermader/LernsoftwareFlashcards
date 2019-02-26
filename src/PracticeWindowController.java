@@ -27,6 +27,7 @@ public class PracticeWindowController {
     public Button hard = new Button();
     public Button show = new Button();
 
+    //Globale Variablen
     private Data data = new Data();
     private Helper helper = new Helper();
     private int currentcardIndex = 0;
@@ -55,7 +56,7 @@ public class PracticeWindowController {
 
                 } else {
 
-                    infoLabel.setText("Karten noch nicht lernbereit!");
+                    infoLabel.setText("Deck "+ Data.getCurrentDeckName() +" noch nicht lernbereit!");
                     disableControls();
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Deck enthält keine Karten die gelernt werden können.");
                 }
@@ -109,28 +110,9 @@ public class PracticeWindowController {
         ok.setDisable(false);
         hard.setDisable(false);
         //Nachdem die Rückseite angezeigt wird, sollen die Abfragezeiten über den Buttons angezeigt werden
-        easyTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel() + 2));
-        okTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel() + 1));
-        hardTime.setText(showTimeToNextRepetition(currentFlashcard.getLevel()));
-    }
-
-    //TODO: Zeigt oft falsche Zeitintervalle an -> Irgendwo steckt ein Fehler
-    private String showTimeToNextRepetition(int level) {
-
-        long timeInMillis = currentFlashcard.returnTimeInterval(level);
-        String timeString;
-        if (currentFlashcard.getLevel() < 3) { //Als Minuten anzeigen
-            timeString = TimeUnit.MILLISECONDS.toMinutes(timeInMillis) + " Minuten";
-        } else if (currentFlashcard.getLevel() < 5) { //Als Stunden anzeigen
-            timeString = TimeUnit.MILLISECONDS.toHours(timeInMillis) + " Stunden";
-        } else if (currentFlashcard.getLevel() < 7) { //Als Tage anzeigen
-            timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis) + " Tage";
-        } else if (currentFlashcard.getLevel() < 9) { //Als Monate anzeigen
-            timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis) / 30 + " Monate";
-        } else { //Als Jahre anzeigen
-            timeString = TimeUnit.MILLISECONDS.toDays(timeInMillis) / 365 + " Jahre";
-        }
-        return timeString;
+        easyTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel() + 2));
+        okTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel() + 1));
+        hardTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel()));
     }
 
     private void finishUpCard(int difficulty) {
@@ -153,6 +135,7 @@ public class PracticeWindowController {
             FragenLabel.setText(currentFlashcard.getFront());
         } else {
             //TODO: Hier ist man fertig mit dem Lernen!
+            //TODO: Stats: Timer hier stoppen und speichern?
             FragenLabel.setText("");
             infoLabel.setText("Der Stapel ist komplett gelernt!");
             infoLabel.setVisible(true);

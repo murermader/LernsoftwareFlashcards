@@ -15,6 +15,8 @@ public class Flashcard implements java.io.Serializable {
     private static final long FOUR_MONTHS_IN_MILLIS = 10518984000L;     //8
     private static final long TWO_YEARS_IN_MILLIS = 63113904000L;       //9
 
+
+
     //Klassenvariablen
     public static int count = 0;
 
@@ -155,6 +157,33 @@ public class Flashcard implements java.io.Serializable {
                 break;
         }
         return newTime;
+    }
+
+    public String returnTimeIntervalAsString(int level) {
+
+        switch (level) {
+            case (0):
+                return "10min";
+            case (1):
+                return "30min";
+            case (2):
+                return "1h";
+            case (3):
+                return "5h";
+            case (4):
+                return "9h";
+            case (5):
+                return "1d";
+            case (6):
+                return "5d";
+            case (7):
+                return "25d";
+            case (8):
+                return "4m";
+            case (9):
+                return "2y";
+        }
+        return null;
     }
 
     private void updateTime() {

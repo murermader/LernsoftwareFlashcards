@@ -19,8 +19,11 @@ public class Main extends Application {
             Helper helper = new Helper();
             helper.createDirectories();
 
-            //Nur Temporär, damit auf allen Geräten testbar
-            //helper.createSampleDeck("TESTKLASSE",4);
+//            Nur Temporär, damit auf allen Geräten testbar
+//            helper.createSampleDeck("test1",4);
+//            helper.createSampleDeck("test2",10);
+//            helper.createSampleDeck("test3",20);
+//            helper.createSampleDeck("test4",1000);
 
             Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
             Scene scene = new Scene(root);
