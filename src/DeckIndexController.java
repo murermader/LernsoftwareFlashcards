@@ -41,7 +41,6 @@ public class DeckIndexController {
     public void handlerLearnDeck(ActionEvent event) throws IOException {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
-
         if (selectedItem != null) {
             for (Deck deck : data.getListOfDecks()) {
                 if (selectedItem.equals(deck.getName())) {
@@ -52,15 +51,14 @@ public class DeckIndexController {
         }
         Parent practiceViewParent = FXMLLoader.load(getClass().getResource("GUI/PracticeWindow.fxml"));
         Scene practiceViewScene = new Scene(practiceViewParent);
-
         //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         window1.setScene(practiceViewScene);
         window1.show();
     }
 
     public void handlerBack(ActionEvent event) throws IOException {
+
         list.getItems().clear();
         deckNames.clear();
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
@@ -72,12 +70,11 @@ public class DeckIndexController {
     }
 
     public void handlerDeckAdd(ActionEvent event) throws IOException {
+
         Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/DeckAdd.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
-
         //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         window1.setScene(CardAddViewScene);
         window1.show();
         //Deck hinzufügen
@@ -85,12 +82,11 @@ public class DeckIndexController {
     }
 
     public void handlerCardAdd(ActionEvent event) throws IOException {
+
         Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
-
         //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         window1.setScene(CardAddViewScene);
         window1.show();
     }

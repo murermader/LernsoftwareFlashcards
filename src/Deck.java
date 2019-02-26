@@ -5,68 +5,71 @@ import java.util.List;
 //Alle Sachen die nur ein Deck betreffen.
 public class Deck {
 
-  private String name;
-  private List<Flashcard> cards;
-  //private static List<String> nameList = new ArrayList<>();
+    private String name;
+    private List<Flashcard> cards;
+    //private static List<String> nameList = new ArrayList<>();
 
-  Deck(String name, List<Flashcard> cards) {
-    setName(name);
-    this.cards = cards;
-    //nameList.add(name);
-  }
+    Deck(String name, List<Flashcard> cards) {
 
-  private void setName(String name) {
-    if (name.contains(".txt")) {
-      this.name = name.replace(".txt", "");
-    } else {
-      this.name = name;
+        setName(name);
+        this.cards = cards;
+        //nameList.add(name);
     }
-  }
 
-  int getLength(){
-    return cards.size();
-  }
+    private void setName(String name) {
 
-  //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
-  void ready() {
+        if (name.contains(".txt")) {
+            this.name = name.replace(".txt", "");
+        } else {
+            this.name = name;
+        }
+    }
 
-    Date date = new Date();
-    date.getTime();
-    for (Flashcard card : cards) {
-      if (card.getRepetitionDate().after(date)) {
+    int getLength() {
+        return cards.size();
+    }
+
+    //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
+    void ready() {
+
+        Date date = new Date();
+        date.getTime();
+        for (Flashcard card : cards) {
+            if (card.getRepetitionDate().after(date)) {
+                cards.remove(card);
+            }
+        }
+    }
+
+    void addCard(Flashcard card) {
+        cards.add(card);
+    }
+
+    void removeCard(Flashcard card) {
         cards.remove(card);
-      }
     }
-  }
 
-  void addCard(Flashcard card) {
-    cards.add(card);
-  }
+    void changeCard(Flashcard card) {
 
-  void removeCard(Flashcard card){
-    cards.remove(card);
-  }
-
-  void changeCard(Flashcard card){
-    int index;
-    if (cards.contains(card)){
-      index = cards.indexOf(card);
-      //Überprüfen ob Werte tatsächlich geändet wurden?
-      //Vielleicht falsche Usereingabe etc
-      cards.get(index).setFront("test");
-      cards.get(index).setBack("test");
+        int index;
+        if (cards.contains(card)) {
+            index = cards.indexOf(card);
+            //Überprüfen ob Werte tatsächlich geändet wurden?
+            //Vielleicht falsche Usereingabe etc
+            cards.get(index).setFront("test");
+            cards.get(index).setBack("test");
+        }
     }
-  }
 
-  String getName() {
-    return name;
-  }
+    String getName() {
+        return name;
+    }
 
-  void setCards(List<Flashcard> cards) {
-    this.cards = cards;
-  }
+    void setCards(List<Flashcard> cards) {
+        this.cards = cards;
+    }
 
-  List<Flashcard> getCards() {
-    return cards;
-  }
+    List<Flashcard> getCards() {
+        return cards;
+    }
 }
