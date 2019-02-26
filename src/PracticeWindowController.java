@@ -46,6 +46,7 @@ public class PracticeWindowController {
                 deckReady.ready();
 
                 if (deckReady.getLength() > 0) {
+
                     infoLabel.setVisible(false);
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
@@ -54,22 +55,15 @@ public class PracticeWindowController {
 
                 } else {
 
-                    easy.setDisable(true);
-                    ok.setDisable(true);
-                    hard.setDisable(true);
-                    show.setDisable(true);
                     infoLabel.setText("Karten noch nicht lernbereit!");
-                    infoLabel.setVisible(true);
+                    disableControls();
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Deck enthält keine Karten die gelernt werden können.");
                 }
 
             } else {
-                easy.setDisable(true);
-                ok.setDisable(true);
-                hard.setDisable(true);
-                show.setDisable(true);
+
                 infoLabel.setText("Es wurde kein Deck ausgewählt!");
-                infoLabel.setVisible(true);
+                disableControls();
                 LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt.");
             }
 
@@ -164,5 +158,13 @@ public class PracticeWindowController {
             infoLabel.setVisible(true);
             show.setDisable(true);
         }
+    }
+
+    private void disableControls(){
+        easy.setDisable(true);
+        ok.setDisable(true);
+        hard.setDisable(true);
+        show.setDisable(true);
+        infoLabel.setVisible(true);
     }
 }
