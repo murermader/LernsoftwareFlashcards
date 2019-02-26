@@ -1,68 +1,92 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 
-//Alle Sachen die nur ein Deck betreffen.
+//Alle Sachen die nur ein Deck bzw. die Inhalte eines Decks betreffen.
 public class Deck {
 
-  private String name;
-  private List<Flashcard> cards;
-  //private static List<String> nameList = new ArrayList<>();
+    private String name;
+    private List<Flashcard> cards;
 
-  Deck(String name, List<Flashcard> cards) {
-    setName(name);
-    this.cards = cards;
-    //nameList.add(name);
-  }
+    //Konstruktur
+    Deck(String name, List<Flashcard> cards) {
 
-  private void setName(String name) {
-    if (name.contains(".txt")) {
-      this.name = name.replace(".txt", "");
-    } else {
-      this.name = name;
+        setName(name);
+        this.cards = cards;
     }
-  }
 
-  //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
-  void ready() {
+    //Getter & Setter
+    public String getName() {
+        return name;
+    }
 
-    Date date = new Date();
-    date.getTime();
-    for (Flashcard card : cards) {
-      if (card.getRepetitionDate().after(date)) {
+    public void setName(String name) {
+
+        if (name.contains(".txt")) {
+            this.name = name.replace(".txt", "");
+        } else {
+            this.name = name;
+        }
+    }
+
+    public List<Flashcard> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Flashcard> cards) {
+        this.cards = cards;
+    }
+
+    //Methoden
+    public int getLength() {
+        return cards.size();
+    }
+
+    //Entfernt alle Karten deren Abfragedatum noch nicht erreicht wurde
+    public void ready() {
+
+        try{
+
+            Date date = new Date();
+            date.getTime();
+            List<Flashcard> toRemove = new ArrayList<>();
+            for (Flashcard card : cards) {
+                if (card.getRepetitionDate().after(date)) {
+                    toRemove.add(card);
+                }
+            }
+            cards.removeAll(toRemove);
+
+        } catch(Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Aufbereiten des Decks. " +ex);
+            ex.printStackTrace();
+        }
+    }
+
+    public void addCard(Flashcard card) {
+        cards.add(card);
+    }
+
+    public void removeCard(Flashcard card) {
         cards.remove(card);
-      }
     }
-  }
 
-  void addCard(Flashcard card) {
-    cards.add(card);
-  }
+    public void editCard(Flashcard card, String front, String back, boolean resetProgress) {
 
-  void removeCard(Flashcard card){
-    cards.remove(card);
-  }
+        int index;
+        if (cards.contains(card)) {
+            index = cards.indexOf(card);
+            //Überprüfen ob Werte tatsächlich geändet wurden?
+            //Vielleicht falsche Usereingabe etc
+            cards.get(index).setFront(front);
+            cards.get(index).setBack(back);
 
-  void changeCard(Flashcard card){
-    int index;
-    if (cards.contains(card)){
-      index = cards.indexOf(card);
-      //Überprüfen ob Werte tatsächlich geändet wurden?
-      //Vielleicht falsche Usereingabe etc
-      cards.get(index).setFront("test");
-      cards.get(index).setBack("test");
+            if(resetProgress){
+
+                cards.get(index).setRepetitionDate(new Date());
+                cards.get(index).setLevel(0);
+            }
+        }
     }
-  }
-
-  String getName() {
-    return name;
-  }
-
-  void setCards(List<Flashcard> cards) {
-    this.cards = cards;
-  }
-
-  List<Flashcard> getCards() {
-    return cards;
-  }
 }
