@@ -126,6 +126,15 @@ public class DeckIndexController {
 
             if (Isremoved == true) {
                 System.out.println("  Deleted!");
+                Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/DeckIndex.fxml"));
+                Scene CardAddViewScene = new Scene(CardAddViewParent);
+
+                //This line gets the Stage information
+                Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window1.setScene(CardAddViewScene);
+                window1.show();
+
 
             } else {
                 System.out.println("  Delete failed - reason unknown");
