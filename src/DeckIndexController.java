@@ -1,4 +1,6 @@
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -92,5 +94,36 @@ public class DeckIndexController {
 
     window1.setScene(CardAddViewScene);
     window1.show();
+  }
+
+  public void handlerDeleteDeck(ActionEvent event)throws IOException{
+      String selectedItem = (String)list.getSelectionModel().getSelectedItem();
+
+      if (selectedItem != null) {
+          for (Deck deck: data.getListOfDecks()) {
+              if(selectedItem.equals(deck.getName())) {
+                  Data.setCurrentDeckName(selectedItem);
+                  LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
+              }
+          }
+      }
+      System.out.println(Data.getCurrentDeckName());
+
+      File deck = new File(Paths.get(System.getenv("LOCALAPPDATA"), "flashcards")+"\\" + Data.getCurrentDeckName()+ ".txt");
+      System.out.println(deck);
+      System.out.println("Attempting to delete " + deck.getAbsolutePath());
+      if (!deck.exists())
+          System.out.println("  Doesn't exist");
+      else if (!deck.canWrite())
+          System.out.println("  No write permission");
+      else
+      {
+          deck = deck.getCanonicalFile();
+          boolean Isremoved = deck.delete();
+          if (Isremoved == true)
+              System.out.println("  Deleted!");
+          else
+              System.out.println("  Delete failed - reason unknown");
+      }
   }
 }
