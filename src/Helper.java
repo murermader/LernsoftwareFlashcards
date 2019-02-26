@@ -93,6 +93,7 @@ class Helper {
                     Paths.get(appDirectoryRoot.toString(), deckName).toString());
             ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
             list = (List<Flashcard>) objectStream.readObject();
+            objectStream.close();
 
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
