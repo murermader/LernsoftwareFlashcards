@@ -21,7 +21,7 @@ public class MainWindowController {
     // :Todo Scenen Wechsel
 
     //FXML Elemente
-    public ComboBox userVbox = new ComboBox();
+    public ComboBox userComboBox = new ComboBox();
     public Button selectUserButton = new Button();
     private Helper helper = new Helper();
 
@@ -35,8 +35,8 @@ public class MainWindowController {
             List<String> users = helper.getUsersFromFile();
             if(users != null && users.size() > 0){
                 usersCollection.addAll(users);
-                userVbox.setItems(usersCollection);
-                userVbox.getSelectionModel().selectFirst();
+                userComboBox.setItems(usersCollection);
+                userComboBox.getSelectionModel().selectFirst();
             }
 
         } catch (Exception ex){
@@ -47,7 +47,8 @@ public class MainWindowController {
 
     @FXML
     public void handlerSelectUser(ActionEvent event) throws IOException {
-
+        Data.setCurrentUser(userComboBox.getSelectionModel().getSelectedItem().toString());
+        LogHelper.writeToLog(Level.INFO, "Current user gesetzt als " + Data.getCurrentUser());
     }
 
     @FXML
