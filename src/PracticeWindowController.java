@@ -48,6 +48,7 @@ public class PracticeWindowController {
 
                 if (deckReady.getLength() > 0) {
 
+                    deckReady.sort();
                     infoLabel.setVisible(false);
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
