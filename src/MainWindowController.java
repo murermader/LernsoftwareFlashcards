@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -23,25 +24,34 @@ public class MainWindowController {
     //FXML Elemente
     public ComboBox userComboBox = new ComboBox();
     public Button selectUserButton = new Button();
+    public Button manageUserButton = new Button();
+    public Button decksButton = new Button();
+    public Button statsButton = new Button();
+    public Button exitButton = new Button();
 
     private Data data = new Data();
 
     @FXML
     public void initialize() {
 
-        ObservableList<String> usersCollection = FXCollections.observableArrayList();
-
-        try{
-
+        try {
+            ObservableList<String> usersCollection = FXCollections.observableArrayList();
             List<String> users = Data.getAllUsers();
-            if(users != null && users.size() > 0){
+
+            if (Data.getCurrentUser() == null) {
+                decksButton.setDisable(true);
+                statsButton.setDisable(true);
+                exitButton.setDisable(true);
+            }
+
+            if (users != null && users.size() > 0) {
                 usersCollection.addAll(users);
                 userComboBox.setItems(usersCollection);
                 userComboBox.getSelectionModel().selectFirst();
             }
 
-        } catch (Exception ex){
-            LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des MainWindowControllers " +ex);
+        } catch (Exception ex) {
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des MainWindowControllers " + ex);
         }
 
     }
@@ -57,8 +67,12 @@ public class MainWindowController {
 
     @FXML
     public void handlerSelectUser(ActionEvent event) throws IOException {
-        Data.setCurrentUser(userComboBox.getSelectionModel().getSelectedItem().toString());
-        LogHelper.writeToLog(Level.INFO, "Current user gesetzt als " + Data.getCurrentUser());
+        if (userComboBox.getSelectionModel().getSelectedItem().toString() != null) {
+            Data.setCurrentUser(userComboBox.getSelectionModel().getSelectedItem().toString());
+            decksButton.setDisable(false);
+            statsButton.setDisable(false);
+            exitButton.setDisable(false);
+        }
     }
 
     @FXML

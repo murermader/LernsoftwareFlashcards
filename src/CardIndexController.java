@@ -25,7 +25,7 @@ public class CardIndexController {
     public void initialize(String deckName) {
 
         List<Flashcard> CardList = new ArrayList<>();
-        Deck deck = new Deck(deckName, CardList);
+        Deck deck = new Deck(deckName, CardList, Data.getCurrentUser());
 
         try {
 

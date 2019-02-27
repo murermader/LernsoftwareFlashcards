@@ -22,10 +22,14 @@ public class Main extends Application {
             helper.createDirectories();
 
             //Nur Temporär, damit auf allen Geräten testbar
-            helper.createSampleDeck("test1",4);
-            helper.createSampleDeck("test2",10);
-            helper.createSampleDeck("test3",20);
-            helper.createSampleDeck("test4",1000);
+            helper.createSampleDeck("test1",4, "Rafael");
+            helper.createSampleDeck("test2",10, "Silas");
+            helper.createSampleDeck("test3",20, "Kai");
+            helper.createSampleDeck("test1",100, "Rafael");
+            helper.createSampleDeck("test2",100, "Silas");
+            helper.createSampleDeck("test3",100, "Kai");
+            helper.createSampleDeck("test4",200, "Beispieldeck");
+            helper.createSampleDeck("test4",200, "Beispieldeck");
 
             Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
             Scene scene = new Scene(root);

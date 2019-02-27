@@ -7,7 +7,7 @@ class Data {
 
     private static String currentUser;
     private static String currentDeckName;
-    private static List<Deck> allDecks = new ArrayList<>();
+    private static List<Deck> currentUserDecks = new ArrayList<>();
     private static List<String> allUsers = new ArrayList<>();
     public boolean isEmpty;
 
@@ -35,18 +35,28 @@ class Data {
             } else {
                 isEmpty = false;
                 //Für jeden Stapel Flashcards ein Deck erstellen.
-                allDecks.clear();
+                currentUserDecks.clear();
+                List<Deck> allDecks = new ArrayList<>();
+
                 for (String name : deckNames) {
                     allDecks.add(helper.getDeckFromFile(name));
+                }
+
+                for (Deck deck : allDecks) {
+                    if(deck.getOwner().equals(Data.getCurrentUser()) || deck.getOwner().equals("Beispieldeck")){
+                        currentUserDecks.add(deck);
+                    }
                 }
             }
 
             //Users
             if (helper.getUsersFromFile() != null) {
                 allUsers = helper.getUsersFromFile();
-                LogHelper.writeToLog(Level.INFO, "Liste mit allen Usernnamen gefüllt.");
             } else {
                 LogHelper.writeToLog(Level.INFO, "Keine Usernamen vorhanden. Userliste bleibt leer.");
+            }
+            if (currentUser != null) {
+                LogHelper.writeToLog(Level.INFO, "Aktueller Benutzer: " + currentUser);
             }
 
         } catch (Exception ex) {
@@ -60,6 +70,7 @@ class Data {
 
     public static void setCurrentUser(String currentUser) {
         Data.currentUser = currentUser;
+        LogHelper.writeToLog(Level.INFO, "Current User neu gesetzt als: " + currentUser);
     }
 
     public static List<String> getAllUsers() {
@@ -72,7 +83,7 @@ class Data {
 
     //Methoden
     List<Deck> getListOfDecks() {
-        return allDecks;
+        return currentUserDecks;
     }
 
     static String getCurrentDeckName() {
@@ -85,7 +96,7 @@ class Data {
 
     Deck getCurrentDeck() {
 
-        for (Deck deck : allDecks) {
+        for (Deck deck : currentUserDecks) {
             if (deck.getName().equals(currentDeckName)) {
                 return deck;
             }

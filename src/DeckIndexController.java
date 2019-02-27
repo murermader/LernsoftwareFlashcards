@@ -26,7 +26,7 @@ public class DeckIndexController {
         if (!data.isEmpty) {
 
             for (Deck deck : data.getListOfDecks()) {
-                deckNames.add(deck.getName());
+                deckNames.add(deck.getName() + " (" + deck.getOwner() + ")");
                 System.out.println(deck.getName());
             }
             //noinspection unchecked
@@ -39,8 +39,8 @@ public class DeckIndexController {
 
         if (selectedItem != null) {
             for (Deck deck : data.getListOfDecks()) {
-                if (selectedItem.equals(deck.getName())) {
-                    Data.setCurrentDeckName(selectedItem);
+                if (selectedItem.contains(deck.getName()) && selectedItem.contains(deck.getOwner())) {
+                    Data.setCurrentDeckName(deck.getName());
                     LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
                 }
             }

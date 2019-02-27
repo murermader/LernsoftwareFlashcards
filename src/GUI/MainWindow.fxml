@@ -14,8 +14,7 @@
             <ComboBox fx:id="userComboBox" prefWidth="150.0" />
             <Button fx:id="selectUserButton" mnemonicParsing="false" onAction="#handlerSelectUser" text="X" />
         </HBox>
-        <Button fx:id="learnButton" mnemonicParsing="false" onAction="#handlerPractice" prefHeight="40.0" prefWidth="284.0" text="Üben" />
-      <Button fx:id="learnButton1" mnemonicParsing="false" onAction="#handlerManageUser" prefHeight="40.0" prefWidth="284.0" text="Benutzerverwaltung" />
+      <Button fx:id="manageUserButton" mnemonicParsing="false" onAction="#handlerManageUser" prefHeight="40.0" prefWidth="284.0" text="Benutzerverwaltung" />
         <Button fx:id="decksButton" mnemonicParsing="false" onAction="#handlerDeckIndex" prefHeight="40.0" prefWidth="284.0" text="Stapelanzeige" />
         <Button fx:id="statsButton" mnemonicParsing="false" onAction="#handlerStats" prefHeight="40.0" prefWidth="284.0" text="Statistiken" />
         <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handlerQuit" prefHeight="40.0" prefWidth="284.0" text="Beenden" />

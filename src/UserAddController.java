@@ -21,15 +21,24 @@ public class UserAddController {
 
         String newUser = textField.getText();
         List<String> allUsers = Data.getAllUsers();
+        boolean userNameIsUnique = true;
 
-        if(newUser != null){
-            allUsers.add(newUser);
+        if (newUser != null) {
+
+            for (String user : allUsers) {
+                if(newUser.equals(user)){
+                    userNameIsUnique = false;
+                    LogHelper.writeToLog(Level.INFO, "Username konnte nicht angenommen werden, da der Name " + user + " schon existiert.");
+                }
+            }
+            if (!newUser.equals("Beispieldeck") && newUser.length() < 30 && userNameIsUnique) {
+                allUsers.add(newUser);
+            }
         }
         helper.saveUsersToFile(allUsers);
 
         Parent manageUserView = FXMLLoader.load(getClass().getResource("GUI/manageUser.fxml"));
         Scene practiceViewScene = new Scene(manageUserView);
-        //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window1.setScene(practiceViewScene);
         window1.show();

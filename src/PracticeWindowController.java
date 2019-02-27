@@ -20,6 +20,7 @@ public class PracticeWindowController {
     public Label easyTime = new Label();
     public Label okTime = new Label();
     public Label hardTime = new Label();
+    public Label currentUserLabel = new Label();
 
     public Button easy = new Button();
     public Button ok = new Button();
@@ -44,6 +45,10 @@ public class PracticeWindowController {
 
                 deckReady = data.getCurrentDeck();
                 deckReady.ready();
+
+                if(Data.getCurrentUser() != null){
+                    currentUserLabel.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
+                }
 
                 if (deckReady.getLength() > 0) {
 
@@ -78,7 +83,7 @@ public class PracticeWindowController {
 
         try {
             if (Data.getCurrentDeckName() != null) {
-                helper.saveDeckToFile(data.getCurrentDeck(), Data.getCurrentDeckName());
+                helper.saveDeckToFile(data.getCurrentDeck());
             }
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern des aktuellen Decks.");
