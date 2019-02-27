@@ -22,11 +22,6 @@ public class DeckIndexController {
 
     @FXML
     public void initialize() {
-        //Funktioniert nicht!
-        //data =
-        list.getItems().clear();
-        list.getSelectionModel().clearSelection();
-        deckNames.clear();
 
         if (!data.isEmpty) {
 
@@ -34,8 +29,6 @@ public class DeckIndexController {
                 deckNames.add(deck.getName());
                 System.out.println(deck.getName());
             }
-            //Noch keine Ahnung wie ich diese Warnung wegbekomme, voerst erstmal ignorieren
-            list.refresh();
             //noinspection unchecked
             list.setItems(deckNames);
         }
