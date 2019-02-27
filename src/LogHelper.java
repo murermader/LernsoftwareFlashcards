@@ -8,15 +8,16 @@ import java.util.logging.SimpleFormatter;
 
 class LogHelper {
 
-    private static final Path logPath = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log", "Lernsoftware.log");
     private static Logger logFile;
 
     private LogHelper() {
 
         try {
 
+            Helper helper = new Helper();
+            Path logDirectory = Paths.get(helper.getLogDirectory().toString(), "Lernsoftware.log");
             logFile = Logger.getLogger("LogFile");
-            FileHandler fileHandler = new FileHandler(logPath.toString(), true);
+            FileHandler fileHandler = new FileHandler(logDirectory.toString(), true);
             SimpleFormatter formatter = new SimpleFormatter();
             logFile.addHandler(fileHandler);
             fileHandler.setFormatter(formatter);

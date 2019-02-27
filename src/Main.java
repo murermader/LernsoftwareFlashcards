@@ -27,7 +27,7 @@ public class Main extends Application {
             users.add("Kai");
             helper.saveUsersToFile(users);
 
-//            Nur Temporär, damit auf allen Geräten testbar
+            //Nur Temporär, damit auf allen Geräten testbar
             helper.createSampleDeck("test1",4);
             helper.createSampleDeck("test2",10);
             helper.createSampleDeck("test3",20);
