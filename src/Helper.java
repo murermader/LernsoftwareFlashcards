@@ -1,3 +1,4 @@
+import com.sun.javafx.PlatformUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -63,7 +64,9 @@ class Helper {
     //TODO: Testen auf "False Positives", "mögliche Fehler"
     public String getOperationSystemNameLowerCase() {
 
+
         String os = System.getProperty("os.name").toLowerCase();
+        LogHelper.writeToLog(Level.INFO, "Ermittelter Namen des OS: " +os);
         if (os.contains("win")) {
             //Betriebssystem ist Windows-basiert
             return "windows";
