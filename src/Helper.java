@@ -80,18 +80,25 @@ class Helper {
     @SuppressWarnings("unchecked")
     public List<String> getUsersFromFile(){
 
-        List<String> users = new ArrayList<>();
-        try{
+        List<String> users;
+        File usersFile = new File(Paths.get(flashcardsDirectory.toString(),
+            "Users.txt").toString());
+        if(usersFile.exists()){
+
+          try{
             FileInputStream fileStreamIn = new FileInputStream(Paths.get(flashcardsDirectory.toString(),
-                    "Users.txt").toString());
+                "Users.txt").toString());
             ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
             users = (List<String>) objectStream.readObject();
             objectStream.close();
+            return users;
 
-        } catch (Exception ex){
-            LogHelper.writeToLog(Level.INFO,"Fehler beim Einlesen der Users Datei" +ex);
+          } catch (Exception ex){
+            LogHelper.writeToLog(Level.INFO,"Fehler beim Einlesen der Users Datei" + ex);
+          }
         }
-        return users;
+        //Im Fehlerfall wird null zurückgegeben
+        return null;
     }
 
     public void saveUsersToFile(List<String> users){
