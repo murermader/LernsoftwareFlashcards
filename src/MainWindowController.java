@@ -23,7 +23,8 @@ public class MainWindowController {
     //FXML Elemente
     public ComboBox userComboBox = new ComboBox();
     public Button selectUserButton = new Button();
-    private Helper helper = new Helper();
+
+    private Data data = new Data();
 
     @FXML
     public void initialize() {
@@ -32,7 +33,7 @@ public class MainWindowController {
 
         try{
 
-            List<String> users = helper.getUsersFromFile();
+            List<String> users = Data.getAllUsers();
             if(users != null && users.size() > 0){
                 usersCollection.addAll(users);
                 userComboBox.setItems(usersCollection);
@@ -43,6 +44,15 @@ public class MainWindowController {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des MainWindowControllers " +ex);
         }
 
+    }
+
+    public void handlerManageUser(ActionEvent event) throws IOException {
+        Parent manageUserView = FXMLLoader.load(getClass().getResource("GUI/manageUser.fxml"));
+        Scene practiceViewScene = new Scene(manageUserView);
+        //This line gets the Stage information
+        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window1.setScene(practiceViewScene);
+        window1.show();
     }
 
     @FXML

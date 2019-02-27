@@ -91,6 +91,7 @@ public class DeckIndexController {
     }
 
     public void handlerDeleteDeck(ActionEvent event) throws IOException {
+
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {

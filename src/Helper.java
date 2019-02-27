@@ -110,7 +110,7 @@ class Helper {
   public void saveUsersToFile(List<String> users) {
 
     try {
-      if (users.size() > 0) {
+      if (users != null) {
         FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(
             flashcardsDirectory.toString(),
             "Users.txt").toString());

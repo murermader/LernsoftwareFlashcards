@@ -21,12 +21,6 @@ public class Main extends Application {
             Helper helper = new Helper();
             helper.createDirectories();
 
-            List<String> users = new ArrayList<>();
-            users.add("Rafael");
-            users.add("Silas");
-            users.add("Kai");
-            helper.saveUsersToFile(users);
-
             //Nur Temporär, damit auf allen Geräten testbar
             helper.createSampleDeck("test1",4);
             helper.createSampleDeck("test2",10);
