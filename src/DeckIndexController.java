@@ -80,7 +80,7 @@ public class DeckIndexController {
     }
 
     public void handlerCardAdd(ActionEvent event) throws IOException {
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
+        Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardIndex.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
 
         //This line gets the Stage information
