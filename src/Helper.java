@@ -13,29 +13,33 @@ class Helper {
 
     private Path flashcardsDirectory;
     private Path logDirectory;
+    private static final Path LOG_DIRECTORY_WINDOWS = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
+    private static final Path FLASHCARDS_DIRECTORY_WINDOWS = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
+    private static final Path FLASHCARDS_DIRECTORY_LINUX = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "flashcards");
+    private static final Path LOG_DIRECTORY_LINUX = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "flashcards", "Log");
 
     Helper(){
 
         if(getOperationSystemNameLowerCase().equals("windows")){
-            flashcardsDirectory = flashcardsDirectoryWindows;
-            logDirectory = logDirectoryWindows;
-            LogHelper.writeToLog(Level.INFO, "OS als Windows erkannt. Benutze Windows-spezifische Pfade.");
+            flashcardsDirectory = FLASHCARDS_DIRECTORY_WINDOWS;
+            logDirectory = LOG_DIRECTORY_WINDOWS;
+            System.out.println("OS als Windows erkannt. Benutze Windows-spezifische Pfade.");
         }
         else if(getOperationSystemNameLowerCase().equals("osx") || getOperationSystemNameLowerCase().equals("linux")){
-            flashcardsDirectory = flashcardsDirectoryLinux;
-            logDirectory = logDirectoryLinux;
-            LogHelper.writeToLog(Level.INFO, "OS als Linux/MacOS erkannt. Benutze UNIX-spezifische Pfade.");
+            flashcardsDirectory = FLASHCARDS_DIRECTORY_LINUX;
+            logDirectory = LOG_DIRECTORY_LINUX;
+            System.out.println("OS als Linux erkannt. Benutze UNIX-spezifische Pfade.");
         }
     }
 
-    //Windows
-    private static final Path logDirectoryWindows = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
-    private static final Path flashcardsDirectoryWindows = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
-    private Path flashcardsDirectoryLinux = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "flashcards");
-    private Path logDirectoryLinux = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "flashcards", "Log");
+    Path getFlashcardsDirectory(){
+        return flashcardsDirectory;
+    }
+    Path getLogDirectory(){
+        return logDirectory;
+    }
 
     //Gibt eine Liste mit den Dateinamen der Decks zurück (ohne Dateiendung).
-    //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
     List<String> getDeckNames() {
 
         try {
@@ -57,7 +61,6 @@ class Helper {
     }
 
     //TODO: Testen auf "False Positives", "mögliche Fehler"
-    //4 Mögliche Returns: "windows", "osx", "unix", "undertermined".
     public String getOperationSystemNameLowerCase() {
 
         String os = System.getProperty("os.name").toLowerCase();
@@ -108,8 +111,6 @@ class Helper {
         }
     }
 
-    //Um ein Deck abzuspeichern.
-    //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
     void saveDeckToFile(Deck deck, String deckName) {
 
         if (deck != null && deckName != null) {
@@ -132,7 +133,6 @@ class Helper {
 
     //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
     //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
-    //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
     @SuppressWarnings("unchecked")
     Deck getDeckFromFile(String deckName) {
 
@@ -154,7 +154,6 @@ class Helper {
         return deck;
     }
 
-    //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
     void createDirectories() {
 
         try {
@@ -197,7 +196,6 @@ class Helper {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen von SampleData" + ex);
         }
     }
-
 }
 
 
