@@ -11,7 +11,6 @@ class Data {
     private static List<String> allUsers = new ArrayList<>();
     public boolean isEmpty;
 
-
     Data() {
 
         try {
@@ -19,6 +18,14 @@ class Data {
             List<String> deckNames = new ArrayList<>();
             deckNames.clear();
             deckNames = helper.getDeckNames();
+
+            List<String> toRemove = new ArrayList<>();
+            for (String file: deckNames) {
+                if(file.equals("Users.txt")){
+                    toRemove.add(file);
+                }
+            }
+            deckNames.removeAll(toRemove);
 
             if (deckNames.size() == 0) {
                 isEmpty = true;

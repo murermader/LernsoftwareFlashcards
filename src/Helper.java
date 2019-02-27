@@ -11,10 +11,28 @@ import java.util.logging.Level;
 
 class Helper {
 
+    private Path flashcardsDirectory;
+    private Path logDirectory;
+
+    Helper(){
+
+        if(getOperationSystemNameLowerCase().equals("windows")){
+            flashcardsDirectory = flashcardsDirectoryWindows;
+            logDirectory = logDirectoryWindows;
+            LogHelper.writeToLog(Level.INFO, "OS als Windows erkannt. Benutze Windows-spezifische Pfade.");
+        }
+        else if(getOperationSystemNameLowerCase().equals("osx") || getOperationSystemNameLowerCase().equals("linux")){
+            flashcardsDirectory = flashcardsDirectoryLinux;
+            logDirectory = logDirectoryLinux;
+            LogHelper.writeToLog(Level.INFO, "OS als Linux/MacOS erkannt. Benutze UNIX-spezifische Pfade.");
+        }
+    }
+
     //Windows
-    private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
-    private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
-    private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
+    private static final Path logDirectoryWindows = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
+    private static final Path flashcardsDirectoryWindows = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
+    private Path flashcardsDirectoryLinux = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "flashcards");
+    private Path logDirectoryLinux = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "flashcards", "Log");
 
     //Gibt eine Liste mit den Dateinamen der Decks zurück (ohne Dateiendung).
     //TODO: Auch für Mac / Unix kompatibel machen! (vlt mit Argumenten)
@@ -23,7 +41,7 @@ class Helper {
         try {
 
             List<String> fileNames = new ArrayList<>();
-            File directory = new File(appDirectoryRoot.toString());
+            File directory = new File(flashcardsDirectory.toString());
             File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
             if (files != null) {
                 for (File file : files) {
@@ -51,7 +69,7 @@ class Helper {
             return "osx";
         } else if (os.contains("nix") || os.contains("aix") || os.contains("nux")) {
             //Betriebssystem ist Linux/Unix basiert
-            return "unix";
+            return "linux";
         }
         return "undertermined";
     }
@@ -61,7 +79,7 @@ class Helper {
 
         List<String> users = new ArrayList<>();
         try{
-            FileInputStream fileStreamIn = new FileInputStream(Paths.get(appDirectoryRoot.toString(),
+            FileInputStream fileStreamIn = new FileInputStream(Paths.get(flashcardsDirectory.toString(),
                     "Users.txt").toString());
             ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
             users = (List<String>) objectStream.readObject();
@@ -77,7 +95,8 @@ class Helper {
 
         try{
             if(users.size() > 0){
-                FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(appDirectoryRoot.toString(),
+                FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(
+                    flashcardsDirectory.toString(),
                         "Users.txt").toString());
                 ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
                 objectStream.writeObject(users);
@@ -97,7 +116,7 @@ class Helper {
             try {
 
                 FileOutputStream fileStreamOut = new FileOutputStream(
-                        Paths.get(appDirectoryRoot.toString(), deckName + ".txt").toString());
+                        Paths.get(flashcardsDirectory.toString(), deckName + ".txt").toString());
                 ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
                 objectStream.writeObject(deck.getCards());
                 objectStream.close();
@@ -123,7 +142,7 @@ class Helper {
         try {
 
             FileInputStream fileStreamIn = new FileInputStream(
-                    Paths.get(appDirectoryRoot.toString(), deckName).toString());
+                    Paths.get(flashcardsDirectory.toString(), deckName).toString());
             ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
             list = (List<Flashcard>) objectStream.readObject();
             objectStream.close();
@@ -140,23 +159,18 @@ class Helper {
 
         try {
 
-            File directory;
-            if (getOperationSystemNameLowerCase().equals("windows")) {
-                directory = appDirectoryLog.toFile();
-            } else { //UNIX || OSX
-                directory = osXDirectory.toFile();
-            }
+            File directory = new File(logDirectory.toString());
 
-            if (directory != null) {
                 if (!directory.exists()) {
+
                     boolean isDirectoryCreated = directory.mkdirs();
                     if (isDirectoryCreated) {
-                        LogHelper.writeToLog(Level.INFO, "Ordner erstellt!");
+                        LogHelper.writeToLog(Level.INFO, "Ordner erstellt in " + directory.toString());
                     } else {
-                        LogHelper.writeToLog(Level.INFO, "Ordner konnte nicht erstellt werden. (Helper)");
+                        LogHelper.writeToLog(Level.INFO,
+                            "Ordner konnte nicht erstellt werden. Vorgesehener Pfad: " + directory.toString());
                     }
                 }
-            }
 
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Ordners: " + ex);

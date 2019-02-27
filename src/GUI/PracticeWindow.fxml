@@ -24,9 +24,9 @@
     <VBox id="VBox" alignment="CENTER" layoutY="14.0" spacing="40.0" AnchorPane.leftAnchor="10.0">
       <children>
         <Label prefWidth="78.0" text="Frage" textAlignment="CENTER" />
-        <Label fx:id="FragenLabel" text="" />
+        <Label fx:id="questionLabel"/>
         <Label text="Antwort" textAlignment="CENTER" />
-        <Label fx:id="AntwortLabel" text="" />
+        <Label fx:id="answerLabel"/>
       </children>
     </VBox>
     <Label fx:id="infoLabel" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" textAlignment="JUSTIFY" textFill="#e40000" visible="false" AnchorPane.rightAnchor="30.0">
