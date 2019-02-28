@@ -80,6 +80,19 @@ public class DeckIndexController {
     }
 
     public void handlerCardAdd(ActionEvent event) throws IOException {
+
+        String selectedItem = (String) list.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            for (Deck deck : data.getListOfDecks()) {
+                if (selectedItem.equals(deck.getName())) {
+                    Data.setCurrentDeckName(selectedItem);
+                    LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
+                }
+            }
+        }
+        System.out.println(Data.getCurrentDeckName());
+
         Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardIndex.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
 

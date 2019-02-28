@@ -3,6 +3,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
 import java.util.logging.Level;
 
 import javafx.collections.FXCollections;
@@ -22,6 +23,8 @@ public class CardAddController {
     private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
     private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
     private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
+    Helper helper = new Helper();
+    Data data = new Data();
 
     public void initialize(String deckName) {
 
@@ -53,6 +56,10 @@ public class CardAddController {
     }
 
     public void handlerCardAdd(ActionEvent event) throws IOException {
+
+        System.out.println(Data.getCurrentDeckName());
+
+
         //Karte hinzufügen zu dem jeweiligen stapen
     }
 

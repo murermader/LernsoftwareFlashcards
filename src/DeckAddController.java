@@ -13,17 +13,19 @@ import java.util.logging.Level;
 public class DeckAddController {
 
     public TextField StapelText = new TextField();
+    private Helper helper = new Helper();
 
     public void handlerConfirm(ActionEvent event)throws IOException{
 
         String deckName = StapelText.getText();
         System.out.println(deckName);
 
+
+
         try {
 
             List<Flashcard> list = new ArrayList<>();
             Deck deck = new Deck(deckName, list, Data.getCurrentUser());
-            Helper helper = new Helper();
             helper.saveDeckToFile(deck);
 
         } catch (Exception ex) {

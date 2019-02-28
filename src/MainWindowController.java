@@ -27,7 +27,6 @@ public class MainWindowController {
     public Button manageUserButton = new Button();
     public Button decksButton = new Button();
     public Button statsButton = new Button();
-    public Button exitButton = new Button();
 
     private Data data = new Data();
 
@@ -41,7 +40,6 @@ public class MainWindowController {
             if (Data.getCurrentUser() == null) {
                 decksButton.setDisable(true);
                 statsButton.setDisable(true);
-                exitButton.setDisable(true);
             }
 
             if (users != null && users.size() > 0) {
@@ -53,7 +51,6 @@ public class MainWindowController {
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des MainWindowControllers " + ex);
         }
-
     }
 
     public void handlerManageUser(ActionEvent event) throws IOException {
@@ -70,7 +67,6 @@ public class MainWindowController {
             Data.setCurrentUser(userComboBox.getSelectionModel().getSelectedItem().toString());
             decksButton.setDisable(false);
             statsButton.setDisable(false);
-            exitButton.setDisable(false);
         }
     }
 
