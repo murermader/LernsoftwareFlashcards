@@ -59,7 +59,6 @@ public class MainWindowController {
     public void handlerManageUser(ActionEvent event) throws IOException {
         Parent manageUserView = FXMLLoader.load(getClass().getResource("GUI/manageUser.fxml"));
         Scene practiceViewScene = new Scene(manageUserView);
-        //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window1.setScene(practiceViewScene);
         window1.show();
