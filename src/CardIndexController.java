@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,9 +22,14 @@ public class CardIndexController {
     private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
     private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
     private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
+    @FXML
+    public void initialize(){
 
-    public void initialize(String deckName) {
+        System.out.println("Test");
+        getCard(String deckName);
+    }
 
+    public void getCard(String deckName){
         List<Flashcard> CardList = new ArrayList<>();
         Deck deck = new Deck(deckName, CardList, Data.getCurrentUser());
 
@@ -33,13 +39,13 @@ public class CardIndexController {
                     Paths.get(appDirectoryRoot.toString(), deckName).toString());
             ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
             CardList = (List<Flashcard>) objectStream.readObject();
+            System.out.println(CardList);
 
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
         }
         deck.setCards(CardList);
     }
-
 
     public void handlerBack(ActionEvent event) throws IOException {
 
