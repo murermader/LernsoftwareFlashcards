@@ -24,21 +24,23 @@ public class CardIndexController {
     public  Data data = new Data();
     public  Helper helper = new Helper();
     public ListView CardList = new ListView<String>();
+
     private ObservableList<String> cardNames = FXCollections.observableArrayList();
+
     @FXML
     public void initialize(){
 
-        /*
-        data.getListOfDecks();
 
-        if (!data.isEmpty) {
+        Deck currentDeck = data.getCurrentDeck();
 
-            for (Deck card: data.getListOfDecks()) {cardNames.add(card)};
+        if (currentDeck != null) {
+
+            for (Flashcard card: currentDeck.getCards()) {
+                cardNames.add(card.getFront());
+            }
             //noinspection unchecked
             CardList.setItems(cardNames);
         }
-        */
-
     }
 
 
