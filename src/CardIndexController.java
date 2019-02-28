@@ -23,13 +23,8 @@ public class CardIndexController {
     private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
     private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
     @FXML
-    public void initialize(){
+    public void initialize(String deckName){
 
-        System.out.println("Test");
-        getCard(String deckName);
-    }
-
-    public void getCard(String deckName){
         List<Flashcard> CardList = new ArrayList<>();
         Deck deck = new Deck(deckName, CardList, Data.getCurrentUser());
 
@@ -46,6 +41,7 @@ public class CardIndexController {
         }
         deck.setCards(CardList);
     }
+
 
     public void handlerBack(ActionEvent event) throws IOException {
 
