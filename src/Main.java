@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -22,20 +23,23 @@ public class Main extends Application {
             helper.createDirectories();
 
             //Nur Temporär, damit auf allen Geräten testbar
-            helper.createSampleDeck("test1",4, "Rafael");
+            helper.createSampleDeck("test1",1, "Rafael");
             helper.createSampleDeck("test2",10, "Silas");
             helper.createSampleDeck("test3",20, "Kai");
             helper.createSampleDeck("test1",100, "Rafael");
             helper.createSampleDeck("test2",100, "Silas");
             helper.createSampleDeck("test3",100, "Kai");
-            helper.createSampleDeck("test4",200, "Beispieldeck");
-            helper.createSampleDeck("test4",200, "Beispieldeck");
+            helper.createSampleDeck("test4",2, "Beispieldeck");
+            helper.createSampleDeck("test4",2, "Beispieldeck");
 
             Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
             Scene scene = new Scene(root);
+            stage.getIcons().add(new Image("icon.png"));
+            stage.setTitle("Flashcards - Projekt von Rafael, Kai & Silas");
             stage.setScene(scene);
             stage.show();
             stage.setResizable(false);
+
 
         } catch (IOException e) {
             e.printStackTrace();
