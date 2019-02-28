@@ -22,16 +22,19 @@ public class CardIndexController {
     private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
     private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
     private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
+    public  Data data = new Data();
     @FXML
-    public void initialize(String deckName){
+    public void initialize(){
+
+        System.out.println(data.getCurrentDeck());
 
         List<Flashcard> CardList = new ArrayList<>();
-        Deck deck = new Deck(deckName, CardList, Data.getCurrentUser());
+        Deck deck = new Deck(data.getCurrentDeck().toString(), CardList, Data.getCurrentUser());
 
         try {
 
             FileInputStream fileStreamIn = new FileInputStream(
-                    Paths.get(appDirectoryRoot.toString(), deckName).toString());
+                    Paths.get(appDirectoryRoot.toString(), data.getCurrentDeck().toString()).toString());
             ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
             CardList = (List<Flashcard>) objectStream.readObject();
             System.out.println(CardList);
@@ -40,6 +43,7 @@ public class CardIndexController {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
         }
         deck.setCards(CardList);
+
     }
 
 
