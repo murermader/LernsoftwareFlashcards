@@ -13,17 +13,17 @@
    <ListView fx:id="list" layoutX="225.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0"/>
    <Label layoutX="226.0" layoutY="101.0" prefHeight="17.0" prefWidth="200.0" text="User" textAlignment="CENTER"/>
    <VBox layoutX="426.0" layoutY="130.0" prefHeight="200.0" prefWidth="72.0">
-      <Button mnemonicParsing="false" onAction="#handlerAdd" text="Add">
+      <Button mnemonicParsing="false" onAction="#handlerAdd" text="Hinzufügen">
          <VBox.margin>
             <Insets bottom="5.0"/>
          </VBox.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#handlerRemove" text="Remove">
+      <Button mnemonicParsing="false" onAction="#handlerRemove" text="Entfernen">
          <VBox.margin>
             <Insets bottom="5.0"/>
          </VBox.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#handlerSelect" text="Select">
+      <Button mnemonicParsing="false" onAction="#handlerSelect" text="Auswählen">
          <VBox.margin>
             <Insets bottom="5.0"/>
          </VBox.margin>
