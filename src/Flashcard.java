@@ -15,8 +15,6 @@ public class Flashcard implements java.io.Serializable {
     private static final long FOUR_MONTHS_IN_MILLIS = 10518984000L;     //8
     private static final long TWO_YEARS_IN_MILLIS = 63113904000L;       //9
 
-
-
     //Klassenvariablen
     public static int count = 0;
 
