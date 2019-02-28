@@ -22,20 +22,13 @@ public class DeckIndexController {
 
     @FXML
     public void initialize() {
-        //Funktioniert nicht!
-        //data =
-        list.getItems().clear();
-        list.getSelectionModel().clearSelection();
-        deckNames.clear();
 
         if (!data.isEmpty) {
 
             for (Deck deck : data.getListOfDecks()) {
-                deckNames.add(deck.getName());
+                deckNames.add(deck.getName() + " (" + deck.getOwner() + ")");
                 System.out.println(deck.getName());
             }
-            //Noch keine Ahnung wie ich diese Warnung wegbekomme, voerst erstmal ignorieren
-            list.refresh();
             //noinspection unchecked
             list.setItems(deckNames);
         }
@@ -46,8 +39,8 @@ public class DeckIndexController {
 
         if (selectedItem != null) {
             for (Deck deck : data.getListOfDecks()) {
-                if (selectedItem.equals(deck.getName())) {
-                    Data.setCurrentDeckName(selectedItem);
+                if (selectedItem.contains(deck.getName()) && selectedItem.contains(deck.getOwner())) {
+                    Data.setCurrentDeckName(deck.getName());
                     LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
                 }
             }
@@ -87,7 +80,7 @@ public class DeckIndexController {
     }
 
     public void handlerCardAdd(ActionEvent event) throws IOException {
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
+        Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardIndex.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
 
         //This line gets the Stage information
@@ -98,6 +91,7 @@ public class DeckIndexController {
     }
 
     public void handlerDeleteDeck(ActionEvent event) throws IOException {
+
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {

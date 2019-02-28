@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/2.2" fx:controller="DeckAddController">
+            xmlns="http://javafx.com/javafx/2.2" fx:controller="UserAddController">
     <children>
         <VBox id="VBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox id="HBox" alignment="CENTER" spacing="5.0">
                     <children>
-                        <Label text="Name des Stapel"/>
-                        <TextField fx:id="StapelText" prefWidth="200.0"/>
+                        <Label text="Username"/>
+                        <TextField fx:id="textField" prefWidth="200.0"/>
                     </children>
                 </HBox>
                 <HBox id="HBox" alignment="CENTER" spacing="5.0">
                     <children>
-                        <Button fx:id="confirm" mnemonicParsing="false" onAction="#handlerConfirm" text="Bestätigen"/>
-                        <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück"/>
+                        <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#handlerConfirm" text="Bestätigen"/>
+                        <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#handlerBack" text="Zurück"/>
                     </children>
                 </HBox>
             </children>

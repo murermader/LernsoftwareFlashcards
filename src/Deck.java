@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -5,14 +6,15 @@ import java.util.List;
 import java.util.logging.Level;
 
 //Alle Sachen die nur ein Deck bzw. die Inhalte eines Decks betreffen.
-public class Deck {
+public class Deck implements Serializable {
 
     private String name;
     private List<Flashcard> cards;
+    private String owner;
 
     //Konstruktur
-    Deck(String name, List<Flashcard> cards) {
-
+    Deck(String name, List<Flashcard> cards, String owner) {
+        this.owner = owner;
         setName(name);
         this.cards = cards;
     }
@@ -103,5 +105,9 @@ public class Deck {
                 cards.get(index).setLevel(0);
             }
         }
+    }
+
+    public String getOwner() {
+        return owner;
     }
 }

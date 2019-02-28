@@ -22,9 +22,9 @@ public class DeckAddController {
         try {
 
             List<Flashcard> list = new ArrayList<>();
-            Deck deck = new Deck(deckName, list);
+            Deck deck = new Deck(deckName, list, Data.getCurrentUser());
             Helper helper = new Helper();
-            helper.saveDeckToFile(deck, deckName);
+            helper.saveDeckToFile(deck);
 
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Stapels "+deckName + ex);

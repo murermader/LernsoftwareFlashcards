@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import javafx.event.ActionEvent;
@@ -15,12 +14,13 @@ import javafx.stage.Stage;
 public class PracticeWindowController {
 
     //FXML Elemente
-    public Label FragenLabel = new Label();
-    public Label AntwortLabel = new Label();
+    public Label questionLabel = new Label();
+    public Label answerLabel = new Label();
     public Label infoLabel = new Label();
     public Label easyTime = new Label();
     public Label okTime = new Label();
     public Label hardTime = new Label();
+    public Label currentUserLabel = new Label();
 
     public Button easy = new Button();
     public Button ok = new Button();
@@ -46,6 +46,10 @@ public class PracticeWindowController {
                 deckReady = data.getCurrentDeck();
                 deckReady.ready();
 
+                if(Data.getCurrentUser() != null){
+                    currentUserLabel.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
+                }
+
                 if (deckReady.getLength() > 0) {
 
                     deckReady.sort();
@@ -53,7 +57,7 @@ public class PracticeWindowController {
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
-                    FragenLabel.setText(currentFlashcard.getFront());
+                    questionLabel.setText(currentFlashcard.getFront());
 
                 } else {
 
@@ -79,13 +83,13 @@ public class PracticeWindowController {
 
         try {
             if (Data.getCurrentDeckName() != null) {
-                helper.saveDeckToFile(data.getCurrentDeck(), Data.getCurrentDeckName());
+                helper.saveDeckToFile(data.getCurrentDeck());
             }
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern des aktuellen Decks.");
         }
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
+        Parent deckIndexController = FXMLLoader.load(getClass().getResource("GUI/DeckIndex.fxml"));
+        Scene mainViewScene = new Scene(deckIndexController);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(mainViewScene);
@@ -106,7 +110,7 @@ public class PracticeWindowController {
 
     public void handlerShowBack(ActionEvent event) {
 
-        AntwortLabel.setText(currentFlashcard.getBack());
+        answerLabel.setText(currentFlashcard.getBack());
         easy.setDisable(false);
         ok.setDisable(false);
         hard.setDisable(false);
@@ -128,16 +132,16 @@ public class PracticeWindowController {
         currentFlashcard.setDifficulty(difficulty);
         currentFlashcard.updateInterval();
         //deck.getCards().remove(currentcardIndex);
-        AntwortLabel.setText("");
+        answerLabel.setText("");
         currentcardIndex++;
 
         if (currentcardIndex < cardIndexMax) {
             currentFlashcard = deckReady.getCards().get(currentcardIndex);
-            FragenLabel.setText(currentFlashcard.getFront());
+            questionLabel.setText(currentFlashcard.getFront());
         } else {
             //TODO: Hier ist man fertig mit dem Lernen!
             //TODO: Stats: Timer hier stoppen und speichern?
-            FragenLabel.setText("");
+            questionLabel.setText("");
             infoLabel.setText("Der Stapel ist komplett gelernt!");
             infoLabel.setVisible(true);
             show.setDisable(true);
