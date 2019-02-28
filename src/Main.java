@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +32,7 @@ public class Main extends Application {
 
             Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add("GUI/stylesheet.css");
             stage.getIcons().add(new Image("icon.png"));
             stage.setTitle("Flashcards - Projekt von Rafael, Kai & Silas");
             stage.setScene(scene);

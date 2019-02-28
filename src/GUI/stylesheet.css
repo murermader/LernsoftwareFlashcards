@@ -1,0 +1,18 @@
+.root{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Verdana";
+    -fx-base: #000000;
+    -fx-background: #212121;
+}
+
+.button {
+    -fx-padding: 10;
+    -fx-background-color: #424242;
+}
+
+.button:focused {
+    -fx-background-color: #303030;
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5, 4, 3;
+}
