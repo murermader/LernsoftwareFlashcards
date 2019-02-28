@@ -23,6 +23,7 @@ public class DeckIndexController {
     @FXML
     public void initialize() {
 
+
         if (!data.isEmpty) {
 
             for (Deck deck : data.getListOfDecks()) {
@@ -47,6 +48,7 @@ public class DeckIndexController {
         }
         Parent practiceViewParent = FXMLLoader.load(getClass().getResource("GUI/PracticeWindow.fxml"));
         Scene practiceViewScene = new Scene(practiceViewParent);
+        System.out.println(data.getCurrentDeck());
 
         //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();

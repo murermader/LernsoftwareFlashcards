@@ -18,32 +18,29 @@ import javafx.stage.Stage;
 
 public class CardIndexController {
 
-    public ListView CardList = new ListView();
     private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
     private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
     private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
     public  Data data = new Data();
+    public  Helper helper = new Helper();
+    public ListView CardList = new ListView<String>();
+
+    private ObservableList<String> cardNames = FXCollections.observableArrayList();
+
     @FXML
     public void initialize(){
 
-        System.out.println(data.getCurrentDeck());
 
-        List<Flashcard> CardList = new ArrayList<>();
-        Deck deck = new Deck(data.getCurrentDeck().toString(), CardList, Data.getCurrentUser());
+        Deck currentDeck = data.getCurrentDeck();
 
-        try {
+        if (currentDeck != null) {
 
-            FileInputStream fileStreamIn = new FileInputStream(
-                    Paths.get(appDirectoryRoot.toString(), data.getCurrentDeck().toString()).toString());
-            ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
-            CardList = (List<Flashcard>) objectStream.readObject();
-            System.out.println(CardList);
-
-        } catch (Exception ex) {
-            LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
+            for (Flashcard card: currentDeck.getCards()) {
+                cardNames.add(card.getFront());
+            }
+            //noinspection unchecked
+            CardList.setItems(cardNames);
         }
-        deck.setCards(CardList);
-
     }
 
 
