@@ -7,7 +7,7 @@ class Data {
 
     private static String currentUser;
     private static String currentDeckName;
-    private static List<Deck> currentUserDecks = new ArrayList<>();
+    public static List<Deck> currentUserDecks = new ArrayList<>();
     private static List<String> allUsers = new ArrayList<>();
     public boolean isEmpty;
 
@@ -82,7 +82,7 @@ class Data {
     }
 
     //Methoden
-    List<Deck> getListOfDecks() {
+    public List<Deck> getListOfDecks() {
         return currentUserDecks;
     }
 
