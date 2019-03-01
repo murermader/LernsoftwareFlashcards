@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
             fx:controller="DeckIndexController" stylesheets="GUI/stylesheet.css">
-  <Label fx:id="h1" text="Stapelanzeige"/>
+  <Label fx:id="h1" text="Stapel"/>
   <VBox id="VBox" alignment="CENTER" spacing="10.0"
         AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
     <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" />

@@ -71,6 +71,12 @@ public class ManageUserController {
         String selectedUser = (String) list.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             Data.setCurrentUser(selectedUser);
+            Parent mainWindowView = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
+            Scene practiceViewScene = new Scene(mainWindowView);
+            //This line gets the Stage information
+            Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window1.setScene(practiceViewScene);
+            window1.show();
         }
     }
 

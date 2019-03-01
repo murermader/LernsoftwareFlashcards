@@ -6,6 +6,11 @@
     -fx-faint-focus-color: transparent;
 }
 
+
+.anchorPane {
+
+}
+
 .label {
     -fx-text-overrun: word-ellipsis;
 }
@@ -23,14 +28,12 @@
     -fx-background-radius: 5, 4, 3;*/
 }
 
-#statGrid {
-    -fx-background-color: #80d8ff;
-}
-
 #h1 {
-    -fx-translate-x: 200pt;
+    -fx-max-width: max_value;
+    -fx-translate-x: 275px;
     -fx-translate-y: 30pt;
     -fx-content-display: center;
+    -fx-label-padding: 5pt;
     -fx-font-size: 15pt;
     -fx-font-family: "Calibri";
 }
