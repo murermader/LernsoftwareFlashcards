@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-//Klasse die einen Überblick über alle Decks hat.
+//Diese Klasse ist sozusagen eine "Schnittstelle" zwischen allen Informationen
+// wie User, Stapel und Statistiken, die hilft mit den Daten in der GUI zu arbeiten.
+//Diese Klasse muss nur einmal in jedem Controller instanziiert werden, um Zugriff auf alle
+//Daten zu haben.
 class Data {
 
     private static String currentUser;

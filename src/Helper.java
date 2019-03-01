@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+//Hilfsklasse mit Methoden wie OS herausfinden, Dateien (User, Decks) speichern und auslesen,
+//SampleDecks erstellen etc. Alles was nützlich sein könnte und nicht in die anderen Klassen passt.
 class Helper {
 
   private Path flashcardsDirectory;

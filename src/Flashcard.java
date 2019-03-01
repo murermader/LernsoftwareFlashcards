@@ -1,6 +1,7 @@
 import java.util.Date;
 import java.util.logging.Level;
 
+//Lernkarte
 public class Flashcard implements java.io.Serializable {
 
     //Abfrageintervall
