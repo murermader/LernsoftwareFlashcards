@@ -2,7 +2,7 @@
     -fx-font-size: 10pt;
     -fx-font-family: "Verdana";
     -fx-base: #ffffff;
-    -fx-focus-color: #039be5;
+    -fx-focus-color: #9e9e9e;
     -fx-faint-focus-color: transparent;
 }
 
@@ -13,11 +13,11 @@
 .button {
     -fx-text-fill: #ffffff;
     -fx-text-overrun: word-ellipsis;
-    -fx-background-color: #039be5;
+    -fx-background-color: #616161;
 }
 
 .button:focused {
-    -fx-background-color: #01579d;/*
+    -fx-background-color: #9e9e9e;/*
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 5, 4, 3;*/
@@ -28,7 +28,9 @@
 }
 
 #h1 {
-    -fx-alignment: Pos.CENTER;
+    -fx-translate-x: 200pt;
+    -fx-translate-y: 30pt;
+    -fx-content-display: center;
     -fx-font-size: 15pt;
     -fx-font-family: "Calibri";
 }
