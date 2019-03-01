@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 
-//Alle Sachen die nur ein Deck bzw. die Inhalte eines Decks betreffen.
+// Ein Deck ist eine Zusammenfassung von mehreren Flashcards, die einem User zugeteilt wurde.
 public class Deck implements Serializable {
 
     private String name;
