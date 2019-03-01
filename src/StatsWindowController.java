@@ -47,7 +47,7 @@ public class StatsWindowController {
         deckCount.setText("" + user.getNumberOfDecks());
     }
 
-    public void handlerAllUser(ActionEvent event) throws IOException {
+    public void handlerReset(ActionEvent event) throws IOException {
 
 
     }

@@ -18,6 +18,7 @@
 .button {
     -fx-text-fill: #ffffff;
     -fx-text-overrun: word-ellipsis;
+    -fx-wrap-text: true;
     -fx-background-color: #616161;
 }
 
@@ -29,9 +30,8 @@
 }
 
 #h1 {
-    -fx-max-width: max_value;
     -fx-translate-x: 275px;
-    -fx-translate-y: 30pt;
+    -fx-translate-y: 20px;
     -fx-content-display: center;
     -fx-label-padding: 5pt;
     -fx-font-size: 15pt;

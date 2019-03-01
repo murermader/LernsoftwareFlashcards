@@ -56,7 +56,5 @@ public class User implements Serializable {
   }
 
   public void getData(int numberOfCards, int numberOfDecks, int cardsLearned, int timeSpentLearning) {
-
   }
-
 }
