@@ -1,18 +1,24 @@
 .root{
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Verdana";
-    -fx-base: #000000;
-    -fx-background: #212121;
+    -fx-base: #ffff;
+    -fx-focus-color: #039be5;
+    -fx-faint-focus-color: transparent;
+}
+
+.label {
+    -fx-text-alignment: word-ellipsis;
 }
 
 .button {
-    -fx-padding: 10;
-    -fx-background-color: #424242;
+    -fx-text-fill: #ffffff;
+    -fx-text-overrun: word-ellipsis;
+    -fx-background-color: #039be5;
 }
 
 .button:focused {
-    -fx-background-color: #303030;
+    -fx-background-color: #01579d;/*
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0, 1, 2;
-    -fx-background-radius: 5, 4, 3;
+    -fx-background-radius: 5, 4, 3;*/
 }
