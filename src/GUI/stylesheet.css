@@ -1,13 +1,13 @@
 .root{
     -fx-font-size: 10pt;
     -fx-font-family: "Verdana";
-    -fx-base: #ffff;
+    -fx-base: #ffffff;
     -fx-focus-color: #039be5;
     -fx-faint-focus-color: transparent;
 }
 
 .label {
-    -fx-text-alignment: word-ellipsis;
+    -fx-text-overrun: word-ellipsis;
 }
 
 .button {
@@ -21,4 +21,14 @@
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 5, 4, 3;*/
+}
+
+#statGrid {
+    -fx-background-color: #80d8ff;
+}
+
+#h1 {
+    -fx-alignment: Pos.CENTER;
+    -fx-font-size: 15pt;
+    -fx-font-family: "Calibri";
 }

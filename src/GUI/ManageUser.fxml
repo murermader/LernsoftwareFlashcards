@@ -10,8 +10,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
             prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ManageUserController" stylesheets="GUI/stylesheet.css">
+   <Label fx:id="h1" text="Benutzerverwaltung"/>
    <ListView fx:id="list" layoutX="225.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0"/>
-   <Label layoutX="226.0" layoutY="101.0" prefHeight="17.0" prefWidth="200.0" text="User" textAlignment="CENTER"/>
    <VBox layoutX="426.0" layoutY="130.0" prefHeight="200.0" prefWidth="72.0">
       <Button mnemonicParsing="false" onAction="#handlerAdd" text="Hinzufügen">
          <VBox.margin>
