@@ -1,9 +1,10 @@
 import java.io.Serializable;
+import java.util.logging.Level;
 
 public class User implements Serializable {
 
   private String name;
-  private int numberOfDecks;
+  public int numberOfDecks;
   private int numberOfCards;
   private int cardsLearned;
   private long timeSpentLearning; //Zeiteinheit?
@@ -12,7 +13,7 @@ public class User implements Serializable {
     this.name = name;
   }
 
-  public String getName() {
+  String getName() {
     return name;
   }
 
@@ -45,10 +46,17 @@ public class User implements Serializable {
   }
 
   public int getNumberOfCards() {
+//    this.numberOfCards = Deck.getLength();
+    LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + numberOfCards);
     return numberOfCards;
   }
 
   public void setNumberOfCards(int numberOfCards) {
     this.numberOfCards = numberOfCards;
   }
+
+  public void getData(int numberOfCards, int numberOfDecks, int cardsLearned, int timeSpentLearning) {
+
+  }
+
 }

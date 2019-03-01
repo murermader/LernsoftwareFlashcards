@@ -8,34 +8,42 @@
     <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="lib" level="project" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/JavaFX/javafx-sdk-11.0.2/lib" />
+          <root url="file://$MODULE_DIR$" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/JavaFX/javafx-sdk-11.0.2/lib" />
+          <root url="file://$MODULE_DIR$/src" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/JavaFX/javafx-sdk-11.0.2/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/JavaFX/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Desktop/Java Resources/javafx-sdk-11.0.2/lib" />
+          <root url="file://C:/javafx-sdk-11.0.2/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$USER_HOME$/Desktop/Java Resources/javafx-sdk-11.0.2/lib" />
+          <root url="file://C:/javafx-sdk-11.0.2/lib" />
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/Desktop/Java Resources/javafx-sdk-11.0.2/lib" recursive="false" />
-        <jarDirectory url="file://$USER_HOME$/Desktop/Java Resources/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://C:/javafx-sdk-11.0.2/lib" recursive="false" />
+        <jarDirectory url="file://C:/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://C:/javafx-sdk-11.0.2/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://C:/javafx-sdk-11.0.2/lib" />
+        </SOURCES>
+        <jarDirectory url="file://C:/javafx-sdk-11.0.2/lib" recursive="false" />
+        <jarDirectory url="file://C:/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>
 </module>
-
-
