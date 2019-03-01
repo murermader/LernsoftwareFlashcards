@@ -24,15 +24,20 @@ class Helper {
       .get(System.getProperty("user.home"), "Library", "Application Support", "flashcards", "Log");
 
   Helper() {
+
     if (getOperationSystemNameLowerCase().equals("windows")) {
       flashcardsDirectory = FLASHCARDS_DIRECTORY_WINDOWS;
       logDirectory = LOG_DIRECTORY_WINDOWS;
-      System.out.println("OS als Windows erkannt. Benutze Windows-spezifische Pfade.");
+      LogHelper.writeToLog(Level.INFO, "OS als Windows erkannt. Benutze Windows-spezifische Pfade.");
+
     } else if (getOperationSystemNameLowerCase().equals("osx") || getOperationSystemNameLowerCase()
         .equals("linux")) {
       flashcardsDirectory = FLASHCARDS_DIRECTORY_LINUX;
       logDirectory = LOG_DIRECTORY_LINUX;
-      System.out.println("OS als Linux erkannt. Benutze UNIX-spezifische Pfade.");
+      LogHelper.writeToLog(Level.INFO, "OS als Linux erkannt. Benutze UNIX-spezifische Pfade.");
+
+    } else if(getOperationSystemNameLowerCase().equals("underterminded")){
+      LogHelper.writeToLog(Level.INFO, "Betriebsystem konnte nicht ermittelt werden.");
     }
   }
 
@@ -73,7 +78,7 @@ class Helper {
     if (os.contains("win")) {
       //Betriebssystem ist Windows-basiert
       return "windows";
-    } else if (os.contains("osx")) {
+    } else if (os.contains("os x") || (os.contains("os x"))) {
       //Betriebssystem ist Apple OSX
       return "osx";
     } else if (os.contains("nix") || os.contains("aix") || os.contains("nux")) {
