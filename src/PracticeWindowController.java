@@ -30,12 +30,12 @@ public class PracticeWindowController {
     //Globale Variablen
     private Data data = new Data();
     private Helper helper = new Helper();
-    private User user = new User(data.getCurrentUser());
+    private User user = new User(Data.getCurrentUser());
     private int currentcardIndex = 0;
     private int cardIndexMax;
     private Flashcard currentFlashcard;
     private Deck deckReady;
-    public long countTime;
+    private long countTime;
 
     @FXML
     public void initialize() {
@@ -150,8 +150,7 @@ public class PracticeWindowController {
 
             countTime = System.currentTimeMillis()-countTime;
             user.setTimeSpentLearning(countTime);
-            LogHelper.writeToLog(Level.INFO, "Zeit: " + countTime);
-
+            LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
         }
     }
 
