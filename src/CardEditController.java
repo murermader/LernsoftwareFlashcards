@@ -18,7 +18,7 @@ public class CardEditController {
         window.show();
     }
 
-    public void handlerCardAdd(ActionEvent event)throws IOException{
+    public void handlerEdit(ActionEvent event)throws IOException{
 
     }
 }
