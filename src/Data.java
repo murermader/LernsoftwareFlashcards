@@ -42,7 +42,10 @@ class Data {
                 List<Deck> allDecks = new ArrayList<>();
 
                 for (String name : deckNames) {
-                    allDecks.add(helper.getDeckFromFile(name));
+                    Deck deck = helper.getDeckFromFile(name);
+                    if(deck != null){
+                        allDecks.add(deck);
+                    }
                 }
 
                 for (Deck deck : allDecks) {
@@ -56,7 +59,7 @@ class Data {
             if (helper.getUsersFromFile() != null) {
                 allUsers = helper.getUsersFromFile();
             } else {
-                LogHelper.writeToLog(Level.INFO, "Keine Usernamen vorhanden. Userliste bleibt leer.");
+                LogHelper.writeToLog(Level.INFO, "Keine Usernamen vorhanden.");
             }
             if (currentUser != null) {
                 LogHelper.writeToLog(Level.INFO, "Aktueller Benutzer: " + currentUser);
