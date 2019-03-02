@@ -29,20 +29,7 @@ public class CardAddController {
 
     public void initialize(String deckName) {
 
-        List<Flashcard> CardList = new ArrayList<>();
-        Deck deck = new Deck(deckName, CardList, Data.getCurrentUser());
 
-        try {
-
-            FileInputStream fileStreamIn = new FileInputStream(
-                    Paths.get(appDirectoryRoot.toString(), deckName).toString());
-            ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
-            CardList = (List<Flashcard>) objectStream.readObject();
-
-        } catch (Exception ex) {
-            LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
-        }
-        deck.setCards(CardList);
     }
 
 
@@ -56,22 +43,12 @@ public class CardAddController {
         window.show();
     }
 
-    public void handlerCardAdd(ActionEvent event) throws IOException {
+    public void handlerAdd(ActionEvent event) throws IOException {
 
         System.out.println(Data.getCurrentDeckName());
 
 
         //Karte hinzufügen zu dem jeweiligen stapen
-    }
-
-    public void handlerCardEdit(ActionEvent event) throws IOException {
-        //Ausgewählte Karte editiere
-
-    }
-
-    public void handlerCardDelete(ActionEvent event) throws IOException {
-        //Ausgewählte Karte löschen
-
     }
 
 }

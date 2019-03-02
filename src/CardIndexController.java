@@ -55,7 +55,7 @@ public class CardIndexController {
     }
 
     public void handlerCardAdd(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/CardEdit.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,6 +75,20 @@ public class CardIndexController {
 
     public void handlerCardDelete(ActionEvent event) throws IOException {
         //Ausgewählte Karte löschen
+
+        /*String selectedItem = (String) CardList.getSelectionModel().getSelectedItem();
+
+        Deck currentDeck = data.getCurrentDeck();
+
+        if (selectedItem != null) {
+            for (Flashcard card: currentDeck.getCards()) {
+                if (selectedItem.equals(card.getName())) {
+                    Data.setCurrentCardName(selectedItem);
+                    LogHelper.writeToLog(Level.INFO, "setCurrentCardname: " + selectedItem);
+                }
+            }
+        }
+        System.out.println(Data.getCurrentDeckName());*/
 
     }
 }
