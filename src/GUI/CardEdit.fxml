@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="CardEditController">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="CardEditController">
   <children>
     <VBox id="VBox" alignment="CENTER" prefHeight="281.0" prefWidth="310.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -14,6 +14,13 @@
         <TextField prefHeight="100.0" prefWidth="200.0" />
         <Label text="Antwort" />
         <TextField prefHeight="100.0" prefWidth="200.0" />
+        <SplitMenuButton mnemonicParsing="false" text="Schwierigkeit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Leicht" />
+            <MenuItem mnemonicParsing="false" text="Mittel" />
+            <MenuItem mnemonicParsing="false" text="Schwer" />
+          </items>
+        </SplitMenuButton>
         <HBox id="HBox" alignment="CENTER" spacing="5.0">
           <children>
             <Button fx:id="add" mnemonicParsing="false" onAction="#handlerEdit" text="Bearbeiten" />
@@ -22,5 +29,6 @@
         </HBox>
       </children>
     </VBox>
+    <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0" />
   </children>
 </AnchorPane>
