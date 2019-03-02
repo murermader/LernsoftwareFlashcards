@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/2.2" fx:controller="UserAddController">
-    <children>
+            xmlns="http://javafx.com/javafx/2.2" fx:controller="UserAddController" stylesheets="GUI/stylesheet.css">
+    <Label fx:id="h1" text="Benutzer hinzufügen"/>
         <VBox id="VBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -26,5 +26,4 @@
                 </HBox>
             </children>
         </VBox>
-    </children>
 </AnchorPane>

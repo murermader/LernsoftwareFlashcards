@@ -10,12 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
-   <children>
+<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="MainWindowController" stylesheets="GUI/stylesheet.css">
+    <Label fx:id="h1" text="Hauptmenu"/>
        <VBox id="Vbox" alignment="CENTER" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-          <children>
-              <Label text="Benutzerauswahl" textAlignment="CENTER" />
-              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="285.0">
+           <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="285.0">
                  <children>
                      <ComboBox fx:id="userComboBox" prefWidth="150.0" />
                      <Button fx:id="selectUserButton" mnemonicParsing="false" onAction="#handlerSelectUser" text="Auswahl" />
@@ -25,7 +24,5 @@
               <Button fx:id="decksButton" mnemonicParsing="false" onAction="#handlerDeckIndex" prefHeight="40.0" prefWidth="284.0" text="Stapelanzeige" />
               <Button fx:id="statsButton" mnemonicParsing="false" onAction="#handlerStats" prefHeight="40.0" prefWidth="284.0" text="Statistiken" />
               <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handlerQuit" prefHeight="40.0" prefWidth="284.0" text="Beenden" />
-          </children>
        </VBox>
-   </children>
 </AnchorPane>

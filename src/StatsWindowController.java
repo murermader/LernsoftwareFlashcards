@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 
 import javafx.event.ActionEvent;
@@ -14,53 +15,54 @@ import javafx.stage.Stage;
 public class StatsWindowController {
 
     //FXML Elemente
-    public Label nameLable = new Label();
-    public Label cardCount = new Label();
+    public Label nameLabel = new Label();
     public Label deckCount = new Label();
+    public Label cardCount = new Label();
+    public Label cardLearned = new Label();
+    public Label timeSpent = new Label();
 
-    public Button allUserSwitch = new Button();
-    public Button timeSwitch = new Button();
+    private int lenght;
 
+    public Button resetTime= new Button();
     public Helper helper = new Helper();
     public Data data = new Data();
-    public User user = new User(data.getCurrentUser());
-
-    //Globale Variabeln
-    private String name;
-    private int numberOfDecks;
-    private int numberOfCards;
-    private int cardsLearned;
-    private long timeSpentLearning;
+    public User user = new User(Data.getCurrentUser());
 
     @FXML
     public void initialize() {
-        user.setName(data.getCurrentUser());
+        user.setName(Data.getCurrentUser());
         user.setNumberOfDecks(data.getListOfDecks().size());
-    //    user.setNumberOfCards();
-    //    user.setCardsLearned();
-    //    user.setTimeSpentLearning();
 
-        name = user.getName();
-        numberOfDecks = user.getNumberOfDecks();
+        for (Deck deck : data.getListOfDecks()) {
+            int l = deck.getLength();
+            this.lenght += l;
+            LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + l);
+        }
+        user.setNumberOfCards(lenght);
 
-        nameLable.setText(name);
+        nameLabel.setText(user.getName());
         deckCount.setText("" + user.getNumberOfDecks());
+        cardCount.setText("" + user.getNumberOfCards());
+        cardLearned.setText("" + user.getCardsLearned());
+        timeSpent.setText("" + user.getTimeSpentLearning());
     }
 
-    public void handlerAllUser(ActionEvent event) throws IOException {
-
-
+    public void handlerReset(ActionEvent event) throws IOException {
+        user.resetTime();
+        Parent StatsWindowParent = FXMLLoader.load(getClass().getResource("GUI/StatsWindow.fxml"));
+        Scene StatsWindowScene = new Scene(StatsWindowParent);
+        Stage window3 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window3.setScene(StatsWindowScene);
+        window3.show();
     }
 
 
     public void handlerBack(ActionEvent event) throws IOException {
-
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
 
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         window.setScene(mainViewScene);
         window.show();
     }

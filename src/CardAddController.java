@@ -26,6 +26,7 @@ public class CardAddController {
     Helper helper = new Helper();
     Data data = new Data();
 
+
     public void initialize(String deckName) {
 
         List<Flashcard> CardList = new ArrayList<>();

@@ -9,7 +9,7 @@ public class User implements Serializable {
   private int cardsLearned;
   private long timeSpentLearning; //Zeiteinheit?
 
-  User(String name){
+  User(String name) {
     this.name = name;
   }
 
@@ -56,7 +56,10 @@ public class User implements Serializable {
   }
 
   public void getData(int numberOfCards, int numberOfDecks, int cardsLearned, int timeSpentLearning) {
+  }
 
+  public void resetTime() {
+    setTimeSpentLearning(0);
   }
 
 }

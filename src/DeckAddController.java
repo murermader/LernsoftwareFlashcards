@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+
 public class DeckAddController {
 
     public TextField StapelText = new TextField();
@@ -35,7 +36,6 @@ public class DeckAddController {
         //Verweis um den Stapel zu befüllen
         Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
-        //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window1.setScene(CardAddViewScene);
         window1.show();
@@ -44,7 +44,6 @@ public class DeckAddController {
     public void handlerBack(ActionEvent event)throws IOException{
         Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(mainViewScene);
         window.show();

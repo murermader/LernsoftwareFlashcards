@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+//Hilfsklasse mit Methoden wie OS herausfinden, Dateien (User, Decks) speichern und auslesen,
+//SampleDecks erstellen etc. Alles was nützlich sein könnte und nicht in die anderen Klassen passt.
 class Helper {
 
   private Path flashcardsDirectory;
   private Path logDirectory;
+  private static boolean onlyShowOnce = true;
 
   private static final Path LOG_DIRECTORY_WINDOWS = Paths
       .get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
@@ -24,15 +27,29 @@ class Helper {
       .get(System.getProperty("user.home"), "Library", "Application Support", "flashcards", "Log");
 
   Helper() {
+
     if (getOperationSystemNameLowerCase().equals("windows")) {
       flashcardsDirectory = FLASHCARDS_DIRECTORY_WINDOWS;
       logDirectory = LOG_DIRECTORY_WINDOWS;
-      System.out.println("OS als Windows erkannt. Benutze Windows-spezifische Pfade.");
+      if(onlyShowOnce){
+        LogHelper.writeToLog(Level.INFO, "OS als Windows erkannt. Benutze Windows-spezifische Pfade.");
+        onlyShowOnce = false;
+      }
+
     } else if (getOperationSystemNameLowerCase().equals("osx") || getOperationSystemNameLowerCase()
         .equals("linux")) {
       flashcardsDirectory = FLASHCARDS_DIRECTORY_LINUX;
       logDirectory = LOG_DIRECTORY_LINUX;
-      System.out.println("OS als Linux erkannt. Benutze UNIX-spezifische Pfade.");
+      if(onlyShowOnce){
+        LogHelper.writeToLog(Level.INFO, "OS als Linux erkannt. Benutze UNIX-spezifische Pfade.");
+        onlyShowOnce = false;
+      }
+
+    } else if(getOperationSystemNameLowerCase().equals("underterminded")){
+      if(onlyShowOnce){
+        LogHelper.writeToLog(Level.INFO, "Betriebsystem konnte nicht ermittelt werden.");
+        onlyShowOnce = false;
+      }
     }
   }
 
@@ -69,11 +86,10 @@ class Helper {
   public String getOperationSystemNameLowerCase() {
 
     String os = System.getProperty("os.name").toLowerCase();
-    LogHelper.writeToLog(Level.INFO, "Ermittelter Namen des OS: " + os);
     if (os.contains("win")) {
       //Betriebssystem ist Windows-basiert
       return "windows";
-    } else if (os.contains("osx")) {
+    } else if (os.contains("os x") || (os.contains("os x"))) {
       //Betriebssystem ist Apple OSX
       return "osx";
     } else if (os.contains("nix") || os.contains("aix") || os.contains("nux")) {

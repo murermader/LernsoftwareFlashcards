@@ -30,17 +30,19 @@ public class PracticeWindowController {
     //Globale Variablen
     private Data data = new Data();
     private Helper helper = new Helper();
+    private User user = new User(Data.getCurrentUser());
     private int currentcardIndex = 0;
     private int cardIndexMax;
     private Flashcard currentFlashcard;
     private Deck deckReady;
+    private long countTime;
 
     @FXML
     public void initialize() {
 
         //TODO: Timer starten (Lernzeit). Soll so lange laufen wie die Practice-Ansicht offen ist
         try {
-
+            countTime = System.currentTimeMillis();
             if (Data.getCurrentDeckName() != null) {
 
                 deckReady = data.getCurrentDeck();
@@ -145,6 +147,10 @@ public class PracticeWindowController {
             infoLabel.setText("Der Stapel ist komplett gelernt!");
             infoLabel.setVisible(true);
             show.setDisable(true);
+
+            countTime = System.currentTimeMillis()-countTime;
+            user.setTimeSpentLearning(countTime);
+            LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
         }
     }
 

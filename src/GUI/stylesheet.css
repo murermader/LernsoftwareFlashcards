@@ -2,8 +2,13 @@
     -fx-font-size: 10pt;
     -fx-font-family: "Verdana";
     -fx-base: #ffffff;
-    -fx-focus-color: #039be5;
+    -fx-focus-color: #9e9e9e;
     -fx-faint-focus-color: transparent;
+}
+
+
+.anchorPane {
+
 }
 
 .label {
@@ -13,22 +18,22 @@
 .button {
     -fx-text-fill: #ffffff;
     -fx-text-overrun: word-ellipsis;
-    -fx-background-color: #039be5;
+    -fx-wrap-text: true;
+    -fx-background-color: #616161;
 }
 
 .button:focused {
-    -fx-background-color: #01579d;/*
+    -fx-background-color: #9e9e9e;/*
     -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 5, 4, 3;*/
 }
 
-#statGrid {
-    -fx-background-color: #80d8ff;
-}
-
 #h1 {
-    -fx-alignment: Pos.CENTER;
+    -fx-translate-x: 275px;
+    -fx-translate-y: 20px;
+    -fx-content-display: center;
+    -fx-label-padding: 5pt;
     -fx-font-size: 15pt;
     -fx-font-family: "Calibri";
 }
