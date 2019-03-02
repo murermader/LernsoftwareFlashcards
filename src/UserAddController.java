@@ -13,7 +13,7 @@ import java.util.logging.Level;
 public class UserAddController {
 
     public TextField textField = new TextField();
-    public Label statusBarLabel1 = new Label();
+    public Label statusbarLabel1 = new Label();
     private Helper helper = new Helper();
 
     public void handlerConfirm(ActionEvent event) throws IOException {
@@ -35,7 +35,7 @@ public class UserAddController {
                 helper.saveUsersToFile(allUsers);
                 switchToManageUserView(event);
             } else {
-                statusBarLabel1.setText("Info: Der Name muss länger als 2 und kürzer als 30 Zeichen sein.");
+                statusbarLabel1.setText("Info: Der Name muss länger als 2 und kürzer als 30 Zeichen sein.");
             }
         }
     }

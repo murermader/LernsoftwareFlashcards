@@ -1,20 +1,23 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -29,6 +32,8 @@ public class MainWindowController {
     public Button manageUserButton = new Button();
     public Button decksButton = new Button();
     public Button statsButton = new Button();
+    public HBox statusbar = new HBox();
+    public Label statusbarLabel1 = new Label();
     private Data data = new Data();
 
     @FXML
@@ -37,13 +42,16 @@ public class MainWindowController {
         try {
             ObservableList<String> usersCollection = FXCollections.observableArrayList();
             List<String> users = Data.getAllUsers();
+            statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
 
             if (Data.getCurrentUser() == null) {
                 decksButton.setDisable(true);
                 statsButton.setDisable(true);
+                statusbarLabel1.setText("Kein Benutzer ausgewählt. Zum Fortfahren einen Benutzer auswählen.");
             }
             if(Data.getAllUsers().isEmpty()){
                 selectUserButton.setDisable(true);
+                statusbarLabel1.setText("Keine Benutzer vorhanden. Zum Fortfahren neue Benutzer erstellen.");
             }
             if (users != null && users.size() > 0) {
                 usersCollection.addAll(users);
@@ -57,6 +65,7 @@ public class MainWindowController {
     }
 
     public void handlerManageUser(ActionEvent event) throws IOException {
+
         Parent manageUserView = FXMLLoader.load(getClass().getResource("GUI/manageUser.fxml"));
         Scene practiceViewScene = new Scene(manageUserView);
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -66,22 +75,14 @@ public class MainWindowController {
 
     @FXML
     public void handlerSelectUser(ActionEvent event) throws IOException {
-        if (userComboBox.getSelectionModel().getSelectedItem() != null) {
-            Data.setCurrentUser(userComboBox.getSelectionModel().getSelectedItem().toString());
+
+        Object item = userComboBox.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            Data.setCurrentUser(item.toString());
             decksButton.setDisable(false);
             statsButton.setDisable(false);
+            statusbarLabel1.setText("Benutzer "+ item.toString() + " ausgewählt. ");
         }
-    }
-
-    @FXML
-    public void handlerPractice(ActionEvent event) throws IOException {
-
-        Parent practiceViewParent = FXMLLoader.load(getClass().getResource("GUI/PracticeWindow.fxml"));
-        Scene practiceViewScene = new Scene(practiceViewParent);
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window1.setScene(practiceViewScene);
-        window1.show();
     }
 
     @FXML
@@ -93,16 +94,6 @@ public class MainWindowController {
         window2.setScene(DeckIndexScene);
         window2.show();
 
-    }
-
-    @FXML
-    public void handlerCardAdd(ActionEvent event) throws IOException {
-
-        Parent CardAddParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
-        Scene CardAddScene = new Scene(CardAddParent);
-        Stage window3 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window3.setScene(CardAddScene);
-        window3.show();
     }
 
     @FXML
