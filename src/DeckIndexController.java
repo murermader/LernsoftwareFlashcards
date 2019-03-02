@@ -12,17 +12,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class DeckIndexController {
+
     public ListView list = new ListView<String>();
     private Data data = new Data();
     private ObservableList<String> deckNames = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-
 
         if (!data.isEmpty) {
 
@@ -81,14 +80,15 @@ public class DeckIndexController {
         //Fenster popup: Textfeld für Namen
     }
 
+    //Kartenansicht
     public void handlerCardAdd(ActionEvent event) throws IOException {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {
             for (Deck deck : data.getListOfDecks()) {
-                if (selectedItem.equals(deck.getName())) {
-                    Data.setCurrentDeckName(selectedItem);
+                if (selectedItem.contains(deck.getName()) && selectedItem.contains(deck.getOwner())) {
+                    Data.setCurrentDeckName(deck.getName());
                     LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
                 }
             }
@@ -111,8 +111,8 @@ public class DeckIndexController {
 
         if (selectedItem != null) {
             for (Deck deck : data.getListOfDecks()) {
-                if (selectedItem.equals(deck.getName())) {
-                    Data.setCurrentDeckName(selectedItem);
+                if (selectedItem.contains(deck.getName()) && selectedItem.contains(deck.getOwner())) {
+                    Data.setCurrentDeckName(deck.getName());
                     LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
                 }
             }

@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="MainWindowController" stylesheets="GUI/stylesheet.css">
@@ -25,4 +17,8 @@
               <Button fx:id="statsButton" mnemonicParsing="false" onAction="#handlerStats" prefHeight="40.0" prefWidth="284.0" text="Statistiken" />
               <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handlerQuit" prefHeight="40.0" prefWidth="284.0" text="Beenden" />
        </VBox>
+    <HBox fx:id="statusbar" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="25.0" prefWidth="650.0" AnchorPane.topAnchor="375.0">
+        <Label fx:id="statusbarLabel1"/>
+    </HBox>
 </AnchorPane>
