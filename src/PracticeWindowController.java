@@ -1,14 +1,19 @@
 import java.io.IOException;
 import java.util.logging.Level;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PracticeWindowController {
@@ -16,16 +21,17 @@ public class PracticeWindowController {
     //FXML Elemente
     public Label questionLabel = new Label();
     public Label answerLabel = new Label();
-    public Label infoLabel = new Label();
     public Label easyTime = new Label();
     public Label okTime = new Label();
     public Label hardTime = new Label();
-    public Label currentUserLabel = new Label();
+    public Label statusbarLabel1 = new Label();
 
     public Button easy = new Button();
     public Button ok = new Button();
     public Button hard = new Button();
     public Button show = new Button();
+
+    public HBox statusbar = new HBox();
 
     //Globale Variablen
     private Data data = new Data();
@@ -40,8 +46,9 @@ public class PracticeWindowController {
     @FXML
     public void initialize() {
 
-        //TODO: Timer starten (Lernzeit). Soll so lange laufen wie die Practice-Ansicht offen ist
         try {
+
+            statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
             countTime = System.currentTimeMillis();
             if (Data.getCurrentDeckName() != null) {
 
@@ -49,13 +56,12 @@ public class PracticeWindowController {
                 deckReady.ready();
 
                 if(Data.getCurrentUser() != null){
-                    currentUserLabel.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
+                    statusbarLabel1.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
                 }
 
                 if (deckReady.getLength() > 0) {
 
                     deckReady.sort();
-                    infoLabel.setVisible(false);
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
@@ -63,14 +69,14 @@ public class PracticeWindowController {
 
                 } else {
 
-                    infoLabel.setText("Deck "+ Data.getCurrentDeckName() +" noch nicht lernbereit!");
+                    statusbarLabel1.setText("Deck "+ Data.getCurrentDeckName() +" noch nicht lernbereit!");
                     disableControls();
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Deck enthält keine Karten die gelernt werden können.");
                 }
 
             } else {
 
-                infoLabel.setText("Es wurde kein Deck ausgewählt!");
+                statusbarLabel1.setText("Es wurde kein Deck ausgewählt!");
                 disableControls();
                 LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt.");
             }
@@ -138,16 +144,15 @@ public class PracticeWindowController {
         currentcardIndex++;
 
         if (currentcardIndex < cardIndexMax) {
+
             currentFlashcard = deckReady.getCards().get(currentcardIndex);
             questionLabel.setText(currentFlashcard.getFront());
         } else {
-            //TODO: Hier ist man fertig mit dem Lernen!
-            //TODO: Stats: Timer hier stoppen und speichern?
-            questionLabel.setText("");
-            infoLabel.setText("Der Stapel ist komplett gelernt!");
-            infoLabel.setVisible(true);
-            show.setDisable(true);
 
+            questionLabel.setText("");
+            statusbarLabel1.setText("Der Stapel ist komplett gelernt!");
+            statusbarLabel1.setVisible(true);
+            show.setDisable(true);
             countTime = System.currentTimeMillis()-countTime;
             user.setTimeSpentLearning(countTime);
             LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
@@ -155,10 +160,10 @@ public class PracticeWindowController {
     }
 
     private void disableControls(){
+
         easy.setDisable(true);
         ok.setDisable(true);
         hard.setDisable(true);
         show.setDisable(true);
-        infoLabel.setVisible(true);
     }
 }

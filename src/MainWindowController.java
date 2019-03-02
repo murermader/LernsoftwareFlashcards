@@ -48,6 +48,8 @@ public class MainWindowController {
                 decksButton.setDisable(true);
                 statsButton.setDisable(true);
                 statusbarLabel1.setText("Kein Benutzer ausgewählt. Zum Fortfahren einen Benutzer auswählen.");
+            } else {
+                statusbarLabel1.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
             }
             if(Data.getAllUsers().isEmpty()){
                 selectUserButton.setDisable(true);
