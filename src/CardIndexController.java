@@ -1,9 +1,6 @@
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,28 +18,30 @@ public class CardIndexController {
     private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
     private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
     private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
-    public  Data data = new Data();
-    public  Helper helper = new Helper();
-    public ListView CardList = new ListView<String>();
+
+    public Data data = new Data();
+    public Helper helper = new Helper();
+    public ListView list = new ListView();
 
     private ObservableList<String> cardNames = FXCollections.observableArrayList();
 
     @FXML
     public void initialize(){
 
+        if(Data.getCurrentUser() != null){
 
-        Deck currentDeck = data.getCurrentDeck();
+            Deck currentDeck = data.getCurrentDeck();
 
-        if (currentDeck != null) {
+            if (currentDeck != null) {
 
-            for (Flashcard card: currentDeck.getCards()) {
-                cardNames.add(card.getFront());
+                for (Flashcard card: currentDeck.getCards()) {
+                    cardNames.add(card.getFront());
+                }
+                //noinspection unchecked
+                list.setItems(cardNames);
             }
-            //noinspection unchecked
-            CardList.setItems(cardNames);
         }
     }
-
 
     public void handlerBack(ActionEvent event) throws IOException {
 
@@ -76,7 +75,7 @@ public class CardIndexController {
     public void handlerCardDelete(ActionEvent event) throws IOException {
         //Ausgewählte Karte löschen
 
-        /*String selectedItem = (String) CardList.getSelectionModel().getSelectedItem();
+        /*String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
         Deck currentDeck = data.getCurrentDeck();
 
