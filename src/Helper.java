@@ -168,30 +168,35 @@ class Helper {
 
   //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
   //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
-  @SuppressWarnings("unchecked")
   Deck getDeckFromFile(String deckName) {
 
-    List<Flashcard> emptyList = new ArrayList<>();
-    Deck deck = new Deck(deckName, emptyList, "noOwner");
+    Deck deck;
+    Object object;
 
     try {
 
       FileInputStream fileStreamIn = new FileInputStream(
           Paths.get(flashcardsDirectory.toString(), deckName).toString());
       ObjectInputStream objectStream = new ObjectInputStream(fileStreamIn);
-      deck = (Deck) objectStream.readObject();
+      object = objectStream.readObject();
+      if(object instanceof Deck){
+        deck = (Deck)object;
+      } else {
+        LogHelper.writeToLog(Level.INFO, "Die Datei konnte nicht erkannt werden.");
+        return null;
+      }
       objectStream.close();
 
     } catch (ClassCastException ex) {
       LogHelper.writeToLog(Level.INFO,
           "Die gespeicherten Stapel sind womöglich veraltet. Bitte legen Sie neue Stapel an." + ex);
+      return null;
 
     } catch (Exception ex) {
       LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Speicherdatei: " + ex);
+      return null;
     }
-
     return deck;
-
   }
 
   void createDirectories() {

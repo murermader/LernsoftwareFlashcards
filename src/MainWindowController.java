@@ -8,11 +8,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 
@@ -27,7 +29,6 @@ public class MainWindowController {
     public Button manageUserButton = new Button();
     public Button decksButton = new Button();
     public Button statsButton = new Button();
-
     private Data data = new Data();
 
     @FXML
@@ -41,7 +42,9 @@ public class MainWindowController {
                 decksButton.setDisable(true);
                 statsButton.setDisable(true);
             }
-
+            if(Data.getAllUsers().isEmpty()){
+                selectUserButton.setDisable(true);
+            }
             if (users != null && users.size() > 0) {
                 usersCollection.addAll(users);
                 userComboBox.setItems(usersCollection);
@@ -63,7 +66,7 @@ public class MainWindowController {
 
     @FXML
     public void handlerSelectUser(ActionEvent event) throws IOException {
-        if (userComboBox.getSelectionModel().getSelectedItem().toString() != null) {
+        if (userComboBox.getSelectionModel().getSelectedItem() != null) {
             Data.setCurrentUser(userComboBox.getSelectionModel().getSelectedItem().toString());
             decksButton.setDisable(false);
             statsButton.setDisable(false);
