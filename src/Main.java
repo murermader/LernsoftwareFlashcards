@@ -33,6 +33,7 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
             Scene scene = new Scene(root);
             stage.getIcons().add(new Image("GUI/icon.png"));
+            //Bild-Quelle (Licensing: Public Domain) = https://commons.wikimedia.org/wiki/File:Flashcard.png
             stage.setTitle("Flashcards - Projekt von Rafael, Kai & Silas");
             stage.setScene(scene);
             stage.show();

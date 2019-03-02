@@ -32,7 +32,6 @@ public class CardIndexController {
 
 
         Deck currentDeck = data.getCurrentDeck();
-
         if (currentDeck != null) {
 
             for (Flashcard card: currentDeck.getCards()) {
