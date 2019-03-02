@@ -36,9 +36,9 @@ public class StatsWindowController {
         for (Deck deck : data.getListOfDecks()) {
             int l = deck.getLength();
             this.lenght += l;
-            LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + l);
         }
         user.setNumberOfCards(lenght);
+
 
         nameLabel.setText(user.getName());
         deckCount.setText("" + user.getNumberOfDecks());
