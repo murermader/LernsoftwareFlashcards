@@ -24,18 +24,16 @@ public class CardOverviewController {
     public Data data = new Data();
     public Helper helper = new Helper();
     public ListView list = new ListView();
-    private Deck deck;
 
-
+    private Deck currentDeck;
     private ObservableList<String> cardNames = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
 
-        //Karten für das ListView holen
         if (Data.getCurrentUser() != null) {
 
-            Deck currentDeck = data.getCurrentDeck();
+            currentDeck = data.getCurrentDeck();
 
             if (currentDeck != null) {
 
@@ -51,51 +49,68 @@ public class CardOverviewController {
     @FXML
     public void handlerBack(ActionEvent event) throws IOException {
         Data.setCurrentDeckName(null);
-        helper.switchScene(event,"DeckOverview.fxml"); //Zur vorherigen Seite wechseln
+        helper.switchScene(event, "DeckOverview.fxml");
     }
 
     @FXML
     public void handlerCardAdd(ActionEvent event) throws IOException {
-        helper.switchScene(event,"CardAdd.fxml"); //Zum CardAdd wechseln
+        helper.switchScene(event, "CardAdd.fxml");
     }
 
     @FXML
     public void handlerCardEdit(ActionEvent event) throws IOException {
-        helper.switchScene(event,"CardEdit.fxml"); //Zum CardEdit wechseln
+
+        String selectedItem = (String) list.getSelectionModel().getSelectedItem();
+        if(selectedItem != null){
+
+             if(currentDeck.getCardByName(selectedItem) != null){
+                 //Karte gefunden im Deck, die gerade editiert wird. --> Also weiter zum edit bildschirmv
+                 Data.setCurrentFlashcard(currentDeck.getCardByName(selectedItem));
+
+                 helper.switchScene(event, "CardEdit.fxml");
+             } else {
+                 //Fehler? Statusbarmeldung/ Log
+             }
+        }
     }
 
     @FXML
     public void handlerCardDelete(ActionEvent event) throws IOException {
-
+        //Ausgewählte Karte löschen
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
-        Model.Deck  currentDeck = data.getCurrentDeck();
+        Deck currentDeck = data.getCurrentDeck();
 
+        if (selectedItem != null) {
+            for (Flashcard card : currentDeck.getCards()) {
+                if (selectedItem.equals(card.getFront())) {
+                    Data.setCurrentDeckName(selectedItem);
 
-        // Zeile auswählen
-        final int selectedId = list.getSelectionModel().getSelectedIndex();
-        if (selectedId != -1) {
+                }
+            }
+        }
+
+        final int selectedIdx = list.getSelectionModel().getSelectedIndex();
+        if (selectedIdx != -1) {
             String itemToRemove = list.getSelectionModel().getSelectedItem().toString();
 
-            final int newSelectedIdx =
-                    (selectedId == list.getItems().size() - 1)
-                            ? selectedId - 1
-                            : selectedId;
+            final int newSelectedIdx = (selectedIdx == list.getItems().size() - 1)
+                    ? selectedIdx - 1
+                    : selectedIdx;
 
-            list.getItems().remove(selectedId);
+            list.getItems().remove(selectedIdx);
             list.getSelectionModel().select(newSelectedIdx);
             //removes the player for the array
-            System.out.println("selectId: " + selectedId); //ZeilenId
-            System.out.println("item: " + itemToRemove); //Name der Zeile
+            System.out.println("selectIdx: " + selectedIdx);
+            System.out.println("item: " + itemToRemove);
 
 
+            System.out.println(data.getCurrentDeck());
 
 
+            currentDeck.removeCard(currentDeck.getCardByName(itemToRemove));
 
-            currentDeck.removeCard(currentDeck.getCardbyName(itemToRemove)); //Karte löschen
-            helper.saveDeckToFile(currentDeck); // Zustand der Karten des Decks überschreiben
-
-        }
         }
     }
+}

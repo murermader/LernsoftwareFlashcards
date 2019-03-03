@@ -12,6 +12,7 @@ public class Data {
 
     private static String currentUser;
     private static String currentDeckName;
+    private static Flashcard currentFlashcard;
     private static List<Deck> currentUserDecks = new ArrayList<>();
     private static List<String> allUsers = new ArrayList<>();
     public boolean isEmpty;
@@ -87,6 +88,14 @@ public class Data {
 
     public static void setAllUsers(List<String> allUsersNew) {
         allUsers = allUsersNew;
+    }
+
+    public static Flashcard getCurrentFlashcard() {
+        return currentFlashcard;
+    }
+
+    public static void setCurrentFlashcard(Flashcard currentFlashcard) {
+        Data.currentFlashcard = currentFlashcard;
     }
 
     //Methoden

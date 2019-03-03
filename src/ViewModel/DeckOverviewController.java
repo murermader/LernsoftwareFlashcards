@@ -84,7 +84,7 @@ public class DeckOverviewController {
             for (Deck deck : data.getListOfDecks()) {
                 if (selectedItem.contains(deck.getName()) && selectedItem.contains(deck.getOwner())) {
                     Data.setCurrentDeckName(deck.getName());
-                    LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
+                    LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + deck.getName());
                 }
             }
             //Szene wechseln

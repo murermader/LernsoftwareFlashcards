@@ -83,7 +83,7 @@ public class Deck implements Serializable {
         }
     }
 
-    public Flashcard getCardbyName(String front){
+    public Flashcard getCardByName(String front){
         for (Flashcard flashcard: cards)
         {
          if (front.equals(flashcard.getFront())){

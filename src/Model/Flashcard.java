@@ -41,6 +41,17 @@ public class Flashcard implements java.io.Serializable {
         //Model.LogHelper.writeToLog(Level.INFO, "Flashkarte mit ID:\""+ id + "\" erstellt.");
     }
 
+    //Copy Constructor
+    public Flashcard(Flashcard anotherFlashcard){
+
+        this.front = anotherFlashcard.front;
+        this.back = anotherFlashcard.back;
+        this.level = anotherFlashcard.level;
+        this.isLearned = anotherFlashcard.isLearned;
+        this.repetitionDate = anotherFlashcard.repetitionDate;
+    }
+
+
     //Getter & Setter
     public String getFront() {
         return front;
