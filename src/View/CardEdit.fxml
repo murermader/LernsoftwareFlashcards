@@ -10,19 +10,19 @@
 <AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ViewModel.CardEditController">
-  <VBox id="VBox" alignment="CENTER" prefHeight="281.0" prefWidth="310.0" spacing="10.0" AnchorPane.bottomAnchor="0.0"
-        AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
-    <Label text="Frage"/>
-    <TextField fx:id="questionTextField" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="200.0"/>
-    <Label text="Antwort"/>
-    <TextField fx:id="answerTextField" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="200.0"/>
-    <HBox id="HBox" alignment="CENTER" spacing="5.0">
-      <Button fx:id="add" mnemonicParsing="false" onAction="#handlerEdit" text="Bearbeiten"/>
-      <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück"/>
+    <VBox id="VBox" alignment="CENTER" prefHeight="281.0" prefWidth="310.0" spacing="10.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+        <Label text="Frage"/>
+        <TextField fx:id="questionTextField" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="200.0"/>
+        <Label text="Antwort"/>
+        <TextField fx:id="answerTextField" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="200.0"/>
+        <HBox id="HBox" alignment="CENTER" spacing="5.0">
+            <Button fx:id="add" mnemonicParsing="false" onAction="#handlerEdit" text="Bearbeiten"/>
+            <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück"/>
+        </HBox>
+    </VBox>
+    <HBox fx:id="statusbar" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="25.0" prefWidth="650.0" AnchorPane.topAnchor="375.0">
+        <Label fx:id="statusbarLabel1"/>
     </HBox>
-  </VBox>
-  <HBox fx:id="statusbar" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-        minWidth="-Infinity" prefHeight="25.0" prefWidth="650.0" AnchorPane.topAnchor="375.0">
-    <Label fx:id="statusbarLabel1"/>
-  </HBox>
 </AnchorPane>

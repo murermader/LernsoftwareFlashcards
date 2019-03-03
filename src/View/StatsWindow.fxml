@@ -2,21 +2,24 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ViewModel.StatsWindowController">
-  <VBox fx:id="VBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
-    <GridPane id="statGrid" alignment="CENTER" hgap="20.0" vgap="10.0">
-      <Label text="Name: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
-      <Label fx:id="nameLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-      <Label text="Anzahl Decks: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
-      <Label fx:id="deckCount" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Label text="Anzahl Karten: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-      <Label fx:id="cardCount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label text="Anzahl Karten gelernt: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
-      <Label fx:id="cardLearned" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label text="Gelernt:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-      <Label fx:id="timeSpent" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#handlerReset" prefWidth="120.0" text="Zeit zurücksetzen" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-    </GridPane>
-  </VBox>
-  <Button layoutX="584.0" layoutY="361.0" mnemonicParsing="false" onAction="#handlerBack" text="Zurück" />
+<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2" fx:controller="ViewModel.StatsWindowController">
+    <VBox fx:id="VBox" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0"
+          AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+        <GridPane id="statGrid" alignment="CENTER" hgap="20.0" vgap="10.0">
+            <Label text="Name: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="nameLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Anzahl Decks: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="deckCount" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Anzahl Karten: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="cardCount" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Anzahl Karten gelernt: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label fx:id="cardLearned" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <Label text="Gelernt:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <Label fx:id="timeSpent" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handlerReset" prefWidth="120.0"
+                    text="Zeit zurücksetzen" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5"/>
+        </GridPane>
+    </VBox>
+    <Button layoutX="584.0" layoutY="361.0" mnemonicParsing="false" onAction="#handlerBack" text="Zurück"/>
 </AnchorPane>

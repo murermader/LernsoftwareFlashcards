@@ -6,23 +6,23 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
             prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ViewModel.UserEditController">
-   <ListView fx:id="list" layoutX="225.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0"/>
-   <VBox layoutX="426.0" layoutY="130.0" prefHeight="200.0" prefWidth="72.0">
-      <Button mnemonicParsing="false" onAction="#handlerAdd" text="Hinzufügen">
-         <VBox.margin>
-            <Insets bottom="5.0"/>
-         </VBox.margin>
-      </Button>
-      <Button mnemonicParsing="false" onAction="#handlerRemove" text="Entfernen">
-         <VBox.margin>
-            <Insets bottom="5.0"/>
-         </VBox.margin>
-      </Button>
-      <Button mnemonicParsing="false" onAction="#handlerSelect" text="Auswählen">
-         <VBox.margin>
-            <Insets bottom="5.0"/>
-         </VBox.margin>
-      </Button>
-   </VBox>
-   <Button layoutX="584.0" layoutY="361.0" onAction="#handlerGoBack" mnemonicParsing="false" text="Zurück"/>
+    <ListView fx:id="list" layoutX="225.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0"/>
+    <VBox layoutX="426.0" layoutY="130.0" prefHeight="200.0" prefWidth="72.0">
+        <Button mnemonicParsing="false" onAction="#handlerAdd" text="Hinzufügen">
+            <VBox.margin>
+                <Insets bottom="5.0"/>
+            </VBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#handlerRemove" text="Entfernen">
+            <VBox.margin>
+                <Insets bottom="5.0"/>
+            </VBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#handlerSelect" text="Auswählen">
+            <VBox.margin>
+                <Insets bottom="5.0"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+    <Button layoutX="584.0" layoutY="361.0" onAction="#handlerGoBack" mnemonicParsing="false" text="Zurück"/>
 </AnchorPane>
