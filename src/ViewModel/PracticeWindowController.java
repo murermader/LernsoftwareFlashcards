@@ -39,7 +39,6 @@ public class PracticeWindowController {
 
     @FXML
     public void initialize() {
-        countTime = System.currentTimeMillis();
 
         try {
             statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -81,8 +80,6 @@ public class PracticeWindowController {
     public void handlerBack(ActionEvent event) {
 
         try {
-            countTime = System.currentTimeMillis() - countTime;
-            userStats.setTimeSpentLearning(countTime);
 
             if (Data.getCurrentDeckName() != null) {
 
@@ -149,9 +146,6 @@ public class PracticeWindowController {
                 statusbarLabel1.setText("Der Stapel ist komplett gelernt!");
                 statusbarLabel1.setVisible(true);
                 show.setDisable(true);
-                //Zeit wird gestoppt
-                countTime = System.currentTimeMillis() - countTime;
-                userStats.setTimeSpentLearning(countTime);
             }
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Vearbeiten der Karte");
