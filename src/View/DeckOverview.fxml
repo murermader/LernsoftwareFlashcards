@@ -19,7 +19,7 @@
       <Button fx:id="deckAdd" mnemonicParsing="false" onAction="#handlerDeckAdd" text="Stapel hinzufügen" />
       <Button fx:id="deckSelect" mnemonicParsing="false" onAction="#handlerDeckSelect" text="Stapel lernen" />
       <Button fx:id="deleteDeck" mnemonicParsing="false" onAction="#handlerDeleteDeck" text="Stapel löschen" />
-      <Button fx:id="cardadd" mnemonicParsing="false" onAction="#handlerCardAdd" text="Kartenansicht" />
+      <Button fx:id="cardadd" mnemonicParsing="false" onAction="#handlerOverview" text="Kartenansicht" />
       <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück" />
     </HBox>
   </VBox>

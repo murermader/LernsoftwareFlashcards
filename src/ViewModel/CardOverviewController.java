@@ -48,7 +48,8 @@ public class CardOverviewController {
 
     public void handlerBack(ActionEvent event) throws IOException {
 
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
+        Data.setCurrentDeckName(null);
+        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

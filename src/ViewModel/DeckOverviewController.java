@@ -83,7 +83,7 @@ public class DeckOverviewController {
     }
 
     //Kartenansicht
-    public void handlerCardAdd(ActionEvent event) throws IOException {
+    public void handlerOverview(ActionEvent event) throws IOException {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
@@ -94,17 +94,14 @@ public class DeckOverviewController {
                     LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
                 }
             }
+            //Szene wechseln
+            Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardOverview.fxml"));
+            Scene CardAddViewScene = new Scene(CardAddViewParent);
+            Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window1.setScene(CardAddViewScene);
+            window1.show();
         }
-        System.out.println(Data.getCurrentDeckName());
-
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardOverview.fxml"));
-        Scene CardAddViewScene = new Scene(CardAddViewParent);
-
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window1.setScene(CardAddViewScene);
-        window1.show();
+        //selectedItem == Null --> Statusbar
     }
 
     public void handlerDeleteDeck(ActionEvent event) throws IOException {
