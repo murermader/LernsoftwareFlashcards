@@ -1,3 +1,5 @@
+package Model;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.FileHandler;
@@ -5,13 +7,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-class LogHelper {
+public class LogHelper {
 
     private static final Path LOG_DIRECTORY_LINUX = Paths.get(System.getProperty("user.home"), "Library", "Application Support", "flashcards", "Log", "Lernsoftware.log");
     private static final Path LOG_DIRECTORY_WINDOWS = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log", "Lernsoftware.log");
     private static Logger logFile;
 
-    private LogHelper() {
+    public LogHelper() {
 
         try {
             String os = System.getProperty("os.name");
@@ -28,7 +30,7 @@ class LogHelper {
             fileHandler.setFormatter(formatter);
 
         } catch (Exception ex) {
-            System.out.println("Exception Beim LogHelper" + ex);
+            System.out.println("Exception Beim Model.LogHelper" + ex);
         }
     }
 
@@ -46,7 +48,7 @@ class LogHelper {
         return logFile;
     }
 
-    static void writeToLog(Level level, String message) {
+    public static void writeToLog(Level level, String message) {
         getLogger().log(level, message);
     }
 }

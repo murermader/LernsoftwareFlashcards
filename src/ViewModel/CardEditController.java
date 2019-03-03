@@ -1,3 +1,5 @@
+package ViewModel;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,7 +12,7 @@ import java.io.IOException;
 public class CardEditController {
 
     public void handlerBack(ActionEvent event)throws IOException{
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardAdd.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

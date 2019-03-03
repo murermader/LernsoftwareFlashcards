@@ -8,7 +8,7 @@ Das Programm soll eine Lernsoftware werden, mit der man mithilfe von Flashkarten
 
 <h2>Funktionsweise</h2>
 
-Der User kann Flashkarten mit Vorder- und Rückseite erstellen. Bei der Abfrage wird die Vorderseite einer Karte gezeigt. Der User hat Zeit über die Antwort nachzudenken, und kann dann zwischen verschiedenen Schwirigkeitsgraden wählen. Je nach Schwierigkeitsgrad, wird der Karte eine neues Abfragedatum gesetzt. Die Karte wird erst wieder abbefragt, wenn wir uns nach dem Abfragedatum befinden. Wenn das Programm  beendet wird, werden alle Flashkarten abgespeichert, und es kann weitergelernt werden, sobald die Karten wieder zur Verfügung stehen.
+Der Model.User kann Flashkarten mit Vorder- und Rückseite erstellen. Bei der Abfrage wird die Vorderseite einer Karte gezeigt. Der Model.User hat Zeit über die Antwort nachzudenken, und kann dann zwischen verschiedenen Schwirigkeitsgraden wählen. Je nach Schwierigkeitsgrad, wird der Karte eine neues Abfragedatum gesetzt. Die Karte wird erst wieder abbefragt, wenn wir uns nach dem Abfragedatum befinden. Wenn das Programm  beendet wird, werden alle Flashkarten abgespeichert, und es kann weitergelernt werden, sobald die Karten wieder zur Verfügung stehen.
 
 
 <h2>Unsere Anforderungen:</h2>
