@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import static java.lang.Math.toIntExact;
 
-public class User implements Serializable {
+public class UserStats implements Serializable {
 
   private String name;
   private int numberOfDecks;
@@ -12,7 +12,7 @@ public class User implements Serializable {
   private int cardsLearned;
   private int timeSpentLearning; //Zeiteinheit?
 
-  public User(String name) {
+  public UserStats(String name) {
     this.name = name;
   }
 

@@ -23,7 +23,7 @@ public class StatsWindowController {
     public Button resetTime= new Button();
     public Helper helper = new Helper();
     public Data data = new Data();
-    public User user = new User(Data.getCurrentUser());
+    public UserStats user = new UserStats(Data.getCurrentUser());
 
     @FXML
     public void initialize() {

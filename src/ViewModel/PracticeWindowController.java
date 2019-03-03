@@ -35,7 +35,7 @@ public class PracticeWindowController {
     //Globale Variablen
     private Data data = new Data();
     private Helper helper = new Helper();
-    private User user = new User(Data.getCurrentUser());
+    private UserStats user = new UserStats(Data.getCurrentUser());
     private int currentcardIndex = 0;
     private int cardIndexMax;
     private Flashcard currentFlashcard;
