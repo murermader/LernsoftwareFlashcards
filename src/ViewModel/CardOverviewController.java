@@ -24,7 +24,7 @@ public class CardOverviewController {
     public Data data = new Data();
     public Helper helper = new Helper();
     public ListView list = new ListView();
-    //public Deck deck = new Deck();
+
 
     private ObservableList<String> cardNames = FXCollections.observableArrayList();
 
@@ -80,12 +80,13 @@ public class CardOverviewController {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
-        Model.Deck currentDeck = data.getCurrentDeck();
+        Model.Deck  currentDeck = data.getCurrentDeck();
 
         if (selectedItem != null) {
             for (Model.Flashcard card: currentDeck.getCards()) {
                 if (selectedItem.equals(card.getFront())) {
                     Model.Data.setCurrentDeckName(selectedItem);
+
                 }
             }
         }
@@ -105,11 +106,13 @@ public class CardOverviewController {
             System.out.println("selectIdx: " + selectedIdx);
             System.out.println("item: " + itemToRemove);
 
-            if (data.getCurrentDeck() !=null){
 
-                //Deck.getCardbyName
-            }
+            System.out.println(data.getCurrentDeck());
+
+
+
+                currentDeck.removeCard(currentDeck.getCardbyName(itemToRemove));
 
         }
+        }
     }
-}
