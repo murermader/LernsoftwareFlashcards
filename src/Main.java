@@ -33,7 +33,7 @@ public class Main extends Application {
 
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
             Scene scene = new Scene(root);
-            //stage.getIcons().add(new Image("icon.png"));
+            stage.getIcons().add(new Image("View/icon.png"));
             stage.setTitle("Flashcards - Projekt von Rafael, Kai & Silas");
             stage.setScene(scene);
             stage.show();
