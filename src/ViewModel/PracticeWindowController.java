@@ -47,6 +47,7 @@ public class PracticeWindowController {
 
                 deckReady = data.getCurrentDeck();
                 deckReady.ready();
+                deckReady.sort();
                 if (Data.getCurrentUser() != null) {
 
                     statusbarLabel1.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
