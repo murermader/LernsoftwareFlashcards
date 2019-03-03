@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="418.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/2.2" fx:controller="ViewModel.CardOverviewController">
-    <VBox id="VBox" alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="418.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModel.CardOverviewController">
+    <VBox id="VBox" alignment="CENTER" prefWidth="650.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <HBox id="HBox" alignment="CENTER" spacing="10.0">
                 <children>
-                    <Button fx:id="cardAdd" mnemonicParsing="false" onAction="#handlerCardAdd" text="Karte hinzufügen"/>
-                    <Button fx:id="cardEdit" mnemonicParsing="false" onAction="#handlerCardEdit"
-                            text="Karte editieren"/>
-                    <Button fx:id="cardDelete" mnemonicParsing="false" onAction="#handlerCardDelete"
-                            text="Karte löschen"/>
-                    <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück"/>
+                    <Button fx:id="cardAdd" mnemonicParsing="false" onAction="#handlerCardAdd" text="Karte hinzufügen" />
+                    <Button fx:id="cardEdit" mnemonicParsing="false" onAction="#handlerCardEdit" text="Karte editieren" />
+                    <Button fx:id="cardDelete" mnemonicParsing="false" onAction="#handlerCardDelete" text="Karte löschen" />
+                    <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück" />
                 </children>
             </HBox>
-            <ListView fx:id="list" prefHeight="353.0" prefWidth="800.0"/>
+            <ListView fx:id="list" prefHeight="317.0" prefWidth="650.0" />
         </children>
     </VBox>
+    <HBox fx:id="statusbar" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="650.0" AnchorPane.topAnchor="375.0">
+        <Label fx:id="statusbarLabel1" />
+    </HBox>
 </AnchorPane>

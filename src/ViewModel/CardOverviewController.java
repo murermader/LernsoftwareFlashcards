@@ -1,48 +1,55 @@
 package ViewModel;
 
-import Model.Data;
-import Model.Deck;
+import Model.*;
 import Model.Flashcard;
 import Model.Helper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+import java.util.logging.Level;
 
 public class CardOverviewController {
-
-    private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
-    private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
-    private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
 
     public Data data = new Data();
     public Helper helper = new Helper();
     public ListView list = new ListView();
+    public HBox statusbar = new HBox();
+    public Label statusbarLabel1 = new Label();
 
     private Deck currentDeck;
     private ObservableList<String> cardNames = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        try {
+            statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
 
-        if (Data.getCurrentUser() != null) {
+            if (Data.getCurrentUser() != null) {
 
-            currentDeck = data.getCurrentDeck();
+                currentDeck = data.getCurrentDeck();
 
-            if (currentDeck != null) {
+                if (currentDeck != null) {
 
-                for (Flashcard card : currentDeck.getCards()) {
-                    cardNames.add(card.getFront());
+                    for (Flashcard card : currentDeck.getCards()) {
+                        cardNames.add(card.getFront());
+                    }
+                    //noinspection unchecked
+                    list.setItems(cardNames);
                 }
-                //noinspection unchecked
-                list.setItems(cardNames);
             }
+        } catch (Exception ex) {
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des CardOverviewControllers: " + ex);
         }
     }
 
@@ -61,27 +68,21 @@ public class CardOverviewController {
     public void handlerCardEdit(ActionEvent event) throws IOException {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
-        if(selectedItem != null){
+        if (selectedItem != null) {
 
-             if(currentDeck.getCardByName(selectedItem) != null){
-                 //Karte gefunden im Deck, die gerade editiert wird. --> Also weiter zum edit bildschirmv
-                 Data.setCurrentFlashcard(currentDeck.getCardByName(selectedItem));
-
-                 helper.switchScene(event, "CardEdit.fxml");
-             } else {
-                 //Fehler? Statusbarmeldung/ Log
-             }
+            if (currentDeck.getCardByName(selectedItem) != null) {
+                Data.setCurrentFlashcard(currentDeck.getCardByName(selectedItem));
+                helper.switchScene(event, "CardEdit.fxml");
+            }
+        } else {
+            statusbarLabel1.setText("Keine Karte zum Editieren ausgewählt.");
         }
     }
 
     @FXML
     public void handlerCardDelete(ActionEvent event) throws IOException {
-        //Ausgewählte Karte löschen
-
-        String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
         Deck currentDeck = data.getCurrentDeck();
-
 
         final int selectedIdx = list.getSelectionModel().getSelectedIndex();
         if (selectedIdx != -1) {
@@ -96,15 +97,14 @@ public class CardOverviewController {
             //removes the player for the array
             System.out.println("selectIdx: " + selectedIdx);
             System.out.println("item: " + itemToRemove);
-
-
             System.out.println(data.getCurrentDeck());
-
 
             //Karte löschen
             currentDeck.removeCard(currentDeck.getCardByName(itemToRemove));
             helper.saveDeckToFile(currentDeck);
-
+            statusbarLabel1.setText("Karte gelöscht!");
+        } else {
+            statusbarLabel1.setText("Keine Karte zum Löschen ausgewählt.");
         }
     }
 }
