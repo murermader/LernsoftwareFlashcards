@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-public class ManageUserController {
+public class UserEditController {
 
     public ListView list = new ListView();
 

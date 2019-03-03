@@ -30,7 +30,7 @@ public class MainWindowController {
     //FXML Elemente
     public ComboBox userComboBox = new ComboBox();
     public Button selectUserButton = new Button();
-    public Button manageUserButton = new Button();
+    public Button editUserButton = new Button();
     public Button decksButton = new Button();
     public Button statsButton = new Button();
     public HBox statusbar = new HBox();
@@ -81,8 +81,8 @@ public class MainWindowController {
     }
 
     @FXML
-    public void handlerManageUser(ActionEvent event) throws IOException {
-        helper.switchScene(event, "manageUser.fxml");
+    public void handlerEditUser(ActionEvent event) throws IOException {
+        helper.switchScene(event, "UserEdit.fxml");
     }
 
     @FXML

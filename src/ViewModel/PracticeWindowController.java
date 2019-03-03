@@ -35,7 +35,7 @@ public class PracticeWindowController {
     //Globale Variablen
     private Data data = new Data();
     private Helper helper = new Helper();
-    private User user = new User(Data.getCurrentUser());
+    private UserStats userStats = new UserStats(Data.getCurrentUser());
     private int currentcardIndex = 0;
     private int cardIndexMax;
     private Flashcard currentFlashcard;
@@ -87,8 +87,7 @@ public class PracticeWindowController {
     //Eventhandling
     public void handlerBack(ActionEvent event) throws IOException {
         countTime = System.currentTimeMillis()-countTime;
-        user.setTimeSpentLearning(countTime);
-        LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
+        userStats.setTimeSpentLearning(countTime);
         try {
             if (Data.getCurrentDeckName() != null) {
                 helper.saveDeckToFile(data.getCurrentDeck());
@@ -148,9 +147,9 @@ public class PracticeWindowController {
             statusbarLabel1.setText("Der Stapel ist komplett gelernt!");
             statusbarLabel1.setVisible(true);
             show.setDisable(true);
-            countTime = System.currentTimeMillis()-countTime;
-            user.setTimeSpentLearning(countTime);
-            LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
+            //Zeit wird gestoppt
+            countTime = System.currentTimeMillis() - countTime;
+            userStats.setTimeSpentLearning(countTime);
         }
     }
 

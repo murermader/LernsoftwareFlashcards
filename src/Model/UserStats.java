@@ -2,16 +2,17 @@ package Model;
 
 import java.io.Serializable;
 import java.util.logging.Level;
+import static java.lang.Math.toIntExact;
 
-public class User implements Serializable {
+public class UserStats implements Serializable {
 
   private String name;
   private int numberOfDecks;
   private int numberOfCards;
   private int cardsLearned;
-  private long timeSpentLearning; //Zeiteinheit?
+  private int timeSpentLearning; //Zeiteinheit?
 
-  public User(String name) {
+  public UserStats(String name) {
     this.name = name;
   }
 
@@ -21,22 +22,6 @@ public class User implements Serializable {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public int getCardsLearned() {
-    return cardsLearned;
-  }
-
-  public void setCardsLearned(int cardsLearned) {
-    this.cardsLearned = cardsLearned;
-  }
-
-  public long getTimeSpentLearning() {
-    return timeSpentLearning;
-  }
-
-  public void setTimeSpentLearning(long timeSpentLearning) {
-    this.timeSpentLearning = timeSpentLearning;
   }
 
   public int getNumberOfDecks() {
@@ -55,6 +40,24 @@ public class User implements Serializable {
 
   public void setNumberOfCards(int numberOfCards) {
     this.numberOfCards = numberOfCards;
+  }
+
+  public int getCardsLearned() {
+    return cardsLearned;
+  }
+
+  public void setCardsLearned(int cardsLearned) {
+    this.cardsLearned = cardsLearned;
+  }
+
+  public long getTimeSpentLearning() {
+    return timeSpentLearning;
+  }
+
+  public void setTimeSpentLearning(long timeSpentLearning) {
+    LogHelper.writeToLog(Level.INFO, "------------time spent learning" + timeSpentLearning);
+    this.timeSpentLearning = (toIntExact(timeSpentLearning)/1000) + this.timeSpentLearning;
+    LogHelper.writeToLog(Level.INFO, "--Zeit: " + timeSpentLearning + " Insgesamt: " + this.timeSpentLearning);
   }
 
   public void getData(int numberOfCards, int numberOfDecks, int cardsLearned, int timeSpentLearning) {
