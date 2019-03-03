@@ -1,20 +1,22 @@
+package Model;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
 //Diese Klasse ist sozusagen eine "Schnittstelle" zwischen allen Informationen
-// wie User, Stapel und Statistiken, die hilft mit den Daten in der GUI zu arbeiten.
-//Diese Klasse muss nur einmal in jedem Controller instanziiert werden, um Zugriff auf alle
+// wie Model.User, Stapel und Statistiken, die hilft mit den Daten in der View zu arbeiten.
+//Diese Klasse muss nur einmal in jedem ViewModel instanziiert werden, um Zugriff auf alle
 //Daten zu haben.
-class Data {
+public class Data {
 
     private static String currentUser;
     private static String currentDeckName;
-    public static List<Deck> currentUserDecks = new ArrayList<>();
+    private static List<Deck> currentUserDecks = new ArrayList<>();
     private static List<String> allUsers = new ArrayList<>();
     public boolean isEmpty;
 
-    Data() {
+    public Data() {
 
         try {
             Helper helper = new Helper();
@@ -37,7 +39,7 @@ class Data {
 
             } else {
                 isEmpty = false;
-                //Für jeden Stapel Flashcards ein Deck erstellen.
+                //Für jeden Stapel Flashcards ein Model.Deck erstellen.
                 currentUserDecks.clear();
                 List<Deck> allDecks = new ArrayList<>();
 
@@ -76,7 +78,7 @@ class Data {
 
     public static void setCurrentUser(String currentUser) {
         Data.currentUser = currentUser;
-        LogHelper.writeToLog(Level.INFO, "Current User neu gesetzt als: " + currentUser);
+        LogHelper.writeToLog(Level.INFO, "Current Model.User neu gesetzt als: " + currentUser);
     }
 
     public static List<String> getAllUsers() {
@@ -92,15 +94,15 @@ class Data {
         return currentUserDecks;
     }
 
-    static String getCurrentDeckName() {
+    public static String getCurrentDeckName() {
         return currentDeckName;
     }
 
-    static void setCurrentDeckName(String currentDeckName) {
+    public static void setCurrentDeckName(String currentDeckName) {
         Data.currentDeckName = currentDeckName;
     }
 
-    Deck getCurrentDeck() {
+    public Deck getCurrentDeck() {
 
         for (Deck deck : currentUserDecks) {
             if (deck.getName().equals(currentDeckName)) {

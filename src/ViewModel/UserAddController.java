@@ -1,3 +1,6 @@
+package ViewModel;
+
+import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -45,7 +48,7 @@ public class UserAddController {
     }
 
     private void switchToManageUserView(ActionEvent event) throws IOException {
-        Parent manageUserView = FXMLLoader.load(getClass().getResource("GUI/manageUser.fxml"));
+        Parent manageUserView = FXMLLoader.load(getClass().getClassLoader().getResource("View/manageUser.fxml"));
         Scene practiceViewScene = new Scene(manageUserView);
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window1.setScene(practiceViewScene);

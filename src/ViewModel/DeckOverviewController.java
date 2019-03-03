@@ -1,8 +1,10 @@
+package ViewModel;
+
+import Model.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.logging.Level;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +47,7 @@ public class DeckOverviewController {
                 }
             }
         }
-        Parent practiceViewParent = FXMLLoader.load(getClass().getResource("GUI/PracticeWindow.fxml"));
+        Parent practiceViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/PracticeWindow.fxml"));
         Scene practiceViewScene = new Scene(practiceViewParent);
         System.out.println(data.getCurrentDeck());
 
@@ -59,7 +61,7 @@ public class DeckOverviewController {
     public void handlerBack(ActionEvent event) throws IOException {
         list.getItems().clear();
         deckNames.clear();
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -68,7 +70,7 @@ public class DeckOverviewController {
     }
 
     public void handlerDeckAdd(ActionEvent event) throws IOException {
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/DeckAdd.fxml"));
+        Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckAdd.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
 
         //This line gets the Stage information
@@ -76,7 +78,7 @@ public class DeckOverviewController {
 
         window1.setScene(CardAddViewScene);
         window1.show();
-        //Deck hinzufügen
+        //Model.Deck hinzufügen
         //Fenster popup: Textfeld für Namen
     }
 
@@ -95,7 +97,7 @@ public class DeckOverviewController {
         }
         System.out.println(Data.getCurrentDeckName());
 
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/CardOverview.fxml"));
+        Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardOverview.fxml"));
         Scene CardAddViewScene = new Scene(CardAddViewParent);
 
         //This line gets the Stage information
@@ -136,7 +138,7 @@ public class DeckOverviewController {
             if (Isremoved) {
 
                 System.out.println("  Deleted!");
-                Parent CardAddViewParent = FXMLLoader.load(getClass().getResource("GUI/DeckOverview.fxml"));
+                Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
                 Scene CardAddViewScene = new Scene(CardAddViewParent);
                 Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window1.setScene(CardAddViewScene);

@@ -1,3 +1,6 @@
+package ViewModel;
+
+import Model.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import javafx.event.ActionEvent;
@@ -64,21 +67,21 @@ public class PracticeWindowController {
                     deckReady.sort();
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
-                    LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
+                    LogHelper.writeToLog(Level.INFO, "Aktuelles Model.Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
                     questionLabel.setText(currentFlashcard.getFront());
 
                 } else {
 
-                    statusbarLabel1.setText("Deck "+ Data.getCurrentDeckName() +" noch nicht lernbereit!");
+                    statusbarLabel1.setText("Model.Deck "+ Data.getCurrentDeckName() +" noch nicht lernbereit!");
                     disableControls();
-                    LogHelper.writeToLog(Level.INFO, "Aktuelles Deck enthält keine Karten die gelernt werden können.");
+                    LogHelper.writeToLog(Level.INFO, "Aktuelles Model.Deck enthält keine Karten die gelernt werden können.");
                 }
 
             } else {
 
-                statusbarLabel1.setText("Es wurde kein Deck ausgewählt!");
+                statusbarLabel1.setText("Es wurde kein Model.Deck ausgewählt!");
                 disableControls();
-                LogHelper.writeToLog(Level.INFO, "Kein Deck ausgewählt.");
+                LogHelper.writeToLog(Level.INFO, "Kein Model.Deck ausgewählt.");
             }
 
         } catch (Exception ex) {
@@ -96,7 +99,7 @@ public class PracticeWindowController {
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern des aktuellen Decks.");
         }
-        Parent deckIndexController = FXMLLoader.load(getClass().getResource("GUI/DeckOverview.fxml"));
+        Parent deckIndexController = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
         Scene mainViewScene = new Scene(deckIndexController);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

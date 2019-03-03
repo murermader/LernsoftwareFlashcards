@@ -1,7 +1,9 @@
+package ViewModel;
+
+import Model.*;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +47,7 @@ public class CardOverviewController {
 
     public void handlerBack(ActionEvent event) throws IOException {
 
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -54,7 +56,7 @@ public class CardOverviewController {
     }
 
     public void handlerCardAdd(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/CardAdd.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardAdd.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -63,7 +65,7 @@ public class CardOverviewController {
     }
 
     public void handlerCardEdit(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getResource("GUI/CardEdit.fxml"));
+        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardEdit.fxml"));
         Scene mainViewScene = new Scene(mainViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -77,17 +79,17 @@ public class CardOverviewController {
 
         /*String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
-        Deck currentDeck = data.getCurrentDeck();
+        Model.Deck currentDeck = data.getCurrentDeck();
 
         if (selectedItem != null) {
-            for (Flashcard card: currentDeck.getCards()) {
+            for (Model.Flashcard card: currentDeck.getCards()) {
                 if (selectedItem.equals(card.getName())) {
-                    Data.setCurrentCardName(selectedItem);
-                    LogHelper.writeToLog(Level.INFO, "setCurrentCardname: " + selectedItem);
+                    Model.Data.setCurrentCardName(selectedItem);
+                    Model.LogHelper.writeToLog(Level.INFO, "setCurrentCardname: " + selectedItem);
                 }
             }
         }
-        System.out.println(Data.getCurrentDeckName());*/
+        System.out.println(Model.Data.getCurrentDeckName());*/
 
     }
 }

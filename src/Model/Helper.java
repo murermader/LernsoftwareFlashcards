@@ -1,3 +1,5 @@
+package Model;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-//Hilfsklasse mit Methoden wie OS herausfinden, Dateien (User, Decks) speichern und auslesen,
+//Hilfsklasse mit Methoden wie OS herausfinden, Dateien (Model.User, Decks) speichern und auslesen,
 //SampleDecks erstellen etc. Alles was nützlich sein könnte und nicht in die anderen Klassen passt.
-class Helper {
+public class Helper {
 
   private Path flashcardsDirectory;
   private Path logDirectory;
@@ -26,7 +28,7 @@ class Helper {
   private static final Path LOG_DIRECTORY_LINUX = Paths
       .get(System.getProperty("user.home"), "Library", "Application Support", "flashcards", "Log");
 
-  Helper() {
+  public Helper() {
 
     if (getOperationSystemNameLowerCase().equals("windows")) {
       flashcardsDirectory = FLASHCARDS_DIRECTORY_WINDOWS;
@@ -53,16 +55,16 @@ class Helper {
     }
   }
 
-  Path getFlashcardsDirectory() {
+  public Path getFlashcardsDirectory() {
     return flashcardsDirectory;
   }
 
-  Path getLogDirectory() {
+  public Path getLogDirectory() {
     return logDirectory;
   }
 
   //Gibt eine Liste mit den Dateinamen der Decks zurück (ohne Dateiendung).
-  List<String> getDeckNames() {
+  public List<String> getDeckNames() {
 
     try {
 
@@ -117,7 +119,7 @@ class Helper {
 
       } catch (ClassCastException ex) {
         LogHelper.writeToLog(Level.INFO,
-            "Die gespeicherten User sind womöglich veraltet. Bitte legen Sie neue User an." + ex);
+            "Die gespeicherten Model.User sind womöglich veraltet. Bitte legen Sie neue Model.User an." + ex);
 
       } catch (Exception ex) {
         LogHelper.writeToLog(Level.INFO, "Fehler beim Einlesen der Users Datei" + ex);
@@ -140,11 +142,11 @@ class Helper {
       }
 
     } catch (Exception ex) {
-      LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern der User" + ex);
+      LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern der Model.User" + ex);
     }
   }
 
-  void saveDeckToFile(Deck deck) {
+  public void saveDeckToFile(Deck deck) {
 
     if (deck != null) {
       try {
@@ -155,20 +157,20 @@ class Helper {
         objectStream.writeObject(deck);
         objectStream.close();
         LogHelper.writeToLog(Level.INFO,
-            "Deck " + deck.getName() + " (" + deck.getOwner() + ") gespeichtert.");
+            "Model.Deck " + deck.getName() + " (" + deck.getOwner() + ") gespeichtert.");
 
       } catch (Exception ex) {
         LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Ordners: " + ex);
       }
     } else {
-      LogHelper.writeToLog(Level.INFO, "Deck nicht gespeichert. Entweder war das Deck leer, "
-          + "oder das Deck hatte keinen Namen.");
+      LogHelper.writeToLog(Level.INFO, "Model.Deck nicht gespeichert. Entweder war das Model.Deck leer, "
+          + "oder das Model.Deck hatte keinen Namen.");
     }
   }
 
   //readObject gibt eine Warnung, da nicht sichergestellt werden kann, ob das zurückgegebene Objekt
-  //tatsächlich vom Typ List<Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
-  Deck getDeckFromFile(String deckName) {
+  //tatsächlich vom Typ List<Model.Flashcard> ist. Kann unterdrückt werden, da das Objekt nur von diesem Typ sein kann.
+  public Deck getDeckFromFile(String deckName) {
 
     Deck deck;
     Object object;
@@ -199,7 +201,7 @@ class Helper {
     return deck;
   }
 
-  void createDirectories() {
+  public void createDirectories() {
 
     try {
 
@@ -221,7 +223,7 @@ class Helper {
     }
   }
 
-  void createSampleDeck(String deckName, int length, String owner) {
+  public void createSampleDeck(String deckName, int length, String owner) {
 
     try {
 
@@ -232,7 +234,7 @@ class Helper {
 
         int random1 = (int) (Math.random() * 50 + 1);
         int random2 = (int) (Math.random() * 100 + 1);
-        //list.add(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
+        //list.add(new Model.Flashcard(Integer.toString(random1), Integer.toString(random2)));
         deck.addCard(new Flashcard(Integer.toString(random1), Integer.toString(random2)));
       }
       saveDeckToFile(deck);

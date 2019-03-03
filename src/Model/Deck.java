@@ -1,3 +1,5 @@
+package Model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -5,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 
-// Ein Deck ist eine Zusammenfassung von mehreren Flashcards, die einem User zugeteilt wurde.
+// Ein Model.Deck ist eine Zusammenfassung von mehreren Flashcards, die einem Model.User zugeteilt wurde.
 public class Deck implements Serializable {
 
     private String name;
@@ -13,7 +15,7 @@ public class Deck implements Serializable {
     private String owner;
 
     //Konstruktur
-    Deck(String name, List<Flashcard> cards, String owner) {
+    public Deck(String name, List<Flashcard> cards, String owner) {
         this.owner = owner;
         setName(name);
         this.cards = cards;
@@ -65,16 +67,16 @@ public class Deck implements Serializable {
         }
     }
 
-    //Sortiert das Deck nach dem Datum. Kleinstes Datum zuerst.
+    //Sortiert das Model.Deck nach dem Datum. Kleinstes Datum zuerst.
     public void sort() {
 
         try {
             if (cards != null) {
                 cards.sort(Comparator.comparing(Flashcard::getRepetitionDate));
-                LogHelper.writeToLog(Level.INFO, "Karten von Deck " + name + " sortiert.");
+                LogHelper.writeToLog(Level.INFO, "Karten von Model.Deck " + name + " sortiert.");
 
             } else {
-                LogHelper.writeToLog(Level.INFO, "Karten von Deck " + name + " nicht sortiert (null).");
+                LogHelper.writeToLog(Level.INFO, "Karten von Model.Deck " + name + " nicht sortiert (null).");
             }
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Sortieren der Karten" + ex);
