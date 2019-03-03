@@ -3,8 +3,6 @@ package ViewModel;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,7 +26,6 @@ public class DeckAddController {
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Erstellen des Stapels "+deckName + ex);
         }
-
         //Verweis um den Stapel zu befüllen
         helper.switchScene(event,"DeckOverview.fxml");
     }

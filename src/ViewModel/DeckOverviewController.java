@@ -16,7 +16,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -87,11 +86,9 @@ public class DeckOverviewController {
                     LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + deck.getName());
                 }
             }
-            //Szene wechseln
             helper.switchScene(event,"CardOverview.fxml");
         }
         statusbarLabel1.setText("Es wurde kein Deck ausgewählt! - Bitte zuerst ein Deck auswählen.");
-        //selectedItem == Null --> Statusbar
     }
 
     public void handlerDeleteDeck(ActionEvent event) throws IOException {
@@ -108,7 +105,6 @@ public class DeckOverviewController {
             }
         }
         System.out.println(Data.getCurrentDeckName());
-
 
         //Pfad des Decks finden
         File deck = new File(Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", Data.getCurrentDeckName()).toString() + ".txt");

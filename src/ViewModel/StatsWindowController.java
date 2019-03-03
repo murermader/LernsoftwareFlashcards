@@ -24,36 +24,41 @@ public class StatsWindowController {
     public Button resetTime= new Button();
     public Helper helper = new Helper();
     public Data data = new Data();
-    public UserStats userStats = new UserStats(Data.getCurrentUser());
+    private UserStats userStats = new UserStats(Data.getCurrentUser());
 
     @FXML
     public void initialize() {
-        userStats.setName(Data.getCurrentUser());
-        userStats.setNumberOfDecks(data.getListOfDecks().size());
 
-        for (Deck deck : data.getListOfDecks()) {
-            int l = deck.getLength();
-            this.lenght += l;
-            LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + l);
+        try{
+            userStats.setName(Data.getCurrentUser());
+            userStats.setNumberOfDecks(data.getListOfDecks().size());
+
+            for (Deck deck : data.getListOfDecks()) {
+                int l = deck.getLength();
+                this.lenght += l;
+                LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + l);
+            }
+            LogHelper.writeToLog(Level.INFO, "Zeit: " + userStats.getTimeSpentLearning());
+
+            userStats.setNumberOfCards(lenght);
+            nameLabel.setText(userStats.getName());
+            deckCount.setText("" + userStats.getNumberOfDecks());
+            cardCount.setText("" + userStats.getNumberOfCards());
+            cardLearned.setText("" + userStats.getCardsLearned());
+            timeSpent.setText(userStats.getTimeSpentLearning() + timeIndication);
+
+        } catch(Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Initialiseren des StatsWindows " +ex);
         }
-        LogHelper.writeToLog(Level.INFO, "Zeit: " + userStats.getTimeSpentLearning());
-
-
-        userStats.setNumberOfCards(lenght);
-
-        nameLabel.setText(userStats.getName());
-        deckCount.setText("" + userStats.getNumberOfDecks());
-        cardCount.setText("" + userStats.getNumberOfCards());
-        cardLearned.setText("" + userStats.getCardsLearned());
-        timeSpent.setText(userStats.getTimeSpentLearning() + timeIndication);
     }
 
+    @FXML
     public void handlerReset(ActionEvent event) {
         userStats.resetTime();
         helper.switchScene(event,"StatsWindow.fxml");
     }
 
-
+    @FXML
     public void handlerBack(ActionEvent event) {
         helper.switchScene(event,"MainWindow.fxml");
     }

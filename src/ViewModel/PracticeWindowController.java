@@ -11,7 +11,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import java.io.IOException;
 import java.util.logging.Level;
 
 public class PracticeWindowController {
@@ -29,7 +28,6 @@ public class PracticeWindowController {
     public Button show = new Button();
     public HBox statusbar = new HBox();
 
-    //Globale Variablen
     private Data data = new Data();
     private Helper helper = new Helper();
     private UserStats userStats = new UserStats(Data.getCurrentUser());
@@ -49,11 +47,10 @@ public class PracticeWindowController {
 
                 deckReady = data.getCurrentDeck();
                 deckReady.ready();
+                if (Data.getCurrentUser() != null) {
 
-                if(Data.getCurrentUser() != null){
                     statusbarLabel1.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
                 }
-
                 if (deckReady.getLength() > 0) {
 
                     deckReady.sort();
@@ -64,35 +61,38 @@ public class PracticeWindowController {
 
                 } else {
 
-                    statusbarLabel1.setText(Data.getCurrentDeckName() +" noch nicht lernbereit!");
+                    statusbarLabel1.setText(Data.getCurrentDeckName() + " noch nicht lernbereit!");
                     disableControls();
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Model.Deck enthält keine Karten die gelernt werden können.");
                 }
-
             } else {
 
                 statusbarLabel1.setText("Es wurde kein Model.Deck ausgewählt!");
                 disableControls();
                 LogHelper.writeToLog(Level.INFO, "Kein Model.Deck ausgewählt.");
             }
-
         } catch (Exception ex) {
+
             LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des \"Üben\"-Windows: " + ex);
         }
     }
 
     //Eventhandling
     public void handlerBack(ActionEvent event) {
-        countTime = System.currentTimeMillis()-countTime;
-        userStats.setTimeSpentLearning(countTime);
+
         try {
+            countTime = System.currentTimeMillis() - countTime;
+            userStats.setTimeSpentLearning(countTime);
+
             if (Data.getCurrentDeckName() != null) {
+
                 helper.saveDeckToFile(data.getCurrentDeck());
             }
         } catch (Exception ex) {
+
             LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern des aktuellen Decks.");
         }
-        helper.switchScene(event,"DeckOverview.fxml");
+        helper.switchScene(event, "DeckOverview.fxml");
     }
 
     public void handlerEasy() {
@@ -109,18 +109,24 @@ public class PracticeWindowController {
 
     public void handlerShowBack() {
 
-        answerLabel.setText(currentFlashcard.getBack());
-        easy.setDisable(false);
-        ok.setDisable(false);
-        hard.setDisable(false);
-        //Nachdem die Rückseite angezeigt wird, sollen die Abfragezeiten über den Buttons angezeigt werden
-        easyTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel() + 2));
-        okTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel() + 1));
-        hardTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel()));
+        try{
+            answerLabel.setText(currentFlashcard.getBack());
+            easy.setDisable(false);
+            ok.setDisable(false);
+            hard.setDisable(false);
+            //Nachdem die Rückseite angezeigt wird, sollen die Abfragezeiten über den Buttons angezeigt werden
+            easyTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel() + 2));
+            okTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel() + 1));
+            hardTime.setText(currentFlashcard.returnTimeIntervalAsString(currentFlashcard.getLevel()));
+
+        } catch(Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Anzeigen der Rückseite " +ex);
+        }
     }
 
     private void finishUpCard(int difficulty) {
-        try{
+
+        try {
             easy.setDisable(true);
             ok.setDisable(true);
             hard.setDisable(true);
@@ -147,16 +153,20 @@ public class PracticeWindowController {
                 countTime = System.currentTimeMillis() - countTime;
                 userStats.setTimeSpentLearning(countTime);
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Vearbeiten der Karte");
         }
     }
 
-    private void disableControls(){
+    private void disableControls() {
 
-        easy.setDisable(true);
-        ok.setDisable(true);
-        hard.setDisable(true);
-        show.setDisable(true);
+        try{
+            easy.setDisable(true);
+            ok.setDisable(true);
+            hard.setDisable(true);
+            show.setDisable(true);
+        } catch(Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Deaktivieren der Controls " +ex);
+        }
     }
 }

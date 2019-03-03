@@ -16,16 +16,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
-
 public class MainWindowController {
-
-    //: Todo View ViewModel anpassen an Java 11 und FXML Dateien neu Schreiben
-    // :Todo Scenen Wechsel
 
     //FXML Elemente
     public ComboBox userComboBox = new ComboBox();
@@ -35,6 +29,7 @@ public class MainWindowController {
     public Button statsButton = new Button();
     public HBox statusbar = new HBox();
     public Label statusbarLabel1 = new Label();
+
     private Data data = new Data();
     private Helper helper = new Helper();
 

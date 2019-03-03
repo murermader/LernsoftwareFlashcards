@@ -21,12 +21,10 @@ public class CardAddController {
     public TextField questionTextField = new TextField();
     public TextField answerTextField = new TextField();
     public Button addButton = new Button();
-
     private Helper helper = new Helper();
     private Data data = new Data();
     private Deck currentDeck;
     private boolean cardIsUnique = true;
-
 
     @FXML
     public void initialize() {
