@@ -16,7 +16,6 @@ public class StatsWindowController {
     public Label deckCount = new Label();
     public Label cardCount = new Label();
 
-    public Button resetTime= new Button();
     public Helper helper = new Helper();
     public Data data = new Data();
     private UserStats userStats = new UserStats(Data.getCurrentUser());
