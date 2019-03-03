@@ -11,7 +11,9 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 //Hilfsklasse mit Methoden wie OS herausfinden, Dateien (Model.User, Decks) speichern und auslesen,
@@ -163,11 +165,47 @@ public class Helper {
     }
   }
 
+  public void saveUserTimeToFile(List<String> userTime) {
+
+    try {
+      if (userTime != null) {
+        FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(
+                flashcardsDirectory.toString(),
+                "UserStats.txt").toString());
+        ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
+        objectStream.writeObject(userTime);
+        objectStream.close();
+      }
+
+    } catch (Exception ex) {
+      LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern von der Zeit" + ex);
+    }
+  }
+/*
+
+  public void saveUserTimeToFile(Map<String, Integer> time) {
+
+    try {
+      if (time != null) {
+        FileOutputStream fileStreamOut = new FileOutputStream(Paths.get(
+                flashcardsDirectory.toString(),
+                "UserStats.txt").toString());
+        ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);
+        objectStream.writeObject(time);
+        objectStream.close();
+      }
+
+    } catch (Exception ex) {
+      LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern der Zeit" + ex);
+    }
+  }
+*/
+
   public void saveDeckToFile(Deck deck) {
 
     if (deck != null) {
-      try {
 
+      try {
         FileOutputStream fileStreamOut = new FileOutputStream(
             Paths.get(flashcardsDirectory.toString(), deck.getName() + ".txt").toString());
         ObjectOutputStream objectStream = new ObjectOutputStream(fileStreamOut);

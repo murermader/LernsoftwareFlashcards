@@ -13,7 +13,7 @@
       <Label fx:id="cardCount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label text="Anzahl Karten gelernt: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
       <Label fx:id="cardLearned" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label text="Zeit gelernt:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+      <Label text="Gelernt:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
       <Label fx:id="timeSpent" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Button alignment="CENTER" mnemonicParsing="false" onAction="#handlerReset" prefWidth="120.0" text="Zeit zurücksetzen" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
     </GridPane>
