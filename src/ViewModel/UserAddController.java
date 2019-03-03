@@ -13,7 +13,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -35,7 +34,7 @@ public class UserAddController {
         }
     }
 
-    public void handlerConfirm(ActionEvent event) throws IOException {
+    public void handlerConfirm(ActionEvent event) {
 
         try {
             String newUser = textField.getText();
@@ -68,7 +67,7 @@ public class UserAddController {
     }
 
     @FXML
-    public void handlerBack(ActionEvent event) throws IOException {
+    public void handlerBack(ActionEvent event) {
         switchToManageUserView(event);
     }
 

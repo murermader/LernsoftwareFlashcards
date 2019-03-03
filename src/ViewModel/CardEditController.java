@@ -11,8 +11,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-
-import java.io.IOException;
 import java.util.logging.Level;
 
 public class CardEditController {

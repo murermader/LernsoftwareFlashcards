@@ -29,7 +29,6 @@ public class MainWindowController {
     public Button statsButton = new Button();
     public HBox statusbar = new HBox();
     public Label statusbarLabel1 = new Label();
-
     private Data data = new Data();
     private Helper helper = new Helper();
 

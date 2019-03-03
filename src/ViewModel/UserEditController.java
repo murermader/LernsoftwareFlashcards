@@ -96,6 +96,5 @@ public class UserEditController {
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Updaten der Userliste: " + ex);
         }
-
     }
 }

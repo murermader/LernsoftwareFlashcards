@@ -3,10 +3,7 @@ package ViewModel;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import java.io.IOException;
 import java.util.logging.Level;
 
 public class StatsWindowController {
@@ -19,9 +16,6 @@ public class StatsWindowController {
     public Label timeSpent = new Label();
 
     private int lenght;
-    private String timeIndication = " Minuten";
-
-    public Button resetTime= new Button();
     public Helper helper = new Helper();
     public Data data = new Data();
     private UserStats userStats = new UserStats(Data.getCurrentUser());
@@ -45,6 +39,7 @@ public class StatsWindowController {
             deckCount.setText("" + userStats.getNumberOfDecks());
             cardCount.setText("" + userStats.getNumberOfCards());
             cardLearned.setText("" + userStats.getCardsLearned());
+            String timeIndication = " Minuten";
             timeSpent.setText(userStats.getTimeSpentLearning() + timeIndication);
 
         } catch(Exception ex){
