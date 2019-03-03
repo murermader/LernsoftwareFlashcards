@@ -30,7 +30,7 @@ public class DeckAddController {
         }
 
         //Verweis um den Stapel zu befüllen
-        helper.switchScene(event,"CardAdd.fxml");
+        helper.switchScene(event,"DeckOverview.fxml");
     }
 
     public void handlerBack(ActionEvent event)throws IOException{
