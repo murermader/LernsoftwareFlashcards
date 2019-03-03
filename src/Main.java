@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import Model.Helper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,7 +31,7 @@ public class Main extends Application {
             helper.createSampleDeck("test4",2, "Beispieldeck");
             helper.createSampleDeck("test4",2, "Beispieldeck");
 
-            Parent root = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("View/MainWindow.fxml"));
             Scene scene = new Scene(root);
             stage.getIcons().add(new Image("icon.png"));
             stage.setTitle("Flashcards - Projekt von Rafael, Kai & Silas");

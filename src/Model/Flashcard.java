@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Date;
 import java.util.logging.Level;
 
@@ -36,35 +38,35 @@ public class Flashcard implements java.io.Serializable {
         level = 0;
         isLearned = false;
         repetitionDate = new Date();
-        //LogHelper.writeToLog(Level.INFO, "Flashkarte mit ID:\""+ id + "\" erstellt.");
+        //Model.LogHelper.writeToLog(Level.INFO, "Flashkarte mit ID:\""+ id + "\" erstellt.");
     }
 
     //Getter & Setter
-    String getFront() {
+    public String getFront() {
         return front;
     }
 
-    void setFront(String front) {
+    public void setFront(String front) {
         this.front = front;
     }
 
-    String getBack() {
+    public String getBack() {
         return back;
     }
 
-    void setBack(String back) {
+    public void setBack(String back) {
         this.back = back;
     }
 
-    int getDifficulty() {
+    public int getDifficulty() {
         return difficulty;
     }
 
-    void setDifficulty(int difficulty) {
+    public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
-    void setLevel(int level) {
+    public void setLevel(int level) {
 
         if (level < 11) {
             this.level = level;
@@ -74,28 +76,28 @@ public class Flashcard implements java.io.Serializable {
         }
     }
 
-    int getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    boolean getLearned() {
+    public boolean getLearned() {
         return isLearned;
     }
 
-    void setLearned(boolean isLearned) {
+    public void setLearned(boolean isLearned) {
         this.isLearned = isLearned;
     }
 
-    Date getRepetitionDate() {
+    public Date getRepetitionDate() {
         return repetitionDate;
     }
 
-    void setRepetitionDate(Date repetitionDate) {
+    public void setRepetitionDate(Date repetitionDate) {
         this.repetitionDate = repetitionDate;
     }
 
     //updateInterval
-    void updateInterval() {
+    public void updateInterval() {
 
         switch (difficulty) {
             case (0): //Difficulty 0 --> direkt nocheinmal wiederholen, "kein update"
