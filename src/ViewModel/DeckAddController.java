@@ -15,7 +15,6 @@ public class DeckAddController {
     public void handlerConfirm(ActionEvent event) {
 
         String deckName = StapelText.getText();
-        System.out.println(deckName);
 
         try {
 

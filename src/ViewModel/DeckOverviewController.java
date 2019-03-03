@@ -104,11 +104,9 @@ public class DeckOverviewController {
                 }
             }
         }
-        System.out.println(Data.getCurrentDeckName());
 
         //Pfad des Decks finden
         File deck = new File(Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", Data.getCurrentDeckName()).toString() + ".txt");
-        System.out.println("Attempting to delete " + deck.getAbsolutePath());
 
         if (!deck.exists()) {
             statusbarLabel1.setText("Stapel existiert nicht");

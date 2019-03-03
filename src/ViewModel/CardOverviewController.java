@@ -15,6 +15,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+
 import java.util.logging.Level;
 
 public class CardOverviewController {
@@ -93,9 +94,6 @@ public class CardOverviewController {
             list.getItems().remove(selectedIdx);
             list.getSelectionModel().select(newSelectedIdx);
             //removes the player for the array
-            System.out.println("selectIdx: " + selectedIdx);
-            System.out.println("item: " + itemToRemove);
-            System.out.println(data.getCurrentDeck());
 
             //Karte löschen
             currentDeck.removeCard(currentDeck.getCardByName(itemToRemove));
