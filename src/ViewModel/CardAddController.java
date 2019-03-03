@@ -26,7 +26,8 @@ public class CardAddController {
 
     private Helper helper = new Helper();
     private Data data = new Data();
-    private Deck deck;
+    private Deck currentDeck;
+    private boolean cardIsUnique = true;
 
 
     @FXML
@@ -36,8 +37,8 @@ public class CardAddController {
             statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
 
             if(!Data.getCurrentUser().isEmpty()){
-                deck = data.getCurrentDeck();
-                statusbarLabel1.setText("Aktuelles Deck: " + deck.getName());
+                currentDeck = data.getCurrentDeck();
+                statusbarLabel1.setText("Aktuelles Deck: " + currentDeck.getName());
 
             } else {
                 statusbarLabel1.setText("Aufgrund eines Fehlers konnte der jetzige Benutzer nicht ermittelt werden");
@@ -49,19 +50,29 @@ public class CardAddController {
     }
 
     @FXML
-    public void handlerBack(ActionEvent event) throws IOException {
+    public void handlerBack(ActionEvent event) {
         helper.switchScene(event, "CardOverview.fxml");
     }
 
     @FXML
-    public void handlerAdd(ActionEvent event) throws IOException {
+    public void handlerAdd() {
 
         if(!questionTextField.getText().isEmpty() && !answerTextField.getText().isEmpty()){
 
-            Flashcard flashcard = new Flashcard(questionTextField.getText(), answerTextField.getText());
-            deck.addCard(flashcard);
-            helper.saveDeckToFile(deck);
-            statusbarLabel1.setText("Karte hinzugefügt.");
+            for (Flashcard card: currentDeck.getCards()) {
+                if(card.getFront().equals(questionTextField.getText())){
+                    cardIsUnique = false;
+                }
+            }
+            if(cardIsUnique){
+                Flashcard flashcard = new Flashcard(questionTextField.getText(), answerTextField.getText());
+                currentDeck.addCard(flashcard);
+                helper.saveDeckToFile(currentDeck);
+                statusbarLabel1.setText("Karte hinzugefügt.");
+            } else {
+                statusbarLabel1.setText("Karte konnte nicht hinzugefügt werden, da sie nicht einzigartig ist.");
+                cardIsUnique = true; //Muss wieder auf true gestellt werden, da nach einer nicht-einzigartigen Karte dieser Wert wieder zurückgesetzt werden muss.
+            }
         } else {
             statusbarLabel1.setText("Karte konnte nicht hinzugefügt werden. (Leere Felder?)");
         }
