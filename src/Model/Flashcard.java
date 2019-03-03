@@ -122,44 +122,6 @@ public class Flashcard implements java.io.Serializable {
         }
     }
 
-    public long returnTimeInterval(int level) {
-
-        long newTime = 0;
-        switch (level) {
-            case (0):
-                newTime = TEN_MINUTES_IN_MILLIS;
-                break;
-            case (1):
-                newTime = THIRY_MINUTES_IN_MILLIS;
-                break;
-            case (2):
-                newTime = ONE_HOUR_IN_MILLIS;
-                break;
-            case (3):
-                newTime = FIVE_HOURS_IN_MILLIS;
-                break;
-            case (4):
-                newTime = NINE_HOURS_IN_MILLIS;
-                break;
-            case (5):
-                newTime = ONE_DAY_IN_MILLIS;
-                break;
-            case (6):
-                newTime = FIVE_DAYS_IN_MILLIS;
-                break;
-            case (7):
-                newTime = TWENTY_FIVE_DAYS_IN_MILLIS;
-                break;
-            case (8):
-                newTime = FOUR_MONTHS_IN_MILLIS;
-                break;
-            case (9):
-                newTime = TWO_YEARS_IN_MILLIS;
-                break;
-        }
-        return newTime;
-    }
-
     public String returnTimeIntervalAsString(int level) {
 
         switch (level) {
