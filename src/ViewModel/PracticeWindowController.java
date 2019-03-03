@@ -11,7 +11,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -24,12 +23,10 @@ public class PracticeWindowController {
     public Label okTime = new Label();
     public Label hardTime = new Label();
     public Label statusbarLabel1 = new Label();
-
     public Button easy = new Button();
     public Button ok = new Button();
     public Button hard = new Button();
     public Button show = new Button();
-
     public HBox statusbar = new HBox();
 
     //Globale Variablen
@@ -62,12 +59,12 @@ public class PracticeWindowController {
                     deckReady.sort();
                     cardIndexMax = deckReady.getLength();
                     currentFlashcard = deckReady.getCards().get(currentcardIndex);
-                    LogHelper.writeToLog(Level.INFO, "Aktuelles Model.Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
+                    LogHelper.writeToLog(Level.INFO, "Aktuelles Deck: " + deckReady.getName() + " ready mit " + deckReady.getLength() + " Karten");
                     questionLabel.setText(currentFlashcard.getFront());
 
                 } else {
 
-                    statusbarLabel1.setText("Model.Deck "+ Data.getCurrentDeckName() +" noch nicht lernbereit!");
+                    statusbarLabel1.setText(Data.getCurrentDeckName() +" noch nicht lernbereit!");
                     disableControls();
                     LogHelper.writeToLog(Level.INFO, "Aktuelles Model.Deck enthält keine Karten die gelernt werden können.");
                 }
@@ -123,33 +120,35 @@ public class PracticeWindowController {
     }
 
     private void finishUpCard(int difficulty) {
+        try{
+            easy.setDisable(true);
+            ok.setDisable(true);
+            hard.setDisable(true);
+            easyTime.setText("");
+            okTime.setText("");
+            hardTime.setText("");
+            currentFlashcard.setDifficulty(difficulty);
+            currentFlashcard.updateInterval();
+            //deck.getCards().remove(currentcardIndex);
+            answerLabel.setText("");
+            currentcardIndex++;
 
-        //TODO: Aufzeichnen dass die Karte gelernt wurde.
-        easy.setDisable(true);
-        ok.setDisable(true);
-        hard.setDisable(true);
-        easyTime.setText("");
-        okTime.setText("");
-        hardTime.setText("");
-        currentFlashcard.setDifficulty(difficulty);
-        currentFlashcard.updateInterval();
-        //deck.getCards().remove(currentcardIndex);
-        answerLabel.setText("");
-        currentcardIndex++;
+            if (currentcardIndex < cardIndexMax) {
 
-        if (currentcardIndex < cardIndexMax) {
+                currentFlashcard = deckReady.getCards().get(currentcardIndex);
+                questionLabel.setText(currentFlashcard.getFront());
+            } else {
 
-            currentFlashcard = deckReady.getCards().get(currentcardIndex);
-            questionLabel.setText(currentFlashcard.getFront());
-        } else {
-
-            questionLabel.setText("");
-            statusbarLabel1.setText("Der Stapel ist komplett gelernt!");
-            statusbarLabel1.setVisible(true);
-            show.setDisable(true);
-            //Zeit wird gestoppt
-            countTime = System.currentTimeMillis() - countTime;
-            userStats.setTimeSpentLearning(countTime);
+                questionLabel.setText("");
+                statusbarLabel1.setText("Der Stapel ist komplett gelernt!");
+                statusbarLabel1.setVisible(true);
+                show.setDisable(true);
+                //Zeit wird gestoppt
+                countTime = System.currentTimeMillis() - countTime;
+                userStats.setTimeSpentLearning(countTime);
+            }
+        } catch (Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Vearbeiten der Karte");
         }
     }
 

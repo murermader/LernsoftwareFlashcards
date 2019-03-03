@@ -55,6 +55,8 @@ public class MainWindowController {
             }
             if (Data.getAllUsers().isEmpty()) {
                 selectUserButton.setDisable(true);
+                decksButton.setDisable(true);
+                statsButton.setDisable(true);
                 statusbarLabel1.setText("Keine Benutzer vorhanden. Zum Fortfahren neue Benutzer erstellen.");
             }
             if (users != null && users.size() > 0) {

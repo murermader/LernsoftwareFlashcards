@@ -65,6 +65,6 @@ public class UserAddController {
     }
 
     private void switchToManageUserView(ActionEvent event) throws IOException {
-        helper.switchScene(event,"manageUser.fxml");
+        helper.switchScene(event,"UserEdit.fxml");
     }
 }
