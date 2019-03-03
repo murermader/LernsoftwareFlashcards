@@ -55,7 +55,11 @@ public class UserAddController {
                     helper.saveUsersToFile(allUsers);
                     switchToManageUserView(event);
                 } else {
-                    statusbarLabel1.setText("Info: Der Name muss länger als 2 und kürzer als 30 Zeichen sein.");
+                    if(!userNameIsUnique){
+                        statusbarLabel1.setText("Info: Der Benutzername muss einzigartig. Es kann jeden Namen nur einmal geben.");
+                    } else {
+                        statusbarLabel1.setText("Info: Der Name muss länger als 2 und kürzer als 30 Zeichen sein.");
+                    }
                 }
             }
         } catch (Exception ex) {
