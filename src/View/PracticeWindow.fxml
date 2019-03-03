@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModel.PracticeWindowController">
+
+<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ViewModel.PracticeWindowController">
   <HBox id="HBox" alignment="CENTER" layoutY="336.0" spacing="5.0" AnchorPane.leftAnchor="10.0">
-    <Button fx:id="easy" disable="true" mnemonicParsing="false" onAction="#handlerEasy" prefHeight="20.0"
-            prefWidth="115.0" text="Leicht"/>
-    <Button fx:id="ok" disable="true" mnemonicParsing="false" onAction="#handlerOk" prefHeight="20.0"
-            prefWidth="115.0" text="Ok"/>
-    <Button fx:id="hard" disable="true" mnemonicParsing="false" onAction="#handlerHard" prefHeight="20.0"
-            prefWidth="120.0" text="Schwer"/>
-    <Button fx:id="show" mnemonicParsing="false" onAction="#handlerShowBack" prefHeight="20.0" prefWidth="180.0"
-            text="Rückseite anzeigen"/>
-    <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" prefHeight="20.0" prefWidth="70.0"
-            text="Zurück"/>
+    <Button fx:id="easy" disable="true" mnemonicParsing="false" onAction="#handlerEasy" prefHeight="20.0" prefWidth="115.0" text="Leicht" />
+    <Button fx:id="ok" disable="true" mnemonicParsing="false" onAction="#handlerOk" prefHeight="20.0" prefWidth="115.0" text="Ok" />
+    <Button fx:id="hard" disable="true" mnemonicParsing="false" onAction="#handlerHard" prefHeight="20.0" prefWidth="120.0" text="Schwer" />
+    <Button fx:id="show" mnemonicParsing="false" onAction="#handlerShowBack" prefHeight="20.0" prefWidth="180.0" text="Rückseite anzeigen" />
+    <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" prefHeight="20.0" prefWidth="70.0" text="Zurück" />
   </HBox>
-  <VBox id="VBox" alignment="CENTER" layoutY="14.0" spacing="40.0" AnchorPane.leftAnchor="10.0">
-    <Label prefWidth="78.0" text="Frage" textAlignment="CENTER"/>
-    <Label fx:id="questionLabel"/>
-    <Label text="Antwort" textAlignment="CENTER"/>
-    <Label fx:id="answerLabel"/>
+  <VBox id="VBox" alignment="CENTER" layoutY="14.0" prefWidth="315.0" spacing="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="325.0">
+    <Label prefWidth="78.0" text="Frage" textAlignment="CENTER">
+      <VBox.margin>
+        <Insets right="250.0" />
+      </VBox.margin>
+    </Label>
+    <Label fx:id="questionLabel" prefWidth="500.0">
+      <VBox.margin>
+        <Insets fx:id="x1" />
+      </VBox.margin>
+    </Label>
+    <Label prefWidth="120.0" text="Antwort" textAlignment="CENTER">
+      <VBox.margin>
+        <Insets right="225.0" />
+      </VBox.margin>
+    </Label>
+    <Label fx:id="answerLabel" prefWidth="500.0" VBox.margin="$x1" />
   </VBox>
-  <Label fx:id="infoLabel" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" textAlignment="JUSTIFY" textFill="#e40000"
-         visible="false" AnchorPane.rightAnchor="30.0">
+  <Label fx:id="infoLabel" layoutY="14.0" prefHeight="35.0" prefWidth="259.0" textAlignment="JUSTIFY" textFill="#e40000" visible="false" AnchorPane.rightAnchor="30.0">
     <font>
-      <Font size="12.0"/>
+      <Font size="12.0" />
     </font>
   </Label>
-  <Label fx:id="easyTime" layoutX="10.0" layoutY="301.0" prefHeight="35.0" prefWidth="115.0" textAlignment="CENTER"/>
-  <Label fx:id="okTime" layoutX="133.0" layoutY="301.0" prefHeight="35.0" prefWidth="115.0" textAlignment="CENTER"/>
-  <Label fx:id="hardTime" layoutX="248.0" layoutY="301.0" prefHeight="35.0" prefWidth="120.0" textAlignment="CENTER"/>
-  <Label fx:id="currentUserLabel" layoutX="427.0" layoutY="67.0"/>
-  <HBox fx:id="statusbar" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-        minWidth="-Infinity" prefHeight="25.0" prefWidth="650.0" AnchorPane.topAnchor="375.0">
-    <Label fx:id="statusbarLabel1"/>
+  <Label fx:id="easyTime" layoutX="10.0" layoutY="301.0" prefHeight="35.0" prefWidth="115.0" textAlignment="CENTER" />
+  <Label fx:id="okTime" layoutX="133.0" layoutY="301.0" prefHeight="35.0" prefWidth="115.0" textAlignment="CENTER" />
+  <Label fx:id="hardTime" layoutX="248.0" layoutY="301.0" prefHeight="35.0" prefWidth="120.0" textAlignment="CENTER" />
+  <Label fx:id="currentUserLabel" layoutX="427.0" layoutY="67.0" />
+  <HBox fx:id="statusbar" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="650.0" AnchorPane.topAnchor="375.0">
+    <Label fx:id="statusbarLabel1" />
   </HBox>
 </AnchorPane>
