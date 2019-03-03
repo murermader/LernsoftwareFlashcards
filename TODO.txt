@@ -5,10 +5,10 @@ Refactoring Code?
   die meiste Klassenlogik selbst geschrieben habe. Schaut euch doch bitte mal an, und sagt mir ob
   das verständlich ist, dass man das gegebennenfalls dann refactorn kann.
 
-in Data:
+in Model.Data:
   -Methode zum Stapel sortieren (Zum Beispiel: Karten mit niedrigem Level zuerst,
-  oder Karten deren Abfragedatum am ältesten ist). Könnte ein neues Deck in Data erstellen, vlt
-  "deckSorted" oder soetwas in der Art. Oder einfach das unsortierte Deck überschreiben
+  oder Karten deren Abfragedatum am ältesten ist). Könnte ein neues Model.Deck in Model.Data erstellen, vlt
+  "deckSorted" oder soetwas in der Art. Oder einfach das unsortierte Model.Deck überschreiben
   -Methode zum "ready" machen. Es sollen alle Karten entfernt werden die noch nicht
   abgefragt werden sollen. (Es gibt schon eine ready Methode, allerdings bin ich mir nicht sicher
   ob diese schon funktionert)
@@ -46,7 +46,7 @@ Lernhistorie / Nutzerhistorie
   und für wie schwer diese Frage empfunden wurde.
   -Anzeige: Vlt als Graph? Umsetzung könnte schwierig werden, aber mit genug Zeit auf jedenfall
   machbar.
-  -Daten wie gesamte Nutzung, wann ein Deck erstellt wurde, welche Decks am öftestens abgefragt
+  -Daten wie gesamte Nutzung, wann ein Model.Deck erstellt wurde, welche Decks am öftestens abgefragt
   werden etc, könnte man zusätzlich speichern
   -Umsetzung, Sammeln der Daten vlt mit einer neuen Klasse, die in unseren Controllern aktiv ist,
   und so beispielsweiße alles mitschreibt wie ein Log?

@@ -1,3 +1,6 @@
+package ViewModel;
+
+import Model.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,7 +26,7 @@ import javafx.stage.Stage;
 
 public class MainWindowController {
 
-    //: Todo GUI Controller anpassen an Java 11 und FXML Dateien neu Schreiben
+    //: Todo View ViewModel anpassen an Java 11 und FXML Dateien neu Schreiben
     // :Todo Scenen Wechsel
 
     //FXML Elemente
@@ -68,7 +71,7 @@ public class MainWindowController {
 
     public void handlerManageUser(ActionEvent event) throws IOException {
 
-        Parent manageUserView = FXMLLoader.load(getClass().getResource("GUI/manageUser.fxml"));
+        Parent manageUserView = FXMLLoader.load(getClass().getClassLoader().getResource("View/manageUser.fxml"));
         Scene practiceViewScene = new Scene(manageUserView);
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window1.setScene(practiceViewScene);
@@ -90,7 +93,8 @@ public class MainWindowController {
     @FXML
     public void handlerDeckIndex(ActionEvent event) throws IOException {
 
-        Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("GUI/DeckIndex.fxml"));
+        //Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("View/DeckOverview.fxml"));
+        Parent DeckIndexParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
         Scene DeckIndexScene = new Scene(DeckIndexParent);
         Stage window2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window2.setScene(DeckIndexScene);
@@ -101,7 +105,7 @@ public class MainWindowController {
     @FXML
     public void handlerStats(ActionEvent event) throws IOException {
 
-        Parent StatsWindowParent = FXMLLoader.load(getClass().getResource("GUI/StatsWindow.fxml"));
+        Parent StatsWindowParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/StatsWindow.fxml"));
         Scene StatsWindowScene = new Scene(StatsWindowParent);
         Stage window3 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window3.setScene(StatsWindowScene);

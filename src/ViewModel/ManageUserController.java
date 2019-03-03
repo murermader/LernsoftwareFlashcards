@@ -1,8 +1,10 @@
+package ViewModel;
+
+import Model.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,8 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -37,7 +37,7 @@ public class ManageUserController {
 
     public void handlerAdd(ActionEvent event) throws IOException {
 
-        Parent userAddView = FXMLLoader.load(getClass().getResource("GUI/UserAdd.fxml"));
+        Parent userAddView = FXMLLoader.load(getClass().getClassLoader().getResource("View/UserAdd.fxml"));
         Scene practiceViewScene = new Scene(userAddView);
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window1.setScene(practiceViewScene);
@@ -55,7 +55,7 @@ public class ManageUserController {
             for (String user : allUsersNew) {
                 if (selectedItem.equals(user)) {
                     toRemove.add(user);
-                    LogHelper.writeToLog(Level.INFO, "User " + user + " entfernt");
+                    LogHelper.writeToLog(Level.INFO, "Model.User " + user + " entfernt");
                 }
             }
             allUsersNew.removeAll(toRemove);
@@ -71,7 +71,7 @@ public class ManageUserController {
         String selectedUser = (String) list.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             Data.setCurrentUser(selectedUser);
-            Parent mainWindowView = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
+            Parent mainWindowView = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
             Scene practiceViewScene = new Scene(mainWindowView);
             //This line gets the Stage information
             Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -82,7 +82,7 @@ public class ManageUserController {
 
     public void handlerGoBack(ActionEvent event) throws IOException {
 
-        Parent mainWindowView = FXMLLoader.load(getClass().getResource("GUI/MainWindow.fxml"));
+        Parent mainWindowView = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
         Scene practiceViewScene = new Scene(mainWindowView);
         //This line gets the Stage information
         Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();

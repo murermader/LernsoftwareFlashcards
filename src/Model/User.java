@@ -1,19 +1,21 @@
+package Model;
+
 import java.io.Serializable;
 import java.util.logging.Level;
 
 public class User implements Serializable {
 
   private String name;
-  public int numberOfDecks;
+  private int numberOfDecks;
   private int numberOfCards;
   private int cardsLearned;
   private long timeSpentLearning; //Zeiteinheit?
 
-  User(String name) {
+  public User(String name) {
     this.name = name;
   }
 
-  String getName() {
+  public String getName() {
     return name;
   }
 
@@ -46,7 +48,7 @@ public class User implements Serializable {
   }
 
   public int getNumberOfCards() {
-//    this.numberOfCards = Deck.getLength();
+//    this.numberOfCards = Model.Deck.getLength();
     LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + numberOfCards);
     return numberOfCards;
   }
