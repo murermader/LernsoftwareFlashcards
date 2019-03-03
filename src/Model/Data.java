@@ -79,7 +79,7 @@ public class Data {
 
     public static void setCurrentUser(String currentUser) {
         Data.currentUser = currentUser;
-        LogHelper.writeToLog(Level.INFO, "Current Model.User neu gesetzt als: " + currentUser);
+        LogHelper.writeToLog(Level.INFO, "User neu gesetzt als: " + currentUser);
     }
 
     public static List<String> getAllUsers() {

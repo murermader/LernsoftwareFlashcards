@@ -50,7 +50,7 @@ public class UserAddController {
                         LogHelper.writeToLog(Level.INFO, "Username konnte nicht angenommen werden, da der Name " + user + " schon existiert.");
                     }
                 }
-                if (!newUser.equals("Beispieldeck") && newUser.length() < 30 && newUser.length() > 2 && userNameIsUnique) {
+                if (newUser.length() < 30 && newUser.length() > 2 && userNameIsUnique) {
                     allUsers.add(newUser);
                     helper.saveUsersToFile(allUsers);
                     switchToManageUserView(event);
