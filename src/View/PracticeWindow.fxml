@@ -22,7 +22,7 @@
   </HBox>
     <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="34.0" prefHeight="100.0" prefWidth="612.0">
         <Label text="Frage: "/>
-        <Label fx:id="questionLabel" text="Label"/>
+        <Label fx:id="questionLabel"/>
     </HBox>
     <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="150.0" prefHeight="100.0" prefWidth="620.0">
         <Label text="Antwort: "/>
