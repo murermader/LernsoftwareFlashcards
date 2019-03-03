@@ -1,7 +1,14 @@
 .root{
+    -fx-font-size: 10pt;
+    -fx-font-family: "Verdana";
     -fx-base: #ffffff;
     -fx-focus-color: #9e9e9e;
     -fx-faint-focus-color: transparent;
+}
+
+
+.anchorPane {
+
 }
 
 .label {
@@ -16,7 +23,10 @@
 }
 
 .button:focused {
-    -fx-background-color: #9e9e9e;
+    -fx-background-color: #9e9e9e;/*
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5, 4, 3;*/
 }
 
 #h1 {
