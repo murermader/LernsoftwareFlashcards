@@ -35,7 +35,7 @@ public class PracticeWindowController {
     //Globale Variablen
     private Data data = new Data();
     private Helper helper = new Helper();
-    private UserStats user = new UserStats(Data.getCurrentUser());
+    private UserStats userStats = new UserStats(Data.getCurrentUser());
     private int currentcardIndex = 0;
     private int cardIndexMax;
     private Flashcard currentFlashcard;
@@ -87,7 +87,7 @@ public class PracticeWindowController {
     //Eventhandling
     public void handlerBack(ActionEvent event) throws IOException {
         countTime = System.currentTimeMillis()-countTime;
-        user.setTimeSpentLearning(countTime);
+        userStats.setTimeSpentLearning(countTime);
         try {
             if (Data.getCurrentDeckName() != null) {
                 helper.saveDeckToFile(data.getCurrentDeck());
@@ -149,7 +149,7 @@ public class PracticeWindowController {
             show.setDisable(true);
             //Zeit wird gestoppt
             countTime = System.currentTimeMillis() - countTime;
-            user.setTimeSpentLearning(countTime);
+            userStats.setTimeSpentLearning(countTime);
         }
     }
 

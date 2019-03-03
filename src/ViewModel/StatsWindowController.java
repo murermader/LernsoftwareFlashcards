@@ -23,32 +23,32 @@ public class StatsWindowController {
     public Button resetTime= new Button();
     public Helper helper = new Helper();
     public Data data = new Data();
-    public UserStats user = new UserStats(Data.getCurrentUser());
+    public UserStats userStats = new UserStats(Data.getCurrentUser());
 
     @FXML
     public void initialize() {
-        user.setName(Data.getCurrentUser());
-        user.setNumberOfDecks(data.getListOfDecks().size());
+        userStats.setName(Data.getCurrentUser());
+        userStats.setNumberOfDecks(data.getListOfDecks().size());
 
         for (Deck deck : data.getListOfDecks()) {
             int l = deck.getLength();
             this.lenght += l;
             LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + l);
         }
-        LogHelper.writeToLog(Level.INFO, "Zeit: " + user.getTimeSpentLearning());
+        LogHelper.writeToLog(Level.INFO, "Zeit: " + userStats.getTimeSpentLearning());
 
 
-        user.setNumberOfCards(lenght);
+        userStats.setNumberOfCards(lenght);
 
-        nameLabel.setText(user.getName());
-        deckCount.setText("" + user.getNumberOfDecks());
-        cardCount.setText("" + user.getNumberOfCards());
-        cardLearned.setText("" + user.getCardsLearned());
-        timeSpent.setText("" + user.getTimeSpentLearning());
+        nameLabel.setText(userStats.getName());
+        deckCount.setText("" + userStats.getNumberOfDecks());
+        cardCount.setText("" + userStats.getNumberOfCards());
+        cardLearned.setText("" + userStats.getCardsLearned());
+        timeSpent.setText("" + userStats.getTimeSpentLearning());
     }
 
     public void handlerReset(ActionEvent event) throws IOException {
-        user.resetTime();
+        userStats.resetTime();
         helper.switchScene(event,"StatsWindow.fxml");
     }
 

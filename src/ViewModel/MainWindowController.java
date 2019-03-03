@@ -82,7 +82,7 @@ public class MainWindowController {
 
     @FXML
     public void handlerEditUser(ActionEvent event) throws IOException {
-        helper.switchScene(event, "editUser.fxml");
+        helper.switchScene(event, "UserEdit.fxml");
     }
 
     @FXML

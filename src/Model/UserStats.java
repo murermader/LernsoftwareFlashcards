@@ -55,7 +55,7 @@ public class UserStats implements Serializable {
   }
 
   public void setTimeSpentLearning(long timeSpentLearning) {
-    LogHelper.writeToLog(Level.INFO, "------------time spent learning" + this.timeSpentLearning);
+    LogHelper.writeToLog(Level.INFO, "------------time spent learning" + timeSpentLearning);
     this.timeSpentLearning = (toIntExact(timeSpentLearning)/1000) + this.timeSpentLearning;
     LogHelper.writeToLog(Level.INFO, "--Zeit: " + timeSpentLearning + " Insgesamt: " + this.timeSpentLearning);
   }
