@@ -101,24 +101,6 @@ public class Deck implements Serializable {
         cards.remove(card);
     }
 
-    public void editCard(Flashcard card, String front, String back, boolean resetProgress) {
-
-        int index;
-        if (cards.contains(card)) {
-            index = cards.indexOf(card);
-            //Überprüfen ob Werte tatsächlich geändet wurden?
-            //Vielleicht falsche Usereingabe etc
-            cards.get(index).setFront(front);
-            cards.get(index).setBack(back);
-
-            if (resetProgress) {
-
-                cards.get(index).setRepetitionDate(new Date());
-                cards.get(index).setLevel(0);
-            }
-        }
-    }
-
     public String getOwner() {
         return owner;
     }

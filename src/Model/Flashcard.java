@@ -19,7 +19,7 @@ public class Flashcard implements java.io.Serializable {
     private static final long TWO_YEARS_IN_MILLIS = 63113904000L;       //9
 
     //Klassenvariablen
-    public static int count = 0;
+    private static int count = 0;
 
     //Instanzvariablen
     private String front;
@@ -49,6 +49,7 @@ public class Flashcard implements java.io.Serializable {
         this.level = anotherFlashcard.level;
         this.isLearned = anotherFlashcard.isLearned;
         this.repetitionDate = anotherFlashcard.repetitionDate;
+        this.difficulty = anotherFlashcard.difficulty;
     }
 
 
