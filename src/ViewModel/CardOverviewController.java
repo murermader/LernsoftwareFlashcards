@@ -24,6 +24,7 @@ public class CardOverviewController {
     public Data data = new Data();
     public Helper helper = new Helper();
     public ListView list = new ListView();
+    private Deck deck;
 
 
     private ObservableList<String> cardNames = FXCollections.observableArrayList();
@@ -95,11 +96,10 @@ public class CardOverviewController {
             System.out.println("item: " + itemToRemove);
 
 
-            System.out.println(data.getCurrentDeck());
 
 
 
-                currentDeck.removeCard(currentDeck.getCardbyName(itemToRemove));
+            deck.removeCard(currentDeck.getCardbyName(itemToRemove));
 
         }
         }
