@@ -1,19 +1,19 @@
 package ViewModel;
 
-import Model.*;
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import Model.Data;
+import Model.Deck;
+import Model.Flashcard;
+import Model.Helper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public class CardOverviewController {
 
@@ -46,35 +46,23 @@ public class CardOverviewController {
         }
     }
 
+    @FXML
     public void handlerBack(ActionEvent event) throws IOException {
-
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        Data.setCurrentDeckName(null);
+        helper.switchScene(event,"DeckOverview.fxml");
     }
 
+    @FXML
     public void handlerCardAdd(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardAdd.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"CardAdd.fxml");
     }
 
+    @FXML
     public void handlerCardEdit(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardEdit.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
-
+        helper.switchScene(event,"CardEdit.fxml");
     }
 
+    @FXML
     public void handlerCardDelete(ActionEvent event) throws IOException {
         //Ausgewählte Karte löschen
 

@@ -1,14 +1,19 @@
 package ViewModel;
 
-import Model.*;
+import Model.Data;
+import Model.Helper;
+import Model.LogHelper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,8 +21,20 @@ import java.util.logging.Level;
 public class UserAddController {
 
     public TextField textField = new TextField();
+    public HBox statusbar = new HBox();
     public Label statusbarLabel1 = new Label();
     private Helper helper = new Helper();
+
+    @FXML
+    public void initialize() {
+
+        try {
+            statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        } catch (Exception ex) {
+            LogHelper.writeToLog(Level.INFO, "Fehler beim Initialisieren des MainWindowControllers " + ex);
+        }
+    }
 
     public void handlerConfirm(ActionEvent event) throws IOException {
 
@@ -48,10 +65,6 @@ public class UserAddController {
     }
 
     private void switchToManageUserView(ActionEvent event) throws IOException {
-        Parent manageUserView = FXMLLoader.load(getClass().getClassLoader().getResource("View/manageUser.fxml"));
-        Scene practiceViewScene = new Scene(manageUserView);
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window1.setScene(practiceViewScene);
-        window1.show();
+        helper.switchScene(event,"manageUser.fxml");
     }
 }

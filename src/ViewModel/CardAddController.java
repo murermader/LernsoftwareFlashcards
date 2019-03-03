@@ -1,50 +1,69 @@
 package ViewModel;
 
 import Model.*;
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+
+import java.io.IOException;
+import java.util.logging.Level;
 
 public class CardAddController {
 
+    public HBox statusbar = new HBox();
+    public Label statusbarLabel1 = new Label();
+    public TextField questionTextField = new TextField();
+    public TextField answerTextField = new TextField();
+    public Button addButton = new Button();
 
-    public ListView CardList = new ListView();
-    private static final Path appDirectoryLog = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", "Log");
-    private static final Path appDirectoryRoot = Paths.get(System.getenv("LOCALAPPDATA"), "flashcards");
-    private Path osXDirectory = Paths.get(System.getenv("user.home"), "Library", "Application Support", "flashcards");
-    Helper helper = new Helper();
-    Data data = new Data();
+    private Helper helper = new Helper();
+    private Data data = new Data();
+    private Deck deck;
 
 
-    public void initialize(String deckName) {
+    @FXML
+    public void initialize() {
+        try{
 
+            statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
 
+            if(!Data.getCurrentUser().isEmpty()){
+                deck = data.getCurrentDeck();
+                statusbarLabel1.setText("Aktuelles Deck: " + deck.getName());
+
+            } else {
+                statusbarLabel1.setText("Aufgrund eines Fehlers konnte der jetzige Benutzer nicht ermittelt werden");
+                addButton.setDisable(true);
+            }
+        } catch (Exception ex){
+            LogHelper.writeToLog(Level.INFO, "Beim Initialisieren des CardAddControllers kam es zu einem Fehler: " +ex);
+        }
     }
 
-
+    @FXML
     public void handlerBack(ActionEvent event) throws IOException {
-
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event, "CardOverview.fxml");
     }
 
+    @FXML
     public void handlerAdd(ActionEvent event) throws IOException {
 
-        System.out.println(Data.getCurrentDeckName());
+        if(!questionTextField.getText().isEmpty() && !answerTextField.getText().isEmpty()){
 
-
-        //Karte hinzufügen zu dem jeweiligen stapen
+            Flashcard flashcard = new Flashcard(questionTextField.getText(), answerTextField.getText());
+            deck.addCard(flashcard);
+            helper.saveDeckToFile(deck);
+            statusbarLabel1.setText("Karte hinzugefügt.");
+        } else {
+            statusbarLabel1.setText("Karte konnte nicht hinzugefügt werden. (Leere Felder?)");
+        }
     }
-
 }

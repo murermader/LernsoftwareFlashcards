@@ -1,10 +1,13 @@
 package Model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -82,6 +85,20 @@ public class Helper {
       LogHelper.writeToLog(Level.INFO, "fehler");
     }
     return null;
+  }
+
+
+  public void switchScene(ActionEvent event, String scene) {
+
+    try{
+      Parent manageUserView = FXMLLoader.load(getClass().getClassLoader().getResource("View/" + scene));
+      Scene practiceViewScene = new Scene(manageUserView);
+      Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      window1.setScene(practiceViewScene);
+      window1.show();
+    } catch (Exception ex) {
+      LogHelper.writeToLog(Level.INFO, "Fehler beim Szenenwechseln auf Szene " + scene);
+    }
   }
 
   //TODO: Testen auf "False Positives", "mögliche Fehler"

@@ -1,20 +1,18 @@
 package ViewModel;
 
-import Model.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
+import Model.Data;
+import Model.Helper;
+import Model.LogHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 
 public class ManageUserController {
 
@@ -36,12 +34,7 @@ public class ManageUserController {
     }
 
     public void handlerAdd(ActionEvent event) throws IOException {
-
-        Parent userAddView = FXMLLoader.load(getClass().getClassLoader().getResource("View/UserAdd.fxml"));
-        Scene practiceViewScene = new Scene(userAddView);
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window1.setScene(practiceViewScene);
-        window1.show();
+        helper.switchScene(event,"UserAdd.fxml");
     }
 
     public void handlerRemove(ActionEvent event) throws IOException {
@@ -71,23 +64,12 @@ public class ManageUserController {
         String selectedUser = (String) list.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             Data.setCurrentUser(selectedUser);
-            Parent mainWindowView = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-            Scene practiceViewScene = new Scene(mainWindowView);
-            //This line gets the Stage information
-            Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window1.setScene(practiceViewScene);
-            window1.show();
+            helper.switchScene(event,"MainWindow.fxml");
         }
     }
 
     public void handlerGoBack(ActionEvent event) throws IOException {
-
-        Parent mainWindowView = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-        Scene practiceViewScene = new Scene(mainWindowView);
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window1.setScene(practiceViewScene);
-        window1.show();
+        helper.switchScene(event,"MainWindow.fxml");
     }
 
     private void updateListView() {

@@ -2,12 +2,8 @@ package ViewModel;
 
 import Model.*;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,18 +30,10 @@ public class DeckAddController {
         }
 
         //Verweis um den Stapel zu befüllen
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardAdd.fxml"));
-        Scene CardAddViewScene = new Scene(CardAddViewParent);
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window1.setScene(CardAddViewScene);
-        window1.show();
+        helper.switchScene(event,"CardAdd.fxml");
     }
 
     public void handlerBack(ActionEvent event)throws IOException{
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"MainWindow.fxml");
     }
 }

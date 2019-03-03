@@ -1,38 +1,54 @@
 package ViewModel;
 
-import Model.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.logging.Level;
+import Model.Data;
+import Model.Deck;
+import Model.Helper;
+import Model.LogHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.logging.Level;
 
 public class DeckOverviewController {
 
+    public HBox statusbar = new HBox();
+    public Label statusbarLabel1 = new Label();
     public ListView list = new ListView<String>();
+    private Helper helper = new Helper();
     private Data data = new Data();
     private ObservableList<String> deckNames = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
 
-        if (!data.isEmpty) {
+        try{
+            statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
+            if (!data.isEmpty) {
 
-            for (Deck deck : data.getListOfDecks()) {
-                deckNames.add(deck.getName() + " (" + deck.getOwner() + ")");
-                System.out.println(deck.getName());
+                for (Deck deck : data.getListOfDecks()) {
+                    deckNames.add(deck.getName() + " (" + deck.getOwner() + ")");
+                    System.out.println(deck.getName());
+                }
+                //noinspection unchecked
+                list.setItems(deckNames);
+            } else {
+                statusbarLabel1.setText("Es sind momentan noch keine Daten vorhanden.");
             }
-            //noinspection unchecked
-            list.setItems(deckNames);
+        } catch(Exception ex) {
+            LogHelper.writeToLog(Level.INFO, "Fehler WIRD NCOH");
         }
     }
 
@@ -47,43 +63,21 @@ public class DeckOverviewController {
                 }
             }
         }
-        Parent practiceViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/PracticeWindow.fxml"));
-        Scene practiceViewScene = new Scene(practiceViewParent);
-        System.out.println(data.getCurrentDeck());
-
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window1.setScene(practiceViewScene);
-        window1.show();
+        helper.switchScene(event,"PracticeWindow.fxml");
     }
 
     public void handlerBack(ActionEvent event) throws IOException {
         list.getItems().clear();
         deckNames.clear();
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"MainWindow.fxml");
     }
 
     public void handlerDeckAdd(ActionEvent event) throws IOException {
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckAdd.fxml"));
-        Scene CardAddViewScene = new Scene(CardAddViewParent);
-
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window1.setScene(CardAddViewScene);
-        window1.show();
-        //Model.Deck hinzufügen
-        //Fenster popup: Textfeld für Namen
+        helper.switchScene(event,"DeckAdd.fxml");
     }
 
     //Kartenansicht
-    public void handlerCardAdd(ActionEvent event) throws IOException {
+    public void handlerOverview(ActionEvent event) throws IOException {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
@@ -94,17 +88,11 @@ public class DeckOverviewController {
                     LogHelper.writeToLog(Level.INFO, "setCurrentDeckname: " + selectedItem);
                 }
             }
+            //Szene wechseln
+            helper.switchScene(event,"CardOverview.fxml");
         }
-        System.out.println(Data.getCurrentDeckName());
-
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardOverview.fxml"));
-        Scene CardAddViewScene = new Scene(CardAddViewParent);
-
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window1.setScene(CardAddViewScene);
-        window1.show();
+        statusbarLabel1.setText("Es wurde kein Deck ausgewählt! - Bitte zuerst ein Deck auswählen.");
+        //selectedItem == Null --> Statusbar
     }
 
     public void handlerDeleteDeck(ActionEvent event) throws IOException {
@@ -138,11 +126,7 @@ public class DeckOverviewController {
             if (Isremoved) {
 
                 System.out.println("  Deleted!");
-                Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
-                Scene CardAddViewScene = new Scene(CardAddViewParent);
-                Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window1.setScene(CardAddViewScene);
-                window1.show();
+                helper.switchScene(event,"DeckOverview.fxml");
 
             } else {
                 System.out.println("  Delete failed - reason unknown");

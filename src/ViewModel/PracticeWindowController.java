@@ -1,15 +1,9 @@
 package ViewModel;
 
 import Model.*;
-import java.io.IOException;
-import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -17,7 +11,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.logging.Level;
 
 public class PracticeWindowController {
 
@@ -48,11 +44,10 @@ public class PracticeWindowController {
 
     @FXML
     public void initialize() {
+        countTime = System.currentTimeMillis();
 
         try {
-
             statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
-            countTime = System.currentTimeMillis();
             if (Data.getCurrentDeckName() != null) {
 
                 deckReady = data.getCurrentDeck();
@@ -91,7 +86,9 @@ public class PracticeWindowController {
 
     //Eventhandling
     public void handlerBack(ActionEvent event) throws IOException {
-
+        countTime = System.currentTimeMillis()-countTime;
+        user.setTimeSpentLearning(countTime);
+        LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
         try {
             if (Data.getCurrentDeckName() != null) {
                 helper.saveDeckToFile(data.getCurrentDeck());
@@ -99,12 +96,7 @@ public class PracticeWindowController {
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern des aktuellen Decks.");
         }
-        Parent deckIndexController = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
-        Scene mainViewScene = new Scene(deckIndexController);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"DeckOverview.fxml");
     }
 
     public void handlerEasy(ActionEvent event) {

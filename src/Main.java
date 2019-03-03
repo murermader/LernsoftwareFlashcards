@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import Model.Helper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,17 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
+
+    private Helper helper = new Helper();
 
     @Override
     public void start(Stage stage) {
 
         try {
-
-            //TODO: Label für alle Karten
-            //TODO: Label für lernbare Karten (d.h. repetitionDate < Today = also deck.ready)
-            Helper helper = new Helper();
             helper.createDirectories();
 
             //Nur Temporär, damit auf allen Geräten testbar
@@ -31,14 +27,13 @@ public class Main extends Application {
             helper.createSampleDeck("test4",2, "Beispieldeck");
             helper.createSampleDeck("test4",2, "Beispieldeck");
 
-            Parent root = FXMLLoader.load(getClass().getResource("View/MainWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
             Scene scene = new Scene(root);
-            stage.getIcons().add(new Image("icon.png"));
+            stage.getIcons().add(new Image("View/icon.png"));
             stage.setTitle("Flashcards - Projekt von Rafael, Kai & Silas");
             stage.setScene(scene);
             stage.show();
             stage.setResizable(false);
-
 
         } catch (IOException e) {
             e.printStackTrace();

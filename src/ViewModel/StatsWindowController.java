@@ -1,17 +1,13 @@
 package ViewModel;
 
 import Model.*;
-import java.io.IOException;
-import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.logging.Level;
 
 public class StatsWindowController {
 
@@ -39,6 +35,9 @@ public class StatsWindowController {
             this.lenght += l;
             LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + l);
         }
+        LogHelper.writeToLog(Level.INFO, "Zeit: " + user.getTimeSpentLearning());
+
+
         user.setNumberOfCards(lenght);
 
         nameLabel.setText(user.getName());
@@ -50,21 +49,11 @@ public class StatsWindowController {
 
     public void handlerReset(ActionEvent event) throws IOException {
         user.resetTime();
-        Parent StatsWindowParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/StatsWindow.fxml"));
-        Scene StatsWindowScene = new Scene(StatsWindowParent);
-        Stage window3 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window3.setScene(StatsWindowScene);
-        window3.show();
+        helper.switchScene(event,"StatsWindow.fxml");
     }
 
 
     public void handlerBack(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"MainWindow.fxml");
     }
 }
