@@ -28,6 +28,7 @@ public class DeckOverviewController {
     public HBox statusbar = new HBox();
     public Label statusbarLabel1 = new Label();
     public ListView list = new ListView<String>();
+    private Helper helper = new Helper();
     private Data data = new Data();
     private ObservableList<String> deckNames = FXCollections.observableArrayList();
 
@@ -63,39 +64,17 @@ public class DeckOverviewController {
                 }
             }
         }
-        Parent practiceViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/PracticeWindow.fxml"));
-        Scene practiceViewScene = new Scene(practiceViewParent);
-        System.out.println(data.getCurrentDeck());
-
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window1.setScene(practiceViewScene);
-        window1.show();
+        helper.switchScene(event,"PracticeWindow.fxml");
     }
 
     public void handlerBack(ActionEvent event) throws IOException {
         list.getItems().clear();
         deckNames.clear();
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainWindow.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"MainWindow.fxml");
     }
 
     public void handlerDeckAdd(ActionEvent event) throws IOException {
-        Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckAdd.fxml"));
-        Scene CardAddViewScene = new Scene(CardAddViewParent);
-
-        //This line gets the Stage information
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window1.setScene(CardAddViewScene);
-        window1.show();
-        //Model.Deck hinzufügen
-        //Fenster popup: Textfeld für Namen
+        helper.switchScene(event,"DeckAdd.fxml");
     }
 
     //Kartenansicht
@@ -111,11 +90,7 @@ public class DeckOverviewController {
                 }
             }
             //Szene wechseln
-            Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardOverview.fxml"));
-            Scene CardAddViewScene = new Scene(CardAddViewParent);
-            Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window1.setScene(CardAddViewScene);
-            window1.show();
+            helper.switchScene(event,"CardOverview.fxml");
         }
         statusbarLabel1.setText("Es wurde kein Deck ausgewählt! - Bitte zuerst ein Deck auswählen.");
         //selectedItem == Null --> Statusbar
@@ -152,11 +127,7 @@ public class DeckOverviewController {
             if (Isremoved) {
 
                 System.out.println("  Deleted!");
-                Parent CardAddViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
-                Scene CardAddViewScene = new Scene(CardAddViewParent);
-                Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window1.setScene(CardAddViewScene);
-                window1.show();
+                helper.switchScene(event,"DeckOverview.fxml");
 
             } else {
                 System.out.println("  Delete failed - reason unknown");

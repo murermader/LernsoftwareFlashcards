@@ -1,9 +1,11 @@
 package ViewModel;
 
 import Model.*;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,6 +40,7 @@ public class MainWindowController {
     public HBox statusbar = new HBox();
     public Label statusbarLabel1 = new Label();
     private Data data = new Data();
+    private Helper helper = new Helper();
 
     @FXML
     public void initialize() {
@@ -54,7 +57,7 @@ public class MainWindowController {
             } else {
                 statusbarLabel1.setText("Aktuell angemeldet als: " + Data.getCurrentUser());
             }
-            if(Data.getAllUsers().isEmpty()){
+            if (Data.getAllUsers().isEmpty()) {
                 selectUserButton.setDisable(true);
                 statusbarLabel1.setText("Keine Benutzer vorhanden. Zum Fortfahren neue Benutzer erstellen.");
             }
@@ -69,15 +72,6 @@ public class MainWindowController {
         }
     }
 
-    public void handlerManageUser(ActionEvent event) throws IOException {
-
-        Parent manageUserView = FXMLLoader.load(getClass().getClassLoader().getResource("View/manageUser.fxml"));
-        Scene practiceViewScene = new Scene(manageUserView);
-        Stage window1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window1.setScene(practiceViewScene);
-        window1.show();
-    }
-
     @FXML
     public void handlerSelectUser(ActionEvent event) throws IOException {
 
@@ -86,35 +80,27 @@ public class MainWindowController {
             Data.setCurrentUser(item.toString());
             decksButton.setDisable(false);
             statsButton.setDisable(false);
-            statusbarLabel1.setText("Benutzer "+ item.toString() + " ausgewählt. ");
+            statusbarLabel1.setText("Benutzer " + item.toString() + " ausgewählt. ");
         }
     }
 
     @FXML
+    public void handlerManageUser(ActionEvent event) throws IOException {
+        helper.switchScene(event, "manageUser.fxml");
+    }
+
+    @FXML
     public void handlerDeckIndex(ActionEvent event) throws IOException {
-
-        //Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("View/DeckOverview.fxml"));
-        Parent DeckIndexParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
-        Scene DeckIndexScene = new Scene(DeckIndexParent);
-        Stage window2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window2.setScene(DeckIndexScene);
-        window2.show();
-
+        helper.switchScene(event, "DeckOverview.fxml");
     }
 
     @FXML
     public void handlerStats(ActionEvent event) throws IOException {
-
-        Parent StatsWindowParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/StatsWindow.fxml"));
-        Scene StatsWindowScene = new Scene(StatsWindowParent);
-        Stage window3 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window3.setScene(StatsWindowScene);
-        window3.show();
+        helper.switchScene(event, "StatsWindow.fxml");
     }
 
     @FXML
     public void handlerQuit() {
-
         System.exit(0);
     }
 }

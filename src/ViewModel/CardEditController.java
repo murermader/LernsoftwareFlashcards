@@ -1,25 +1,21 @@
 package ViewModel;
 
+import Model.*;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
 
 import java.io.IOException;
 
 public class CardEditController {
 
+    private Helper helper = new Helper();
+
+    @FXML
     public void handlerBack(ActionEvent event)throws IOException{
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardAdd.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"CardAdd.fxml");
     }
 
+    @FXML
     public void handlerEdit(ActionEvent event)throws IOException{
 
     }

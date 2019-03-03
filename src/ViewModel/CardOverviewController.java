@@ -46,36 +46,23 @@ public class CardOverviewController {
         }
     }
 
+    @FXML
     public void handlerBack(ActionEvent event) throws IOException {
-
         Data.setCurrentDeckName(null);
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"DeckOverview.fxml");
     }
 
+    @FXML
     public void handlerCardAdd(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardAdd.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"CardAdd.fxml");
     }
 
+    @FXML
     public void handlerCardEdit(ActionEvent event) throws IOException {
-        Parent mainViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("View/CardEdit.fxml"));
-        Scene mainViewScene = new Scene(mainViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
-
+        helper.switchScene(event,"CardEdit.fxml");
     }
 
+    @FXML
     public void handlerCardDelete(ActionEvent event) throws IOException {
         //Ausgewählte Karte löschen
 

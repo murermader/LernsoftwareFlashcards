@@ -99,12 +99,7 @@ public class PracticeWindowController {
         } catch (Exception ex) {
             LogHelper.writeToLog(Level.INFO, "Fehler beim Speichern des aktuellen Decks.");
         }
-        Parent deckIndexController = FXMLLoader.load(getClass().getClassLoader().getResource("View/DeckOverview.fxml"));
-        Scene mainViewScene = new Scene(deckIndexController);
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(mainViewScene);
-        window.show();
+        helper.switchScene(event,"DeckOverview.fxml");
     }
 
     public void handlerEasy(ActionEvent event) {
