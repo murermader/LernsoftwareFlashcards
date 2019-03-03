@@ -40,7 +40,6 @@ public class DeckOverviewController {
 
                 for (Deck deck : data.getListOfDecks()) {
                     deckNames.add(deck.getName() + " (" + deck.getOwner() + ")");
-                    System.out.println(deck.getName());
                 }
                 //noinspection unchecked
                 list.setItems(deckNames);
@@ -99,6 +98,7 @@ public class DeckOverviewController {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
+        //Deck auswählen
         if (selectedItem != null) {
             for (Deck deck : data.getListOfDecks()) {
                 if (selectedItem.contains(deck.getName()) && selectedItem.contains(deck.getOwner())) {
@@ -109,15 +109,16 @@ public class DeckOverviewController {
         }
         System.out.println(Data.getCurrentDeckName());
 
+
+        //Pfad des Decks finden
         File deck = new File(Paths.get(System.getenv("LOCALAPPDATA"), "flashcards", Data.getCurrentDeckName()).toString() + ".txt");
-        System.out.println(deck);
         System.out.println("Attempting to delete " + deck.getAbsolutePath());
 
         if (!deck.exists()) {
-            System.out.println("  Doesn't exist");
+            statusbarLabel1.setText("Stapel existiert nicht");
 
         } else if (!deck.canWrite()) {
-            System.out.println("  No write permission");
+            statusbarLabel1.setText("Keine Berechtigung um diesen Stapel zu löschen");
 
         } else {
             deck = deck.getCanonicalFile();
@@ -125,11 +126,11 @@ public class DeckOverviewController {
 
             if (Isremoved) {
 
-                System.out.println("  Deleted!");
+                statusbarLabel1.setText("Stapel gelöscht");
                 helper.switchScene(event,"DeckOverview.fxml");
 
             } else {
-                System.out.println("  Delete failed - reason unknown");
+                statusbarLabel1.setText("Stapel konnte nicht gelöscht werden");
 
             }
         }

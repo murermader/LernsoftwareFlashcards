@@ -29,7 +29,7 @@ public class CardAddController {
     private Deck deck;
 
 
-    @FXML
+
     public void initialize() {
         try{
 
@@ -48,12 +48,12 @@ public class CardAddController {
         }
     }
 
-    @FXML
+
     public void handlerBack(ActionEvent event) throws IOException {
         helper.switchScene(event, "CardOverview.fxml");
     }
 
-    @FXML
+
     public void handlerAdd(ActionEvent event) throws IOException {
 
         if(!questionTextField.getText().isEmpty() && !answerTextField.getText().isEmpty()){
