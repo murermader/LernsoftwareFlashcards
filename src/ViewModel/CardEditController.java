@@ -38,9 +38,6 @@ public class CardEditController {
                 currentDeck = data.getCurrentDeck();
                 questionTextField.setText(flashcard.getFront());
                 answerTextField.setText(flashcard.getBack());
-            } else {
-                //Button disablen
-                //currentFlashCard == null --> Statusmeldung /
             }
 
         } catch (Exception ex) {
@@ -49,12 +46,12 @@ public class CardEditController {
     }
 
     @FXML
-    public void handlerBack(ActionEvent event) throws IOException {
+    public void handlerBack(ActionEvent event) {
         helper.switchScene(event, "CardOverview.fxml");
     }
 
     @FXML
-    public void handlerEdit(ActionEvent event) throws IOException {
+    public void handlerEdit(ActionEvent event) {
         try{
             if (!questionTextField.getText().isEmpty() && !answerTextField.getText().isEmpty()) {
 

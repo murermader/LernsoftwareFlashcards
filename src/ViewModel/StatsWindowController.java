@@ -48,13 +48,13 @@ public class StatsWindowController {
         timeSpent.setText(userStats.getTimeSpentLearning() + timeIndication);
     }
 
-    public void handlerReset(ActionEvent event) throws IOException {
+    public void handlerReset(ActionEvent event) {
         userStats.resetTime();
         helper.switchScene(event,"StatsWindow.fxml");
     }
 
 
-    public void handlerBack(ActionEvent event) throws IOException {
+    public void handlerBack(ActionEvent event) {
         helper.switchScene(event,"MainWindow.fxml");
     }
 }

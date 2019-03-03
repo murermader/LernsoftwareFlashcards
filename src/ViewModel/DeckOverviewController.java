@@ -51,7 +51,7 @@ public class DeckOverviewController {
         }
     }
 
-    public void handlerDeckSelect(ActionEvent event) throws IOException {
+    public void handlerDeckSelect(ActionEvent event) {
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {
@@ -65,18 +65,18 @@ public class DeckOverviewController {
         helper.switchScene(event,"PracticeWindow.fxml");
     }
 
-    public void handlerBack(ActionEvent event) throws IOException {
+    public void handlerBack(ActionEvent event) {
         list.getItems().clear();
         deckNames.clear();
         helper.switchScene(event,"MainWindow.fxml");
     }
 
-    public void handlerDeckAdd(ActionEvent event) throws IOException {
+    public void handlerDeckAdd(ActionEvent event) {
         helper.switchScene(event,"DeckAdd.fxml");
     }
 
     //Kartenansicht
-    public void handlerOverview(ActionEvent event) throws IOException {
+    public void handlerOverview(ActionEvent event) {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 

@@ -54,18 +54,18 @@ public class CardOverviewController {
     }
 
     @FXML
-    public void handlerBack(ActionEvent event) throws IOException {
+    public void handlerBack(ActionEvent event) {
         Data.setCurrentDeckName(null);
         helper.switchScene(event, "DeckOverview.fxml");
     }
 
     @FXML
-    public void handlerCardAdd(ActionEvent event) throws IOException {
+    public void handlerCardAdd(ActionEvent event) {
         helper.switchScene(event, "CardAdd.fxml");
     }
 
     @FXML
-    public void handlerCardEdit(ActionEvent event) throws IOException {
+    public void handlerCardEdit(ActionEvent event) {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
@@ -80,7 +80,7 @@ public class CardOverviewController {
     }
 
     @FXML
-    public void handlerCardDelete(ActionEvent event) throws IOException {
+    public void handlerCardDelete() {
 
         Deck currentDeck = data.getCurrentDeck();
 

@@ -71,7 +71,7 @@ public class MainWindowController {
     }
 
     @FXML
-    public void handlerSelectUser(ActionEvent event) throws IOException {
+    public void handlerSelectUser() {
 
         Object item = userComboBox.getSelectionModel().getSelectedItem();
         if (item != null) {
@@ -83,17 +83,17 @@ public class MainWindowController {
     }
 
     @FXML
-    public void handlerEditUser(ActionEvent event) throws IOException {
+    public void handlerEditUser(ActionEvent event) {
         helper.switchScene(event, "UserEdit.fxml");
     }
 
     @FXML
-    public void handlerDeckIndex(ActionEvent event) throws IOException {
+    public void handlerDeckIndex(ActionEvent event) {
         helper.switchScene(event, "DeckOverview.fxml");
     }
 
     @FXML
-    public void handlerStats(ActionEvent event) throws IOException {
+    public void handlerStats(ActionEvent event) {
         helper.switchScene(event, "StatsWindow.fxml");
     }
 

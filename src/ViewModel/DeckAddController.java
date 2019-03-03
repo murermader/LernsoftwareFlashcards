@@ -14,7 +14,7 @@ public class DeckAddController {
     public TextField StapelText = new TextField();
     private Helper helper = new Helper();
 
-    public void handlerConfirm(ActionEvent event)throws IOException{
+    public void handlerConfirm(ActionEvent event) {
 
         String deckName = StapelText.getText();
         System.out.println(deckName);
@@ -33,7 +33,7 @@ public class DeckAddController {
         helper.switchScene(event,"DeckOverview.fxml");
     }
 
-    public void handlerBack(ActionEvent event)throws IOException{
+    public void handlerBack(ActionEvent event) {
         helper.switchScene(event,"MainWindow.fxml");
     }
 }

@@ -82,7 +82,7 @@ public class PracticeWindowController {
     }
 
     //Eventhandling
-    public void handlerBack(ActionEvent event) throws IOException {
+    public void handlerBack(ActionEvent event) {
         countTime = System.currentTimeMillis()-countTime;
         userStats.setTimeSpentLearning(countTime);
         try {
@@ -95,19 +95,19 @@ public class PracticeWindowController {
         helper.switchScene(event,"DeckOverview.fxml");
     }
 
-    public void handlerEasy(ActionEvent event) {
+    public void handlerEasy() {
         finishUpCard(1);
     }
 
-    public void handlerOk(ActionEvent event) {
+    public void handlerOk() {
         finishUpCard(2);
     }
 
-    public void handlerHard(ActionEvent event) {
+    public void handlerHard() {
         finishUpCard(3);
     }
 
-    public void handlerShowBack(ActionEvent event) {
+    public void handlerShowBack() {
 
         answerLabel.setText(currentFlashcard.getBack());
         easy.setDisable(false);

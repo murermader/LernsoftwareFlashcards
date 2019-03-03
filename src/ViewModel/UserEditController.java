@@ -33,11 +33,11 @@ public class UserEditController {
         }
     }
 
-    public void handlerAdd(ActionEvent event) throws IOException {
+    public void handlerAdd(ActionEvent event) {
         helper.switchScene(event,"UserAdd.fxml");
     }
 
-    public void handlerRemove(ActionEvent event) throws IOException {
+    public void handlerRemove() {
 
         String selectedItem = (String) list.getSelectionModel().getSelectedItem();
 
@@ -59,7 +59,7 @@ public class UserEditController {
         }
     }
 
-    public void handlerSelect(ActionEvent event) throws IOException {
+    public void handlerSelect(ActionEvent event) {
 
         String selectedUser = (String) list.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
@@ -68,7 +68,7 @@ public class UserEditController {
         }
     }
 
-    public void handlerGoBack(ActionEvent event) throws IOException {
+    public void handlerGoBack(ActionEvent event) {
         helper.switchScene(event,"MainWindow.fxml");
     }
 
