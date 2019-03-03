@@ -101,6 +101,7 @@ public class CardOverviewController {
             System.out.println(data.getCurrentDeck());
 
 
+            //Karte löschen
             currentDeck.removeCard(currentDeck.getCardByName(itemToRemove));
             helper.saveDeckToFile(currentDeck);
 
