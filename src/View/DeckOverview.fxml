@@ -23,4 +23,8 @@
       <Button fx:id="back" mnemonicParsing="false" onAction="#handlerBack" text="Zurück" />
     </HBox>
   </VBox>
+    <HBox alignment="CENTER_LEFT" fx:id="statusbar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="25.0" prefWidth="650.0" AnchorPane.topAnchor="375.0">
+        <Label fx:id="statusbarLabel1"/>
+    </HBox>
 </AnchorPane>

@@ -10,14 +10,23 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class DeckOverviewController {
 
+    public HBox statusbar = new HBox();
+    public Label statusbarLabel1 = new Label();
     public ListView list = new ListView<String>();
     private Data data = new Data();
     private ObservableList<String> deckNames = FXCollections.observableArrayList();
@@ -25,14 +34,21 @@ public class DeckOverviewController {
     @FXML
     public void initialize() {
 
-        if (!data.isEmpty) {
+        try{
+            statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
+            if (!data.isEmpty) {
 
-            for (Deck deck : data.getListOfDecks()) {
-                deckNames.add(deck.getName() + " (" + deck.getOwner() + ")");
-                System.out.println(deck.getName());
+                for (Deck deck : data.getListOfDecks()) {
+                    deckNames.add(deck.getName() + " (" + deck.getOwner() + ")");
+                    System.out.println(deck.getName());
+                }
+                //noinspection unchecked
+                list.setItems(deckNames);
+            } else {
+                statusbarLabel1.setText("Es sind momentan noch keine Daten vorhanden.");
             }
-            //noinspection unchecked
-            list.setItems(deckNames);
+        } catch(Exception ex) {
+            LogHelper.writeToLog(Level.INFO, "Fehler WIRD NCOH");
         }
     }
 
@@ -101,6 +117,7 @@ public class DeckOverviewController {
             window1.setScene(CardAddViewScene);
             window1.show();
         }
+        statusbarLabel1.setText("Es wurde kein Deck ausgewählt! - Bitte zuerst ein Deck auswählen.");
         //selectedItem == Null --> Statusbar
     }
 
