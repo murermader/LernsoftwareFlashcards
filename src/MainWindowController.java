@@ -90,7 +90,7 @@ public class MainWindowController {
     @FXML
     public void handlerDeckIndex(ActionEvent event) throws IOException {
 
-        Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("GUI/DeckIndex.fxml"));
+        Parent DeckIndexParent = FXMLLoader.load(getClass().getResource("GUI/DeckOverview.fxml"));
         Scene DeckIndexScene = new Scene(DeckIndexParent);
         Stage window2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window2.setScene(DeckIndexScene);
