@@ -48,11 +48,10 @@ public class PracticeWindowController {
 
     @FXML
     public void initialize() {
+        countTime = System.currentTimeMillis();
 
         try {
-
             statusbar.setBackground(new Background(new BackgroundFill(Color.rgb(212, 212, 212), CornerRadii.EMPTY, Insets.EMPTY)));
-            countTime = System.currentTimeMillis();
             if (Data.getCurrentDeckName() != null) {
 
                 deckReady = data.getCurrentDeck();
@@ -91,7 +90,9 @@ public class PracticeWindowController {
 
     //Eventhandling
     public void handlerBack(ActionEvent event) throws IOException {
-
+        countTime = System.currentTimeMillis()-countTime;
+        user.setTimeSpentLearning(countTime);
+        LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
         try {
             if (Data.getCurrentDeckName() != null) {
                 helper.saveDeckToFile(data.getCurrentDeck());

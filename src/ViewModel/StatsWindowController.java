@@ -34,6 +34,9 @@ public class StatsWindowController {
             this.lenght += l;
             LogHelper.writeToLog(Level.INFO, "Anzahl Karten: " + l);
         }
+        LogHelper.writeToLog(Level.INFO, "Zeit: " + user.getTimeSpentLearning());
+
+
         user.setNumberOfCards(lenght);
 
         nameLabel.setText(user.getName());
