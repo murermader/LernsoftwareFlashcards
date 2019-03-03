@@ -82,14 +82,6 @@ public class CardOverviewController {
 
         Deck currentDeck = data.getCurrentDeck();
 
-        if (selectedItem != null) {
-            for (Flashcard card : currentDeck.getCards()) {
-                if (selectedItem.equals(card.getFront())) {
-                    Data.setCurrentDeckName(selectedItem);
-
-                }
-            }
-        }
 
         final int selectedIdx = list.getSelectionModel().getSelectedIndex();
         if (selectedIdx != -1) {
@@ -110,6 +102,7 @@ public class CardOverviewController {
 
 
             currentDeck.removeCard(currentDeck.getCardByName(itemToRemove));
+            helper.saveDeckToFile(currentDeck);
 
         }
     }
