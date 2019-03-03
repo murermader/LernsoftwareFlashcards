@@ -19,6 +19,7 @@ public class StatsWindowController {
     public Label timeSpent = new Label();
 
     private int lenght;
+    private String timeIndication = " Minuten";
 
     public Button resetTime= new Button();
     public Helper helper = new Helper();
@@ -44,7 +45,7 @@ public class StatsWindowController {
         deckCount.setText("" + userStats.getNumberOfDecks());
         cardCount.setText("" + userStats.getNumberOfCards());
         cardLearned.setText("" + userStats.getCardsLearned());
-        timeSpent.setText("" + userStats.getTimeSpentLearning());
+        timeSpent.setText(userStats.getTimeSpentLearning() + timeIndication);
     }
 
     public void handlerReset(ActionEvent event) throws IOException {
