@@ -99,7 +99,8 @@ public class CardOverviewController {
 
 
 
-            deck.removeCard(currentDeck.getCardbyName(itemToRemove));
+            currentDeck.removeCard(currentDeck.getCardbyName(itemToRemove));
+            helper.saveDeckToFile(currentDeck);
 
         }
         }
