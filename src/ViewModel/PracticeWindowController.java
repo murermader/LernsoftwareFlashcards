@@ -88,7 +88,6 @@ public class PracticeWindowController {
     public void handlerBack(ActionEvent event) throws IOException {
         countTime = System.currentTimeMillis()-countTime;
         user.setTimeSpentLearning(countTime);
-        LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
         try {
             if (Data.getCurrentDeckName() != null) {
                 helper.saveDeckToFile(data.getCurrentDeck());
@@ -148,9 +147,9 @@ public class PracticeWindowController {
             statusbarLabel1.setText("Der Stapel ist komplett gelernt!");
             statusbarLabel1.setVisible(true);
             show.setDisable(true);
-            countTime = System.currentTimeMillis()-countTime;
+            //Zeit wird gestoppt
+            countTime = System.currentTimeMillis() - countTime;
             user.setTimeSpentLearning(countTime);
-            LogHelper.writeToLog(Level.INFO, "Zeit insgesamt " + user.getTimeSpentLearning());
         }
     }
 

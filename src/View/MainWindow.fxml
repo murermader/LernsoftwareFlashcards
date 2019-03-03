@@ -11,7 +11,7 @@
                      <Button fx:id="selectUserButton" mnemonicParsing="false" onAction="#handlerSelectUser" text="Auswahl" />
                  </children>
               </HBox>
-            <Button fx:id="manageUserButton" mnemonicParsing="false" onAction="#handlerManageUser" prefHeight="40.0" prefWidth="284.0" text="Benutzerverwaltung" />
+            <Button fx:id="editUserButton" mnemonicParsing="false" onAction="#handlerEditUser" prefHeight="40.0" prefWidth="284.0" text="Benutzerverwaltung" />
               <Button fx:id="decksButton" mnemonicParsing="false" onAction="#handlerDeckIndex" prefHeight="40.0" prefWidth="284.0" text="Stapelanzeige" />
               <Button fx:id="statsButton" mnemonicParsing="false" onAction="#handlerStats" prefHeight="40.0" prefWidth="284.0" text="Statistiken" />
               <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handlerQuit" prefHeight="40.0" prefWidth="284.0" text="Beenden" />
